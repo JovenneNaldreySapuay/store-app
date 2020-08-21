@@ -1,7 +1,7 @@
 // prod.js - production keys here!!
 
 module.exports = {
-	shopUrl: process.env.MONGO_URL,
+	shopUrl: process.env.MLAB_URL,
 	jwtSecret: process.env.JWT_SECRET,
 	host: process.env.HOST,
 	emailHost: process.env.EMAIL_HOST,
