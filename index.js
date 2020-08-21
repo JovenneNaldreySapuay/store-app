@@ -46,7 +46,14 @@ mongoose.Promise = global.Promise;
 // });
 
 // MLAB SHOPPING DB
-mongoose.connect(keys.shopUrl, { 
+// mongoose.connect(keys.shopUrl, { 
+// 	useNewUrlParser: true, 
+// 	useCreateIndex: true, 
+// 	useUnifiedTopology: true 
+// });
+
+// FOR HEROKU CONNECTION - REMOVE ABOVE IF LAUNCH TO HEROKU
+mongoose.connect(process.env.MLAB_URL, { 
 	useNewUrlParser: true, 
 	useCreateIndex: true, 
 	useUnifiedTopology: true 
