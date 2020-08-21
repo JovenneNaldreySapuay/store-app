@@ -1,0 +1,182 @@
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import Popup from './Popup';
+import AddQuantity from './AddQuantity';
+
+import { fetchProduct } from '../actions/product';
+import { addProductCart } from '../actions/cart';
+
+class Product extends Component {
+	state = {
+		quantity: 1,
+		showPopup: false
+	}
+
+	incrementQty = (e) => {
+		e.preventDefault();
+		if (this.state.quantity < this.props.product[0].stock) {
+    		this.setState(prevState => ({ quantity: prevState.quantity + 1 }));
+		}
+  	}
+  
+  	decrementQty = (e) => {
+  		e.preventDefault();
+  		if (this.state.quantity > 1) {
+    		this.setState(prevState => ({ quantity: prevState.quantity - 1}));
+  		}
+  	}
+
+	addToCart = () => {
+		const { quantity } = this.state;
+		const { _id, price } = this.props.product[0];
+		
+		const total = quantity * price;
+		const cartItem = { _id, quantity, total };
+
+		console.log(cartItem);
+		
+		this.props.addProductCart(cartItem);
+
+		// maybe add state, if success: true, then show popup??
+		// this.togglePopup();	
+  	}
+
+ //  	handleOnChange = (e) => {
+	// 	this.setState({
+	// 		...this.state,
+	// 		[e.target.name]: e.target.value,
+	// 	});	
+	// }
+
+	togglePopup = () => {
+		this.setState({
+		  showPopup: true
+		}, () => { setTimeout(this.closePopup, 2000) });
+	}
+
+	closePopup = () => {
+		this.setState({
+		  showPopup: false
+		});
+	}
+	
+	componentDidMount = () => {
+		const {id, slug} = this.props;
+		if (id && slug) {
+			this.props.fetchProduct(id, slug);
+		}
+	}
+
+	render() {
+		// console.log("Product:", this.props);
+
+		if (! this.props.product) {
+			return <div>Loading...</div>;
+		}
+		
+		return (
+			<div className="p-3">
+				{ this.props.product.length > 0 && (
+				<div className="product-details">		
+
+				<div className="product-image">
+					<img src={this.props.product[0].image} alt={this.props.product[0].title} width="200" />
+				</div>
+				
+				<div>
+					<h2>{this.props.product[0].title}</h2>
+				</div>
+
+				<div className="mb-3">
+					<p>Price: ${this.props.product[0].price}</p>
+					<p>Ratings: {this.props.product[0].rating}</p>
+					<p>Stocks: {this.props.product[0].stock} available</p>
+					
+					<AddQuantity 
+						addToCart={this.addToCart}
+						decrementQty={this.decrementQty}
+						incrementQty={this.incrementQty}
+					/>
+				</div>
+
+				{/*
+				<div className="description border">
+					<h2>Product Description</h2>
+					<p>{this.props.product[0].description}</p>
+					<p>Blah... Blah...</p>
+					<p>Blah... Blah...</p>
+					<p>Blah... Blah...</p>
+					<p>Blah... Blah...</p>
+					<p>Blah... Blah...</p>
+					<p>Blah... Blah...</p>
+					<p>Stocks: {this.props.product[0].stock} items</p>
+				</div>
+
+				<div className="reviews border">
+					<h2>Reviews</h2>
+					<p>Blah... Blah...</p>
+					<p>Blah... Blah...</p>
+					<p>Blah... Blah...</p>
+					<p>Blah... Blah...</p>
+					<p>Blah... Blah...</p>
+					<p>Blah... Blah...</p>
+				</div>
+				*/}
+
+			</div>
+		)
+				}
+
+				{/*
+				<div className="other-products">
+					<h2>YOU MIGHT LIKE THIS PRODUCT</h2>
+
+					<div className="product border p-2">
+						<p>Product 1</p>
+						<p>$ 10.99</p>
+						<button className="bg-blue-500 text-white p-1">Add to cart</button>
+					</div>
+
+					<div className="product border p-2">
+						<p>Product 2</p>
+						<p>$ 14.99</p>
+						<button className="bg-blue-500 text-white p-1">Add to cart</button>
+					</div>
+
+					<div className="product border p-2">
+						<p>Product 3</p>
+						<p>$ 19.99</p>
+						<button className="bg-blue-500 text-white p-1">Add to cart</button>
+					</div>
+				</div>	
+				*/}
+
+				{ this.state.showPopup ? 
+		          <Popup text='Product added to cart' />
+		          : 
+		          null
+		        }	
+
+			</div>
+		);
+	}
+}
+
+const mapStateToProps = (state, ownProps) => {
+	return { 
+		product: state.product.item,
+		id: ownProps.match.params._id,
+		slug: ownProps.match.params.slug,
+	};
+}
+
+// const mapDispatchToProps = (dispatch, ownProps) => {
+// 	console.log("dispatch", dispatch);
+// 	console.log("ownProps", ownProps);
+// 	return ({
+// 		addProductCart
+// 	})
+// }
+
+export default connect(mapStateToProps, { addProductCart, fetchProduct })(Product);

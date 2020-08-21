@@ -1,0 +1,221 @@
+import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import * as auth from '../actions/auth';
+import { Menu } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
+
+import { fetchProductsCart } from '../actions/cart';
+import CartIconTable from './CartIconTable';
+
+const reducer = (accumulator, currentValue) => accumulator + currentValue;
+
+const getCartQty = (product) => {
+	let qtyArr = [];
+	let total = 0;
+	product.forEach(item => {
+    	qtyArr.push(item.quantity);
+    	total = qtyArr.reduce(reducer);
+    });
+
+    // const str = total > 1 ? ' items' : ' item';
+
+  	return total;
+}
+
+class Header extends Component {
+
+	state = {
+		visible: false,
+		// showCart: false,
+	};
+
+	componentDidMount() {
+		this.props.fetchProductsCart();
+	}
+
+  toggleMenu = () => {
+	this.setState({visible: ! this.state.visible})
+  }
+
+  getFirstName = () => {
+    let fullName = this.props.user.fullName;
+    const getFirst = fullName.replace(/ .*/,'');
+    return getFirst;
+  }
+
+  renderHeaderLink = () => {
+    if (this.props.isAuthenticated && this.props.user.role === 'admin') {
+      return (
+        <Menu.Item>
+          <Link to="/admin"><h1 style={{ color: '#000', fontSize: '23px', fontWeight: '700' }}>Blog.ly</h1></Link>
+        </Menu.Item>
+      )
+    } else if (this.props.isAuthenticated && this.props.user.role === 'user') {
+      return (
+        <Menu.Item>
+          <Link to="/user"><h1 style={{ color: '#fff', fontSize: '23px', fontWeight: 'normal' }}>Blog.ly</h1></Link>
+        </Menu.Item>
+      )
+    } else {
+      return (
+        <Menu.Item>
+          <Link to="/"><h1 style={{ color: '#fff', fontSize: '23px', fontWeight: 'normal' }}>Blog.ly</h1></Link>
+        </Menu.Item>
+      )
+    }
+  }
+
+  renderNav() {	
+    switch(this.props.isAuthenticated) {
+      case null:
+        return; 
+
+      case false:
+        return (
+			<nav className="bg-gray-800">
+				<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+				<div className="relative flex items-center justify-between h-16">
+				<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+					<button 
+					onClick={this.toggleMenu}
+					className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out">
+						<svg className="block h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/>
+						</svg>
+
+						<svg className="hidden h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+						</svg>
+					</button>
+				</div>
+				<div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+				<div className="flex-shrink-0">
+					<h1><Link to="/" className="text-white text-xl font-bold uppercase">Blog.ly</Link></h1>
+				</div>
+				</div>
+				
+				<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+				
+				<div className="hidden sm:block sm:ml-6">
+				<div className="flex">
+					<Link to="/signup" className="border border-gray-500 rounded px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-200 bg-transparent focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out px-4">Create Account</Link>
+					
+					<Link to="/login" className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-gray-300 bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out ml-2 px-6">Login</Link>	
+				</div>
+				</div>
+							
+				</div>
+				</div>
+				</div>
+				{ this.state.visible && (
+				<div className="sm:hidden">
+					<div className="px-2 pt-2 pb-3">
+					<Link to="/signup" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out mb-1">Create Account</Link>
+					
+					<Link to="/login" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out mb-1">Login</Link>
+					
+					</div>
+				</div>)}
+			</nav>
+        );
+
+      default:
+        return (
+			<nav className="bg-gray-200">
+				<div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+				<div className="relative flex items-center justify-between p-3">
+				<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
+					<button 
+					onClick={this.toggleMenu}
+					className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:bg-gray-700 focus:text-white transition duration-150 ease-in-out">
+						<svg className="block h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/>
+						</svg>
+
+						<svg className="hidden h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+						<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+						</svg>
+					</button>
+				</div>
+				<div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
+				<div className="flex-shrink-0">
+					<h1><Link to="/products" className="text-gray-600 text-xl font-semi-bold">	
+					&larr; Shop
+					</Link></h1>
+				</div>
+				</div>
+				
+				<div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+								
+				<div className="cart-icon">
+					<i className="fas fa-cart-plus">
+					</i>{' '} 
+					<span className="font-semibold">{getCartQty(this.props.products)}</span>
+					
+						<div className="cart-details">
+							<CartIconTable products={this.props.products} />			
+						</div>
+				</div>
+
+				
+
+				<div className="hidden sm:block sm:ml-6">
+				<div className="flex">			
+					<p className="text-gray-700">Howdy, {this.getFirstName()}! (Logged as: <span className="text-gray-700 font-bold">{this.props.user.role}</span>)</p>		
+				</div>
+				</div>
+				
+				<div className="hidden sm:block sm:ml-6">
+				<div className="flex">
+					<button className="border border-purple-700 text-purple-700 rounded px-2 ml-2 h-8 hover:bg-purple-700 hover:border-purple-700 hover:text-white" onClick={() => this.props.logout()}>Logout</button>	
+				</div>
+				</div>
+							
+				</div>
+				</div>
+				</div>
+				{ this.state.visible && (
+				<div className="sm:hidden">
+					<div className="px-2 pt-2 pb-3">
+					<Link to="/dashboard" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out mb-1">Dashboard</Link>
+					
+					<Link to="/profile" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out mb-1">Profile</Link>
+					
+					<Link to="/posts" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out mb-1">Posts</Link>
+					
+					<Link to="/posts/new" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out mb-1">Add New Post</Link>
+					
+					<Link to="/comments" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out mb-1">Comments</Link>
+					
+					<Link to="/users" className="block px-3 py-2 rounded-md text-base font-medium text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out mb-1">All Users</Link>
+										
+					<button className="block w-full px-3 py-2 rounded-md text-base font-medium text-gray-800 bg-transparent border border-gray-800 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out mb-1" onClick={() => this.props.logout()}>Logout</button>	
+					
+					</div>
+				</div>)}
+			</nav>
+        );
+    }
+  }
+
+  render() {
+  	// console.log("Header.js", this.props);
+    return (
+      <React.Fragment>
+        {this.renderNav()}
+        		        
+      </React.Fragment>
+      
+    )
+  }
+}
+
+function mapStateToProps(state) {
+  return { 
+    isAuthenticated: !!state.auth.token,
+    user: state.auth,
+	products: state.cart.items
+  };
+}
+
+export default connect(mapStateToProps, { logout: auth.logout, fetchProductsCart })(Header);

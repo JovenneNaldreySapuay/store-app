@@ -1,0 +1,71 @@
+// users type
+export const ADD_USER = 'ADD_USER';
+export const FETCH_USER = 'FETCH_USER';
+export const FETCH_USERS = 'FETCH_USERS';
+export const UPDATE_USER = 'UPDATE_USER';
+export const DELETE_USER = 'DELETE_USER';
+export const LOADING_USERS = 'LOADING_USERS';
+
+export const UPDATE_USER_ROLE = 'UPDATE_USER_ROLE';
+export const ROLE_UPDATED = 'ROLE_UPDATED';
+
+
+export const FETCHED_INFO = 'FETCHED_INFO';
+export const FETCHED_ALLINFO_BY_USER = 'FETCHED_ALLINFO_BY_USER';
+export const INFO_DELETED = 'INFO_DELETED';
+export const INFO_UPDATED = 'INFO_UPDATED';
+export const ADD_INFO = 'ADD_INFO';
+export const USER_LOGGED_IN = 'USER_LOGGED_IN';
+export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
+export const EMAIL_SENT = 'EMAIL_SENT';
+
+export const INFO_UPDATE = 'INFO_UPDATE';
+
+export const ADD_IMAGE = 'ADD_IMAGE';
+
+
+// product types
+export const FETCH_SINGLE_SHOP_PRODUCT = 'FETCH_SINGLE_SHOP_PRODUCT';
+
+export const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
+export const SEARCH_PRODUCTS = 'SEARCH_PRODUCTS';
+export const LOADING_PRODUCTS = 'LOADING_PRODUCTS';
+export const FETCH_PRODUCTS_BY_CATEGORY = 'FETCH_PRODUCTS_BY_CATEGORY';
+
+// in admin section for editing products
+export const ADD_PRODUCT = 'ADD_PRODUCT';
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT';
+export const DELETE_PRODUCT = 'DELETE_PRODUCT';
+export const FETCH_SINGLE_PRODUCT = 'FETCH_SINGLE_PRODUCT';
+
+// cart types
+export const ADD_TO_CART_STARTED = 'ADD_TO_CART_STARTED';
+export const ADD_TO_CART_SUCCESS = 'ADD_TO_CART_SUCCESS';
+export const ADD_TO_CART_ERROR = 'ADD_TO_CART_ERROR';
+
+export const DELETE_PRODUCT_CART = 'DELETE_PRODUCT_CART';
+export const UPDATE_PRODUCT_CART = 'UPDATE_PRODUCT_CART';
+export const FETCH_PRODUCTS_CART = 'FETCH_PRODUCTS_CART';
+export const ADD_CART_SUCCESS = 'ADD_CART_SUCCESS';
+export const ADD_CART_ERROR = 'ADD_CART_ERROR';
+export const FETCH_CART_BY_USER = 'FETCH_CART_BY_USER';
+export const FETCH_CART_ITEMS = 'FETCH_CART_ITEMS';
+
+
+// checkout types
+export const ADD_CHECKOUT_PRODUCT = 'ADD_CHECKOUT_PRODUCT';
+export const FETCH_CHECKOUT_PRODUCTS = 'FETCH_CHECKOUT_PRODUCTS';
+export const FETCH_CHECKOUT_PRODUCTS_BY_USER = 'FETCH_CHECKOUT_PRODUCTS_BY_USER';
+export const FETCH_CHECKOUT_PRODUCTS_BY_ID = 'FETCH_CHECKOUT_PRODUCTS_BY_ID';
+
+// review types
+export const ADD_PRODUCT_REVIEW = 'ADD_PRODUCT_REVIEW';
+export const FETCH_REVIEWS_BY_PRODUCT_ID = 'FETCH_REVIEWS_BY_PRODUCT_ID';
+
+// notification types
+export const ADD_NOTIFICATION = 'ADD_NOTIFICATION';
+export const FETCH_NOTIFICATIONS_BY_USER = 'FETCH_NOTIFICATIONS_BY_USER';
+
+// demo only
+export const FETCH_FORM = 'FETCH_FORM';
+export const FETCH_FORMS = 'FETCH_FORMS';

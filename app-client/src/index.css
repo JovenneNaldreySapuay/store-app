@@ -1,0 +1,6 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* Note: there's a popup css I added 
+in style.css copy it here if this file gets modified */

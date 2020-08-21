@@ -1,0 +1,89 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import axios from 'axios';
+import decode from 'jwt-decode';
+import reduxThunk from 'redux-thunk';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+// import './index.css';
+import './style.css';
+
+import * as serviceWorker from './serviceWorker';
+
+import rootReducer from './reducers'; 
+
+import { userLoggedIn } from './actions/auth';
+import setAuthorizationHeader from './utils/setAuthorizationHeader';
+import App from './components/App';
+
+// import TestRedux from './components/TestRedux';
+
+// use to test SEND GRID API
+window.axios = axios;
+
+// Redux store
+const initialState = {};
+
+const store = createStore(
+		rootReducer, 
+		initialState, 
+		composeWithDevTools(
+			applyMiddleware(reduxThunk)
+		)
+	);
+
+if (localStorage.bookwormJWT) {
+	const payload = decode(localStorage.bookwormJWT); 
+	
+	// console.log( "JWT in index.js:", payload );
+
+	const user = { 
+		_id: payload._id,
+		fullName: payload.fullName, 
+		email: payload.email, 
+		role: payload.role, 
+		confirmed: payload.confirmed, 
+		token: localStorage.bookwormJWT 
+	};
+	setAuthorizationHeader(localStorage.bookwormJWT);
+
+	store.dispatch(userLoggedIn(user));
+}
+
+// console.log("STORE:", store);
+
+ReactDOM.render(
+	<Provider store={store}>
+		<BrowserRouter>	
+			<Route component={App} />
+		</BrowserRouter>	
+	</Provider>,
+	document.querySelector('#root')
+);
+
+// console.log("Redux store:", store.getState());
+
+// const render = () => {
+// 	ReactDOM.render(
+// 		<Provider store={store}>
+// 			<BrowserRouter>	
+// 				<TestRedux comments={store.getState().comment} />
+// 			</BrowserRouter>	
+// 		</Provider>,
+// 		document.querySelector('#root')
+// 	);
+// };
+
+// TODO: Know how subscribe() works, this is only experiment remove 
+// `const render declaration` above if not working
+// code from dan abramov egghead redux video 17
+// store.subscribe(render);
+// render();
+
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: http://bit.ly/CRA-PWA
+serviceWorker.unregister();
