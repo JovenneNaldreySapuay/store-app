@@ -43,7 +43,7 @@ class Header extends Component {
         case false: 
             return (
                 <header id="header"> 
-                <div className="bg-red-400 p-3"> 
+                <div className="p-3" style={{ background: "linear-gradient(-180deg,#f53d2d,#f63)" }}> 
                     <div className="flex justify-between">
                         <div className="follow text-gray-200"><p>Follow us on Facebook | Instagram</p></div>
                         <div className="user">
@@ -56,27 +56,27 @@ class Header extends Component {
                         <div className="account">
                             <Link 
                                 to="/signup" 
-                                className="border border-white rounded px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-transparent focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out px-4"
+                                className="border border-white rounded px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-transparent focus:outline-none transition duration-150 ease-in-out px-4"
                             >
                             Create Account
                             </Link>
                     
                             <Link 
                                 to="/login" 
-                                className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out ml-2 px-6"
+                                className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none transition duration-150 ease-in-out ml-2 px-6"
                             >
                             Login
                             </Link>    
                         </div>
                     </div>
                     {/* Make this a Component */}
-                    <h3 className="text-center uppercase">Categories</h3>
+                    <h3 className="text-center uppercase text-white font-bold tracking-wide">Categories</h3>
                     <nav className="app-nav">
                         <ul className="flex justify-center">
-                            <li className="text-gray-200 inline-block p-3"><Link to="/shop">All</Link></li>
-                            <li className="text-gray-200 inline-block p-3"><Link to="/shop/women">Women's Apparel</Link></li>
-                            <li className="text-gray-200 inline-block p-3"><Link to="/shop/men">Men's Apparel</Link></li>
-                            <li className="text-gray-200 inline-block p-3"><Link to="/shop/gadgets">Gadgets</Link></li>
+                            <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop">All</Link></li>
+                            <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop/women">Women's Apparel</Link></li>
+                            <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop/men">Men's Apparel</Link></li>
+                            <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop/gadgets">Gadgets</Link></li>
                         </ul>
                     </nav>
                     <div className="m-auto w-64">
@@ -92,11 +92,11 @@ class Header extends Component {
         default: 
             return (
                 <header id="header"> 
-                <div className={this.props.isAuthenticated ? 'bg-blue-600 p-3' : 'bg-red-500 p-3'}> 
+                <div className="p-3" style={{ background: "linear-gradient(-180deg,#f53d2d,#f63)" }}> 
                     <div className="flex justify-between">
-                        <div className="follow text-gray-200"><p>Follow us on Facebook | Instagram</p></div>
+                        <div className="follow text-gray-100"><p>Follow us on Facebook | Instagram</p></div>
                         <div className="user">
-                            <span className="underline text-gray-200">{this.getFirstName()}</span>        
+                            <span className="underline text-gray-100">{this.getFirstName()}</span>        
                             <ul className="bg-gray-400 p-2">
                                 {this.props.user.role === "admin" && 
                                 <li className="mb-2 text-center"><Link 
@@ -124,7 +124,7 @@ class Header extends Component {
                        
                         <div>
                             <Link 
-                            className="text-gray-200 hover:underline uppercase"
+                            className="text-gray-100 hover:underline uppercase"
                             to="/cart"
                             >
                             View Cart
@@ -134,14 +134,15 @@ class Header extends Component {
                     </div>
                 </div>
                 {/* Make this a Component */}
-                <div className="products-category bg-gray-300 p-3">
-                    <h3 className="text-center uppercase">Categories</h3>
+                
+                <div className={window.location.pathname === "/checkout" ? "hidden" : "products-category bg-gray-500 p-3"}>
+                    <h3 className="text-center uppercase text-white font-bold tracking-wide">Categories</h3>
                     <nav className="app-nav">
                         <ul className="flex justify-center">
-                            <li className="inline-block p-3"><Link to="/shop">All</Link></li>
-                            <li className="inline-block p-3"><Link to="/shop/women">Women's Apparel</Link></li>
-                            <li className="inline-block p-3"><Link to="/shop/men">Men's Apparel</Link></li>
-                            <li className="inline-block p-3"><Link to="/shop/gadgets">Gadgets</Link></li>
+                            <li className="inline-block p-3"><Link className="hover:underline" to="/shop">All</Link></li>
+                            <li className="inline-block p-3"><Link className="hover:underline" to="/shop/women">Women's Apparel</Link></li>
+                            <li className="inline-block p-3"><Link className="hover:underline" to="/shop/men">Men's Apparel</Link></li>
+                            <li className="inline-block p-3"><Link className="hover:underline" to="/shop/gadgets">Gadgets</Link></li>
                         </ul>
                     </nav>
                     <div className="m-auto w-64">
@@ -152,6 +153,7 @@ class Header extends Component {
                     </div>
 
                 </div>
+                
             </header>
             )
     }

@@ -14,7 +14,7 @@ const SearchInput = ({ handleOnChange, handleOnSubmit }) => {
 				onChange={handleOnChange}
 			/>
 			<button 
-			className="bg-blue-500 text-white py-1 px-2"
+			className="text-white uppercase py-1 px-2 border border-grey-100 font-bold"
 			type="submit"
 			>Search</button>
 			</div>

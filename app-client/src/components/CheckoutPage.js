@@ -145,9 +145,12 @@ class CheckoutPage extends Component {
 	              <tr key={item._id}>
 	                <td className="p-1 border">
 	                <img 
-					className="border border-grey-200"
+					className="border border-grey-200 m-auto"
 					title={item.title}
-					src={item.image} alt={item.title} width={50} />
+					src={item.image} 
+					alt={item.title} 
+					width={50} 
+					/>
 	                </td>
 	                <td className="p-1 border text-center">{item.title}</td>
 	                <td className="p-1 border text-center">${item.price}</td>

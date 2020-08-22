@@ -10,9 +10,12 @@ const CartItemRow = (props) => {
 		<tr>
 			<td className="p-1 border">
 				<img 
-				className="border border-grey-200"
+				className="border border-grey-200 m-auto"
 				title={props.product.title}
-				src={props.product.image} alt={props.product.title} width={50} />
+				src={props.product.image} 
+				alt={props.product.title} 
+				width={50} 
+				/>
 			</td>
 			<td className="p-1 border text-center">
 				<Link 
@@ -27,7 +30,7 @@ const CartItemRow = (props) => {
 			<td className="p-1 border text-center">
 				<button 
 				onClick={() => props.deleteProductCart(props.product._id) }
-				className="bg-red-600 hover:bg-red-500 p-1 text-white">
+				className="bg-red-400 hover:bg-red-600 p-1 text-white">
 				Delete Item
 				</button>
 			</td>

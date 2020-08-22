@@ -26,7 +26,7 @@ class CartItemTable extends Component {
   	}
 
 	render() {
-		console.log("CartItemTable", this.props);
+		// console.log("CartItemTable", this.props);
 		const { products } = this.props;
 
 		if (! products) {
@@ -93,11 +93,9 @@ class CartItemTable extends Component {
 	}
 }
 
-function mapStateToProps(state) {
-	return {
-		products: state.cart.items,
-		loggedUserId: state.auth._id,	
-	};
-}
+const mapStateToProps = (state) => ({	
+	products: state.cart.items,
+	loggedUserId: state.auth._id,	
+})
 
 export default connect(mapStateToProps, { fetchCartByUser })(CartItemTable);

@@ -29,7 +29,7 @@ class ProductItem extends Component {
 				</td>
 
 				<td className="p-3 border">
-					<p>{product.stock}</p>
+					{ product.stock < 1 ? <p className="text-red-500 font-bold">{product.stock}</p> : <p className="text-blue-500 font-bold">{product.stock}</p> }
 				</td>
 
 				<td className="p-3 border">

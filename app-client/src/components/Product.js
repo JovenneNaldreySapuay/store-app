@@ -104,17 +104,19 @@ class Product extends Component {
 						qtyValue={this.state.quantity}
 						product={product} 
 						addToCart={this.addToCart}
+						isAuth={this.props.isAuthenticated}
+						productIdReview={this.props.id}
+						stocks={this.props.product.stock}
 					/>
 		}
 	}
 
 	render() {
 		// console.log("State:", this.state);
-		
 		const { product } = this.props;
-    	
+		    	
 		return (
-			<div style={{ width: 700, margin: '0 auto', padding: 15 }}>
+			<div className="bg-gray-100" style={{ width: 700, margin: '0 auto', padding: 15 }}>
 
 				{this.state.isShowPopup && 
 				 <Popup message="Item added to your cart" />}

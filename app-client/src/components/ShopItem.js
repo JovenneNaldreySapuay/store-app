@@ -22,7 +22,10 @@ const ShopItem = ({ product }) => {
 						</Link>
 					</h2>
 					<p>Price: ${product.price}</p>
-					<p>{product.stock} stocks available</p>
+					{product.stock < 1 ?
+						<p className="text-red-500">Out of stocks</p> :
+						<p>{product.stock} stocks available</p>
+					}	
 				</div>
 			</div>
 		</div>
