@@ -40,11 +40,12 @@ class CartItemTable extends Component {
 				<table className="border w-full text-left shadow-sm">
 					<thead>
 			            <tr>
-			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Item Name</th>
-			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Unit Price</th>
-			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Quantity</th>
-			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Item Subtotal</th>
-			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Action</th>
+			              <th className="p-2"></th>
+			              <th className="p-2 text-xs text-gray-900 text-center uppercase font-bold tracking-wide">Item Name</th>
+			              <th className="p-2 text-xs text-gray-900 text-center uppercase font-bold tracking-wide">Unit Price</th>
+			              <th className="p-2 text-xs text-gray-900 text-center uppercase font-bold tracking-wide">Quantity</th>
+			              <th className="p-2 text-xs text-gray-900 text-center uppercase font-bold tracking-wide">Item Subtotal</th>
+			              <th className="p-2 text-xs text-gray-900 text-center uppercase font-bold tracking-wide">Action</th>
 			            </tr>  
 			        </thead>
 			        <tbody>
@@ -58,8 +59,13 @@ class CartItemTable extends Component {
 			        	}
 			        </tbody> 
 				</table>
-				<div className="mb-5">
-					<p className="my-3"><span style={{fontWeight:'bold'}}>TOTAL:</span> ${computeCartTotal(products)}</p>
+				<div className="mb-5 mt-2 flex justify-end">
+					<p className="mt-2 mr-6">
+						<span 
+						className="uppercase font-semibold"
+						>total:
+						</span>{' '}${computeCartTotal(products)}
+					</p>
 					<Link to="/checkout">
 						<button 
 							className="bg-blue-500 hover:bg-blue-700 text-white p-2"

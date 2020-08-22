@@ -114,8 +114,8 @@ class CheckoutPage extends Component {
 		  </div>
 		  { products.length > 0 ? ( 
 		 <div>  
-	     <div className="delivery-address p-3 my-3 bg-red-100">
-	  	 	<h2 className="text-orange-400 pb-2 font-bold">Delivery Address</h2>
+	     <div className="delivery-address p-3 my-3 bg-blue-100 mb-5">
+	  	 	<h2 className="text-black pb-2 font-semibold">Delivery Address</h2>
 	  	 	<p>
 	  	 	<span className="font-semibold">
 	  	 	{user.fullName}{' '}({user.phone}){' '}
@@ -126,15 +126,16 @@ class CheckoutPage extends Component {
 	  	 	</p>
 	  	 </div>
 
-	       <h1 className="text-center uppercase font-bold text-xl tracking-wide">Products Ordered</h1>
+	       <h1 className="text-center font-semibold text-xl tracking-wide">Products Ordered</h1>
 
-	       <table border="1" className="checkout-table border w-full mt-3">
+	       <table border="1" className="checkout-table border w-full mt-3 mb-2">
 	       <thead>
 	         <tr>
-	            <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Item Name</th>
-	            <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Unit Price</th>
-	            <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Quantity</th>
-	            <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Item Subtotal</th>
+	            <th className="p-2 text-xs text-gray-900 uppercase font-bold tracking-wide"></th>
+	            <th className="p-2 text-xs text-gray-900 uppercase font-bold tracking-wide">Item Name</th>
+	            <th className="p-2 text-xs text-gray-900 uppercase font-bold tracking-wide">Unit Price</th>
+	            <th className="p-2 text-xs text-gray-900 uppercase font-bold tracking-wide">Quantity</th>
+	            <th className="p-2 text-xs text-gray-900 uppercase font-bold tracking-wide">Item Subtotal</th>
 	        </tr>
 	       </thead>
 	       <tbody>
@@ -142,60 +143,72 @@ class CheckoutPage extends Component {
 	          products.map(item => {
 	            return (
 	              <tr key={item._id}>
-	                <td className="p-3 border text-center">{item.title}</td>
-	                <td className="p-3 border text-center">${item.price}</td>
-	                <td className="p-3 border text-center">{item.quantity}</td>
-	                <td className="p-3 border text-center">${item.total}</td>
+	                <td className="p-1 border">
+	                <img 
+					className="border border-grey-200"
+					title={item.title}
+					src={item.image} alt={item.title} width={50} />
+	                </td>
+	                <td className="p-1 border text-center">{item.title}</td>
+	                <td className="p-1 border text-center">${item.price}</td>
+	                <td className="p-1 border text-center">{item.quantity}</td>
+	                <td className="p-1 border text-center">${item.total}</td>
 	              </tr>
 	            )})
 	        }
 	        </tbody>         
 	        </table>
 	        
-	        <div className="leave-message p-3">
-	          <label htmlFor="message">Leave a message:&nbsp;</label>
-	          <input className="border p-2" type="text" name="message" id="message" placeholder="Your message..." onChange={this.handleOnChange} />
-	        </div>  
-	       
-	        <div onChange={this.handleOnChange} className="shipping-option p-3">
-	          <p style={{fontWeight: 'bold'}}>Shipping Option:</p>
-	          <p>
-	          <input type="radio" id="std" name="shipping_option" value="Standard Delivery" />
-	          <label htmlFor="std">&nbsp;Standard Delivery</label>
-	          </p>  
-	          <p>
-	          <input type="radio" id="ninjavan" name="shipping_option" value="Ninja Van" />
-	          <label htmlFor="ninjavan">&nbsp;Ninja Van</label>
-	          </p>  
-	        </div>
-	       
-	       <div onChange={this.handleOnChange} className="payment-method p-3">
-	          <p style={{fontWeight: 'bold'}}>Payment Method:</p>
-	          <p>
-	          <input type="radio" id="cod" name="payment_method" value="COD" />
-	          <label htmlFor="cod">&nbsp;COD</label>
-	          </p>  
-	          <p>
-	          <input type="radio" id="credit" name="payment_method" value="Credit Card" />
-	          <label htmlFor="credit">&nbsp;Credit Card</label>
-	          </p>
-	          <p>
-	          <input type="radio" id="paypal" name="payment_method" value="PayPal" />
-	          <label htmlFor="paypal">&nbsp;PayPal</label>
-	          </p>
-	        </div>
-	       
-	        <div className="payment-summary bg-gray-200 p-3">
-	          <p>Merchandise Subtotal: ${subTotal}</p>
-	          <p>Shipping Total: ${this.props.shipping_fee}</p>
-	          <p className="total-payable">Total Payment: ${total}</p>
-	        </div>
+	        <div className="border border-grey-200" style={{ width: 600, margin: '0 auto', padding: 10 }}>	
+				<div className="leave-message p-3">
+				<label htmlFor="message">Leave a message:&nbsp;</label>
+				<input className="border p-2" type="text" name="message" id="message" placeholder="Your message..." onChange={this.handleOnChange} />
+				</div>  
 
-	        <div className="payment-cta mt-1">
-	          <button onClick={this.handleOrderClick} className="bg-blue-500 text-white px-3 py-2 mt-3">Place Order</button>
-	          { redirect && ( 
-			 		<Redirect to="/" /> 
-			  )}
+				<div onChange={this.handleOnChange} className="shipping-option p-3">
+				<p style={{fontWeight: 'bold'}}>Shipping Option:</p>
+				<p>
+				<input type="radio" id="std" name="shipping_option" value="Standard Delivery" />
+				<label htmlFor="std">&nbsp;Standard Delivery</label>
+				</p>  
+				<p>
+				<input type="radio" id="ninjavan" name="shipping_option" value="Ninja Van" />
+				<label htmlFor="ninjavan">&nbsp;Ninja Van</label>
+				</p>  
+				</div>
+
+				<div onChange={this.handleOnChange} className="payment-method p-3">
+				<p style={{fontWeight: 'bold'}}>Payment Method:</p>
+				<p>
+				<input type="radio" id="cod" name="payment_method" value="COD" />
+				<label htmlFor="cod">&nbsp;COD</label>
+				</p>  
+				<p>
+				<input type="radio" id="credit" name="payment_method" value="Credit Card" />
+				<label htmlFor="credit">&nbsp;Credit Card</label>
+				</p>
+				<p>
+				<input type="radio" id="paypal" name="payment_method" value="PayPal" />
+				<label htmlFor="paypal">&nbsp;PayPal</label>
+				</p>
+				</div>
+
+				<div className="payment-summary bg-gray-200 p-3">
+				<p>Merchandise Subtotal: <span className="font-semibold">${subTotal}</span></p>
+				<p>Shipping Total: <span className="font-semibold">${this.props.shipping_fee}</span></p>
+				<p className="total-payable">Total Payment: <span className="font-semibold">${total}</span></p>
+				</div>
+
+				<div className="payment-cta mt-1 flex justify-end">
+				<button 
+				onClick={this.handleOrderClick} 
+				className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 mt-3"
+				>Place Order
+				</button>
+				{ redirect && ( 
+				<Redirect to="/" /> 
+				)}
+				</div> 
 	        </div> 
 
 		    </div>

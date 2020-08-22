@@ -8,20 +8,26 @@ const CartItemRow = (props) => {
 
 	return (
 		<tr>
-			<td className="p-3 border">
+			<td className="p-1 border">
+				<img 
+				className="border border-grey-200"
+				title={props.product.title}
+				src={props.product.image} alt={props.product.title} width={50} />
+			</td>
+			<td className="p-1 border text-center">
 				<Link 
 					className="text-blue-500 underline" 
 					to={`/shop/${props.product.slug}/${props.product._product}`}>
 					{props.product.title}
 				</Link>
 			</td>	
-			<td className="p-3 border">${props.product.price}</td>	
-			<td className="p-3 border">- {props.product.quantity} +</td>
-			<td className="p-3 border">${props.product.total}</td>
-			<td className="p-3 border">
+			<td className="p-1 border text-center">${props.product.price}</td>	
+			<td className="p-1 border text-center">{props.product.quantity}</td>
+			<td className="p-1 border text-center">${props.product.total}</td>
+			<td className="p-1 border text-center">
 				<button 
 				onClick={() => props.deleteProductCart(props.product._id) }
-				className="bg-red-700 hover:bg-red-600 p-2 text-white">
+				className="bg-red-600 hover:bg-red-500 p-1 text-white">
 				Delete Item
 				</button>
 			</td>

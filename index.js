@@ -10,20 +10,6 @@ const keys = require('./config/keys');
 
 mongoose.set('useFindAndModify', false);
 
-// NOTE ADD THIS CLOUD INFO IN HEROKU TO WORK
-
-// cloudinary.config({ 
-//   cloud_name: process.env.CLOUD_NAME, 
-//   api_key: process.env.API_KEY, 
-//   api_secret: process.env.API_SECRET
-// })
-
-cloudinary.config({ 
-  cloud_name: 'jovennesapuay',
-  api_key: '414176571163697', 
-  api_secret: 'lq6YY4D9Fp2k-q7jKpvm-rSMV8Y'
-});
-
 // models
 require('./models/User');
 require('./models/Product');
@@ -31,33 +17,29 @@ require('./models/Cart');
 require('./models/Checkout');
 require('./models/Review');
 require('./models/Notification');
-
-require('./models/Form'); // demo only
+require('./models/Form'); 
 
 dotenv.config();
 
+cloudinary.config({ 
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY, 
+  api_secret: process.env.API_SECRET
+});
+
 mongoose.Promise = global.Promise;
 
-// LOCAL SHOPPING DB
-// mongoose.connect(keys.localShopUrl, { 
-// 	useNewUrlParser: true,
-// 	useCreateIndex: true, 
-// 	useUnifiedTopology: true 
-// });
-
-// MLAB SHOPPING DB
-// mongoose.connect(keys.shopUrl, { 
-// 	useNewUrlParser: true, 
-// 	useCreateIndex: true, 
-// 	useUnifiedTopology: true 
-// });
-
-// FOR HEROKU CONNECTION - REMOVE ABOVE IF LAUNCH TO HEROKU
-mongoose.connect(process.env.MLAB_URL, { 
+const mongooseConfig = { 
 	useNewUrlParser: true, 
 	useCreateIndex: true, 
 	useUnifiedTopology: true 
-});
+}
+
+// Local DB
+// mongoose.connect(process.env.MONGODB_URL, mongooseConfig);
+
+// Remote DB
+mongoose.connect(process.env.MLAB_URL, mongooseConfig);
 
 mongoose.set('useCreateIndex', true);
 mongoose.set('useNewUrlParser', true);
@@ -77,7 +59,7 @@ app.use(function (req, res, next) {
 });
 
 app.use(cors({
-	origin: 'http://localhost:3000',
+	origin: process.env.HOST,
 }));
 
 // routes
@@ -89,9 +71,8 @@ require('./routes/checkoutRoutes')(app);
 require('./routes/reviewRoutes')(app); 
 require('./routes/notificationRoutes')(app); 
 
-require('./routes/formRoutes')(app); // demo only
+require('./routes/formRoutes')(app); 
 
-// uncomment in development:
 mongoose.connection.once('open', () => {
 	console.log("Successfully connected to a database.");
 }).on('error', error => {

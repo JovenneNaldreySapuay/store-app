@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import Empty from './Empty';
 import ReviewerInfo from './ReviewerInfo';
 import { fetchReviewsByProductId } from '../actions/review';
 
@@ -10,26 +11,26 @@ class ProductReviews extends Component {
 		this.props.fetchReviewsByProductId(this.props.productId);
 	}
 
-	reviewContainer() {
-		const { reviews } = this.props;
-
+	reviewReviews(reviews) {
 		if (! reviews) {
 			return <div>Loading...</div>
 		}
 
 		if (reviews.length === 0) {
-			return <div>No reviews</div>
+			return <Empty label="No reviews" />
 		}
 
-		return reviews.map((review, idx) => <ReviewerInfo review={review} key={idx} />)
+		return reviews.map((review, idx) => 
+			<ReviewerInfo review={review} key={idx} />)
 	}
 
 	render() {
+		const { reviews } = this.props;
+
 		return (
-			<div className="bg-blue-100 p-3 border my-5">
-				<h1>Product Ratings</h1>
-				{this.reviewContainer()}
-			</div>
+			<React.Fragment>
+				{this.reviewReviews(reviews)}
+			</React.Fragment>
 
 		); 
 	}
@@ -37,7 +38,7 @@ class ProductReviews extends Component {
 
 const mapStateToProps = (state) => {
 	return { 
-		reviews: state.review.items,
+		reviews: state.review.items || []
 	};
 }
 
