@@ -48,11 +48,11 @@ class Header extends Component {
                         <div className="flex justify-between">
                             <div className="follow text-gray-200"><p>Follow us on Facebook | Instagram</p></div>
                             <div className="user">
-                                <span className="underline text-gray-200">contact@shoppers.com</span>      
+                                <span className="underline text-gray-200">contact@shopeeh.com</span>      
                             </div>
                         </div>
                         <div className="logo-section flex justify-between mt-2 py-3">
-                            <Link className="text-white font-semibold" to="/">Shoppers</Link>
+                            <Link className="text-white font-semibold" to="/">Shopeeh</Link>
                             
                             <div className="account">
                                 <Link 
@@ -127,7 +127,7 @@ class Header extends Component {
                     <div className="logo-section mt-2 py-3">
                         <div className="m-auto w-4/5">
                             <div className="flex justify-between">
-                                <Link className="text-white font-semibold" to="/">Shoppers</Link>
+                                <Link className="text-white font-semibold" to="/">Shopeeh</Link>
                                
                                 <div>
                                     <Link 
