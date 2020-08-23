@@ -11,8 +11,8 @@ import InlineError from './InlineError';
 class LoginForm extends Component {
 	state = {
 		data: {
-			email: 'jovenne@test.com',
-			password: 'admin'
+			email: '',
+			password: ''
 		},
 		loading: false,
 		errors: {}
