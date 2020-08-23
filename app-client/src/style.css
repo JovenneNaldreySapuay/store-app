@@ -108529,3 +108529,7 @@ video {
   margin-right: 4px;
   color: dimgrey;
 }
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}

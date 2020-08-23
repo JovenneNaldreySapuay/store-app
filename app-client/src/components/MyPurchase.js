@@ -23,7 +23,7 @@ class MyPurchase extends Component {
 							{
 								checkout.products.map((product, idx) => {
 									return (
-										<div className="bg-gray-100 border border-grey-200 p-2" key={idx}>
+										<div className="bg-white border border-grey-400 p-2" key={idx}>
 											<img 
 											className="border border-grey-200"
 											src={product.image} alt={product.title} width={80} />
@@ -35,7 +35,7 @@ class MyPurchase extends Component {
 									)
 								})
 							}
-							<div className="bg-blue-100 border border-grey-200 mt-2 p-2">
+							<div className="bg-gray-300 p-2">
 								<p>Shipping Fee: ${checkout.shipping_fee}</p>
 								<p>Overall Total: ${checkout.total}</p>
 								<p>Status: Paid</p>

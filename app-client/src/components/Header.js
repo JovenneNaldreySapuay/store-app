@@ -44,29 +44,31 @@ class Header extends Component {
             return (
                 <header id="header"> 
                 <div className="p-3" style={{ background: "linear-gradient(-180deg,#f53d2d,#f63)" }}> 
-                    <div className="flex justify-between">
-                        <div className="follow text-gray-200"><p>Follow us on Facebook | Instagram</p></div>
-                        <div className="user">
-                            <span className="underline text-gray-200">contact@shoppers.com</span>      
+                    <div className="m-auto w-4/5">
+                        <div className="flex justify-between">
+                            <div className="follow text-gray-200"><p>Follow us on Facebook | Instagram</p></div>
+                            <div className="user">
+                                <span className="underline text-gray-200">contact@shoppers.com</span>      
+                            </div>
                         </div>
-                    </div>
-                    <div className="logo-section flex justify-between mt-2 py-3">
-                        <Link className="text-white" to="/">Shopper's Ave.</Link>
+                        <div className="logo-section flex justify-between mt-2 py-3">
+                            <Link className="text-white font-semibold" to="/">Shoppers</Link>
+                            
+                            <div className="account">
+                                <Link 
+                                    to="/signup" 
+                                    className="border border-white rounded px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-transparent focus:outline-none transition duration-150 ease-in-out px-4"
+                                >
+                                Create Account
+                                </Link>
                         
-                        <div className="account">
-                            <Link 
-                                to="/signup" 
-                                className="border border-white rounded px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-transparent focus:outline-none transition duration-150 ease-in-out px-4"
-                            >
-                            Create Account
-                            </Link>
-                    
-                            <Link 
-                                to="/login" 
-                                className="px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-gray-900 focus:outline-none transition duration-150 ease-in-out ml-2 px-6"
-                            >
-                            Login
-                            </Link>    
+                                <Link 
+                                    to="/login" 
+                                    className="px-3 py-2 rounded-md text-sm font-medium leading-5 bg-gray-200 focus:outline-none transition duration-150 ease-in-out ml-2 px-6"
+                                >
+                                Login
+                                </Link>    
+                            </div>
                         </div>
                     </div>
                     {/* Make this a Component */}
@@ -93,49 +95,55 @@ class Header extends Component {
             return (
                 <header id="header"> 
                 <div className="p-3" style={{ background: "linear-gradient(-180deg,#f53d2d,#f63)" }}> 
-                    <div className="flex justify-between">
+                    <div className="m-auto w-4/5">
+                        <div className="flex justify-between">
                         <div className="follow text-gray-100"><p>Follow us on Facebook | Instagram</p></div>
-                        <div className="user">
-                            <span className="underline text-gray-100">{this.getFirstName()}</span>        
-                            <ul className="bg-gray-400 p-2">
-                                {this.props.user.role === "admin" && 
-                                <li className="mb-2 text-center"><Link 
-                                className="text-red-400 hover:text-red-600 uppercase font-semibold underline"
-                                to="/admin"
-                                >
-                                Admin Only
-                                </Link></li> 
-                                }
-                                <li className="mb-2 text-center"><Link className="hover:underline hover:text-red-500" to="/account">My Account</Link></li>
-                                <li className="mb-2 text-center"><Link className="hover:underline hover:text-red-500" to="/account/my-purchase">My Purchase</Link></li>
-                                <li className="mb-2 text-center"><Link className="hover:underline hover:text-red-500" to="/account/notifications">Notifications</Link></li>
-                                <li className="text-center">
-                                <button 
-                                    className="bg-gray-500 hover:bg-gray-700 text-white py-1 px-2" 
-                                    onClick={() => this.props.logout()}>
-                                Logout
-                                </button>
-                                </li>
-                            </ul>
+
+                        <div className="dropdown inline-block relative">
+                        <button className="text-gray-700 font-semibold inline-flex items-center">
+                        <span className="mr-1 text-gray-100">{this.getFirstName()}</span>
+                        <svg 
+                        className="text-gray-100 h-4 w-4" 
+                        xmlns="http://www.w3.org/2000/svg" 
+                        viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> 
+                        </svg>
+                        </button>
+                        <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
+                        {this.props.user.role === "admin" &&
+                            <li><Link to="/admin" className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Admin</Link></li>
+                        }
+                        <li><Link to="/account" className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">My Account</Link></li>
+                        <li><Link to="/account/my-purchase" className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">My Purchase</Link></li>
+                        <li><Link to="/account/notifications" className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Notifications</Link></li>      
+                        <li><button 
+                        className="bg-red-300 hover:bg-red-500 text-white w-full py-1 px-2"
+                        onClick={() => this.props.logout()}>
+                        Logout
+                        </button></li>
+                        </ul>
+                        </div>
                         </div>
                     </div>
-                    <div className="logo-section flex justify-between mt-2 py-3">
-                        <Link className="text-white" to="/">Shopper's Ave.</Link>
-                       
-                        <div>
-                            <Link 
-                            className="text-gray-100 hover:underline uppercase"
-                            to="/cart"
-                            >
-                            View Cart
-                            </Link>
+                    <div className="logo-section mt-2 py-3">
+                        <div className="m-auto w-4/5">
+                            <div className="flex justify-between">
+                                <Link className="text-white font-semibold" to="/">Shoppers</Link>
+                               
+                                <div>
+                                    <Link 
+                                    className="text-gray-100 hover:underline uppercase"
+                                    to="/cart"
+                                    >
+                                    View Cart
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
-
                     </div>
                 </div>
                 {/* Make this a Component */}
                 
-                <div className={window.location.pathname === "/checkout" ? "hidden" : "products-category bg-gray-500 p-3"}>
+                <div className={window.location.pathname === "/checkout" ? "hidden" : "products-category bg-gray-300 p-3"}>
                     <h3 className="text-center uppercase text-white font-bold tracking-wide">Categories</h3>
                     <nav className="app-nav">
                         <ul className="flex justify-center">

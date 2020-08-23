@@ -82,7 +82,7 @@ class LoginForm extends Component {
 		return (
 			<Form onSubmit={this.handleOnSubmit} loading={loading} className="border border-gray-400 p-4 rounded">
 
-				{!!errors.global && <Message className="text-red-400">{errors.global}</Message>}
+				{/* !!errors.global && <Message className="text-red-400">{errors.global}</Message> */}
 
 				<Form.Field error={!!errors.email}>
 					<label htmlFor="email" className="text-gray-600">Email</label>

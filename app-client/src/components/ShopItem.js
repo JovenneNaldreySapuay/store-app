@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const ShopItem = ({ product }) => {
 	return (
-		<div className="mb-6 border rounded-md overflow-hidden">
+		<div className="w-40 mx-1 mb-6 border rounded-md overflow-hidden">
 			<div className="p-2">
 				<Link to={`/shop/${product.slug}/${product._id}`}>
 				<img 
