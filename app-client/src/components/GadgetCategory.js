@@ -24,7 +24,7 @@ class GadgetCategory extends Component {
 					</h1>
 				</div>
 				
-				<div className="flex justify-around">
+				<div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
 				{(! products || products.length === 0) &&
 					<div>Loading... <i className="fa fa-refresh fa-spin"></i></div>
 				}
