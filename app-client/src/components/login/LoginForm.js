@@ -6,7 +6,7 @@ import {
 	Message, 
 } from 'semantic-ui-react';
 
-import InlineError from './InlineError';
+import InlineError from '../InlineError';
 
 class LoginForm extends Component {
 	state = {

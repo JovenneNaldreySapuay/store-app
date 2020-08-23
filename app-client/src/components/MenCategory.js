@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ShopItem from './ShopItem';
+import ShopItem from './shop/ShopItem';
 import { fetchProductsByCategory } from '../actions/product';
 
 class MenCategory extends Component {
@@ -27,7 +27,7 @@ class MenCategory extends Component {
 					</h1>
 				</div>
 				
-				<div>
+				<div className="flex justify-around">
 				{(! products || products.length === 0) &&
 					<div>Loading... <i className="fa fa-refresh fa-spin"></i></div>
 				}

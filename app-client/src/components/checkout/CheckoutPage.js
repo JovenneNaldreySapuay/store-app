@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 
-import { fetchCartByUser } from '../actions/cart';
-import { addCheckoutProduct } from '../actions/checkout';
+import { fetchCartByUser } from '../../actions/cart';
+import { addCheckoutProduct } from '../../actions/checkout';
 
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
 

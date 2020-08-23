@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import isEmail from 'validator/lib/isEmail';
 
-import InlineError from './InlineError';
-import { signup } from '../actions/user';
+import InlineError from '../InlineError';
+import { signup } from '../../actions/user';
 
 class SignupForm extends Component {
 	state = {

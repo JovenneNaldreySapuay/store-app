@@ -7,7 +7,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
-// import { composeWithDevTools } from 'redux-devtools-extension';
 import * as serviceWorker from './serviceWorker';
 
 import './style.css';
@@ -19,7 +18,6 @@ import rootReducer from './reducers';
 import setAuthorizationHeader from './utils/setAuthorizationHeader';
 import App from './components/App';
 
-// use to test SEND GRID API
 window.axios = axios;
 
 const middleware = [ reduxThunk ];

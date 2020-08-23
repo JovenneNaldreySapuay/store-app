@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { fetchCartByUser } from '../actions/cart';
+import { fetchCartByUser } from '../../actions/cart';
 
 import CartItemRow from './CartItemRow';
 

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Empty from './Empty';
+import Empty from '../Empty';
 import ShopItem from './ShopItem';
 
-import { fetchProducts } from '../actions/product';
+import { fetchProducts } from '../../actions/product';
 
 class Shop extends Component {
 
@@ -32,12 +32,6 @@ class Shop extends Component {
 				</h1>
 			</div>
 
-			<div className="flex justify-around">	
-				{this.renderProducts(products)}
-			</div>
-			<div className="flex justify-around">	
-				{this.renderProducts(products)}
-			</div>
 			<div className="flex justify-around">	
 				{this.renderProducts(products)}
 			</div>

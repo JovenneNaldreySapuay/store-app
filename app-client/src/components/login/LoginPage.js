@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import LoginForm from './LoginForm';
-import { login } from '../actions/auth';
+import { login } from '../../actions/auth';
 		
 class LoginPage extends Component {
 

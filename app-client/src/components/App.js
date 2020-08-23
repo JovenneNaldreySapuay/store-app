@@ -26,48 +26,52 @@ import {addReview} from '../actions/review';
 import FormDemo from './FormDemo';
 import FormDemoEdit from './FormDemoEdit';
 
+import AdminRoute from './AdminRoute';
+import GuestRoute from './GuestRoute';
+
 import Header from './Header';
 import Dashboard from './Dashboard';
-import HomePage from './HomePage';
+import HomePage from './home/HomePage';
+
 import MyPurchase from './MyPurchase';
+
 import WomenCategory from './WomenCategory';
 import MenCategory from './MenCategory';
 import GadgetCategory from './GadgetCategory';
+
 import Notifications from './Notifications';
+
 import FeedbackContainer from './FeedbackContainer';
 import Transactions from './Transactions';
 import TransactionView from './TransactionView';
+
 import AbandonedCart from './AbandonedCart';
 
 import EditProduct from './EditProduct';
 import AccountPage from './AccountPage';
 import ProfileForm from './ProfileForm';
 
-import Shop from './Shop';
-// import ShopProduct from './ShopProduct';
+import Shop from './shop/Shop';
+import Admin from './admin/Admin';
 
-import Admin from './Admin';
+import SignupPage from './signup/SignupPage';
+import LoginPage from './login/LoginPage';
 
-import AdminRoute from './AdminRoute';
-import GuestRoute from './GuestRoute';
-
-import SignupPage from './SignupPage';
-import LoginPage from './LoginPage';
+import ManageRole from './user/ManageRole';
+import EditRole from './user/EditRole';
 
 import ConfirmationPage from './ConfirmationPage';
 import ForgotPasswordPage from './ForgotPasswordPage';
 import ResetPasswordPage from './ResetPasswordPage';
 
-import ManageRole from './UserRole/ManageRole';
-import EditRole from './UserRole/EditRole';
-
 import AddProduct from './AddProduct';
 import Product from './Product';
 import Products from './Products';
-import CartPage from './CartPage';
-import CheckoutPage from './CheckoutPage';
 
-import Footer from './Footer';
+import CartPage from './cart/CartPage';
+import CheckoutPage from './checkout/CheckoutPage';
+
+import Footer from './footer/Footer';
 
 class App extends Component {
   render() {

@@ -16,7 +16,7 @@ const ShopItem = ({ product }) => {
 			
 			<div className="bg-gray-100">
 				<div className="p-2">
-					<h2 className="underline pt-1 font-bold text-lg text-gray-800 hover:text-gray-500 inline-block">
+					<h2 className="item-name">
 						<Link to={`/shop/${product.slug}/${product._id}`}>
 							{product.title}
 						</Link>

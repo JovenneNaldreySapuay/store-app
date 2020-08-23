@@ -1,0 +1,7 @@
+.item-name {
+	@apply underline pt-1 font-semibold text-lg text-gray-500 inline-block;
+}
+
+.item-name:hover {
+	@apply text-gray-600;
+}
