@@ -77,7 +77,10 @@ class ResetPasswordForm extends Component {
 					/>
 					{errors.passwordConfirmation && <InlineError text={errors.passwordConfirmation} />}
 				</Form.Field>
-				<button className="bg-blue-500 block w-full text-white p-1 rounded mt-3">RESET</button>				
+				<button 
+				className="btn block w-full mt-3"
+				>RESET
+				</button>				
 			</Form> 
 	);
 	}

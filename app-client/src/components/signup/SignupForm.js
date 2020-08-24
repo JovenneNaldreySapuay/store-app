@@ -131,7 +131,10 @@ class SignupForm extends Component {
 					{errors.password && <InlineError text={errors.password} />}
 				</Form.Field>
 				
-				<button className="bg-blue-500 block w-full text-white p-1 rounded mt-3">SIGN UP</button>				
+				<button 
+				className="btn block w-full mt-3"
+				>SIGN UP
+				</button>				
 				
 				<Message className="mt-2 text-center">
 					<div>Got an account? <Link to="/login" className="text-blue-500 underline">Login</Link></div>
