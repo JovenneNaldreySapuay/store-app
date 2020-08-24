@@ -1,10 +1,7 @@
 .btn {
-	@apply bg-blue-700 text-white rounded p-2;
-}
-
-.btn:hover {
-	@apply bg-blue-500;
-}
+	background: linear-gradient(-180deg,#f53d2d,#f63);
+	@apply text-white rounded p-2;
+} 
 
 .btn--delete {
 	@apply bg-transparent border border-red-500 p-1 px-2 rounded-full text-red-500;

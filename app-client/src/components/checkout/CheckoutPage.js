@@ -106,14 +106,15 @@ class CheckoutPage extends Component {
 
   const fullAddress = `${user.address}, ${user.city}, ${user.province}, ${user.country}, ${user.zipcode}`;
   return (
-	     <div className="checkout p-4">
+	     <div className="container mx-auto w-full bg-white pt-3" style={{ minHeight: '100vh' }}>
 	     <div className="p-5 mt-2">
 			<h1 className="text-center uppercase font-bold text-xl tracking-wide">
 				Checkout
 			</h1>
-		  </div>
+		 </div>
+
 		  { products.length > 0 ? ( 
-		 <div>  
+		 <div className="w-10/12 mx-auto">  
 	     <div className="delivery-address p-3 my-3 bg-blue-100 mb-5">
 	  	 	<h2 className="text-black pb-2 font-semibold">Delivery Address</h2>
 	  	 	<p>
@@ -162,56 +163,58 @@ class CheckoutPage extends Component {
 	        </tbody>         
 	        </table>
 	        
-	        <div className="border border-grey-200" style={{ width: 600, margin: '0 auto', padding: 10 }}>	
-				<div className="leave-message p-3">
-				<label htmlFor="message">Leave a message:&nbsp;</label>
-				<input className="border p-2" type="text" name="message" id="message" placeholder="Your message..." onChange={this.handleOnChange} />
-				</div>  
+	        <div className="flex justify-end">
+		        <div className="border border-grey-200 mb-6">	
+					<div className="leave-message p-3">
+					<label htmlFor="message">Leave a message:&nbsp;</label>
+					<input className="border p-2" type="text" name="message" id="message" placeholder="Your message..." onChange={this.handleOnChange} />
+					</div>  
 
-				<div onChange={this.handleOnChange} className="shipping-option p-3">
-				<p style={{fontWeight: 'bold'}}>Shipping Option:</p>
-				<p>
-				<input type="radio" id="std" name="shipping_option" value="Standard Delivery" />
-				<label htmlFor="std">&nbsp;Standard Delivery</label>
-				</p>  
-				<p>
-				<input type="radio" id="ninjavan" name="shipping_option" value="Ninja Van" />
-				<label htmlFor="ninjavan">&nbsp;Ninja Van</label>
-				</p>  
-				</div>
+					<div onChange={this.handleOnChange} className="shipping-option p-3">
+					<p style={{fontWeight: 'bold'}}>Shipping Option:</p>
+					<p>
+					<input type="radio" id="std" name="shipping_option" value="Standard Delivery" />
+					<label htmlFor="std">&nbsp;Standard Delivery</label>
+					</p>  
+					<p>
+					<input type="radio" id="ninjavan" name="shipping_option" value="Ninja Van" />
+					<label htmlFor="ninjavan">&nbsp;Ninja Van</label>
+					</p>  
+					</div>
 
-				<div onChange={this.handleOnChange} className="payment-method p-3">
-				<p style={{fontWeight: 'bold'}}>Payment Method:</p>
-				<p>
-				<input type="radio" id="cod" name="payment_method" value="COD" />
-				<label htmlFor="cod">&nbsp;COD</label>
-				</p>  
-				<p>
-				<input type="radio" id="credit" name="payment_method" value="Credit Card" />
-				<label htmlFor="credit">&nbsp;Credit Card</label>
-				</p>
-				<p>
-				<input type="radio" id="paypal" name="payment_method" value="PayPal" />
-				<label htmlFor="paypal">&nbsp;PayPal</label>
-				</p>
-				</div>
+					<div onChange={this.handleOnChange} className="payment-method p-3">
+					<p style={{fontWeight: 'bold'}}>Payment Method:</p>
+					<p>
+					<input type="radio" id="cod" name="payment_method" value="COD" />
+					<label htmlFor="cod">&nbsp;COD</label>
+					</p>  
+					<p>
+					<input type="radio" id="credit" name="payment_method" value="Credit Card" />
+					<label htmlFor="credit">&nbsp;Credit Card</label>
+					</p>
+					<p>
+					<input type="radio" id="paypal" name="payment_method" value="PayPal" />
+					<label htmlFor="paypal">&nbsp;PayPal</label>
+					</p>
+					</div>
 
-				<div className="payment-summary bg-gray-200 p-3">
-				<p>Merchandise Subtotal: <span className="font-semibold">${subTotal}</span></p>
-				<p>Shipping Total: <span className="font-semibold">${this.props.shipping_fee}</span></p>
-				<p className="total-payable">Total Payment: <span className="font-semibold">${total}</span></p>
-				</div>
+					<div className="payment-summary bg-gray-200 p-3">
+					<p>Merchandise Subtotal: <span className="font-semibold">${subTotal}</span></p>
+					<p>Shipping Total: <span className="font-semibold">${this.props.shipping_fee}</span></p>
+					<p className="total-payable">Total Payment: <span className="font-semibold">${total}</span></p>
+					</div>
 
-				<div className="payment-cta mt-1 flex justify-end">
-				<button 
-				onClick={this.handleOrderClick} 
-				className="btn mt-3"
-				>Place Order
-				</button>
-				{ redirect && ( 
-				<Redirect to="/" /> 
-				)}
-				</div> 
+					<div className="payment-cta mt-1 mb-5 mr-2 flex justify-end">
+					<button 
+					onClick={this.handleOrderClick} 
+					className="btn mt-3"
+					>Place Order
+					</button>
+					{ redirect && ( 
+					<Redirect to="/shop" /> 
+					)}
+					</div> 
+		        </div> 
 	        </div> 
 
 		    </div>
@@ -219,7 +222,7 @@ class CheckoutPage extends Component {
 	    	: (
 	    	 <div>
 	    		<h1 className="text-center mb-2">No products to checkout</h1>	
-	    		<p className="text-center"><Link to="/account/my-purchase"><button className="bg-blue-500 p-2 text-white">Shop Here</button></Link></p>
+	    		<p className="text-center"><Link to="/shop"><button className="btn">Shop Now</button></Link></p>
 	    	 </div>
 	    	)}
 	     </div>   

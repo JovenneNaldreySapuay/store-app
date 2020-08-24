@@ -52,7 +52,7 @@ const Single = ({ product, stocks, addToCart, decrement, increment, quantityChan
 						onClick={addToCart}
 						className="btn mt-2"
 					>
-					Add to cart &rarr;
+					Add to cart
 					</button>} 
 				</div>
 			</div>

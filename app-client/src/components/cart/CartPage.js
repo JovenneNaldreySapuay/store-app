@@ -5,7 +5,7 @@ import CartItemTable from './CartItemTable';
 const CartPage = () => {
 
 	return (
-		<div className="container mx-auto w-full bg-white mt-3">
+		<div className="container mx-auto w-full bg-white pt-3" style={{ minHeight: '100vh' }}>
 			<div className="p-5 mt-2">
 				<h1 className="text-center uppercase font-bold text-xl tracking-wide">
 					Shopping Cart
