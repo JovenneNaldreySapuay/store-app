@@ -7,60 +7,64 @@ const Single = ({ product, stocks, addToCart, decrement, increment, quantityChan
 	
 	return (
 		<div className="single">
-			<div>
-				<img 
-				className="border border-grey-100"
-				src={product.image} 
-				alt={product.title} 
-				title={product.title} 
-				width={150} 
-				/>
-			</div>
+			<div className="flex">
+				<div className="single__image">
+					<img 
+					className="border border-grey-100"
+					src={product.image} 
+					alt={product.title} 
+					title={product.title} 
+					width={250} 
+					/>
+				</div>
 
-			<div>
-				<h2 className="single__name">{product.title}</h2>
-				<p className="single__price">${product.price}</p>
-			</div>
+				<div className="single__details ml-5">
+					<h2 className="single__name">{product.title}</h2>
+					<p className="single__price">${product.price}</p>
+				
+					{(isAuth === true && stocks !== 0) && 
+					<div className="counter mt-1 mb-2">
+						<input
+						type="button"
+						className="border border-grey-400 font-semibold px-2" 
+						value="-"
+						onClick={decrement} 
+						/>
+						<input
+						type="number"
+						style={{ width: 60 }}
+						className="border border-grey-100 text-center" 
+						onChange={quantityChange}
+						value={qtyValue} 
+						/>
+						<input 
+						type="button"
+						className="border border-grey-400 font-semibold px-2" 
+						value="+"
+						onClick={increment} 
+						/>
+					</div>
+					}
 
-			{(isAuth === true && stocks !== 0) && 
-			<div className="counter mt-1 mb-2">
-				<input
-				type="button"
-				className="border border-grey-400 font-semibold px-2" 
-				value="-"
-				onClick={decrement} 
-				/>
-				<input
-				type="number"
-				style={{ width: 60 }}
-				className="border border-grey-100 text-center" 
-				onChange={quantityChange}
-				value={qtyValue} 
-				/>
-				<input 
-				type="button"
-				className="border border-grey-400 font-semibold px-2" 
-				value="+"
-				onClick={increment} 
-				/>
+					{stocks !== 0 && 
+					<button
+						disabled={isAuth ? false : true }
+						onClick={addToCart}
+						className="btn mt-2"
+					>
+					Add to cart &rarr;
+					</button>} 
+				</div>
 			</div>
-			}
-
-			{stocks !== 0 && 
-			<button
-				disabled={isAuth ? false : true }
-				onClick={addToCart}
-				className="bg-blue-500 hover:bg-blue-600 text-white rounded p-2 mt-1"
-			>
-			Add to cart
-			</button>} 
 
 			{!isAuth && 
-			<p className="bg-red-100 p-2 my-2 text-center">
+			<div className="not-logged">
+			<p className="bg-red-100 p-2 my-2">
 				<span>
-				Please create an <Link className="underline text-blue-700" to="/signup">account</Link> or <Link className="underline text-blue-700" to="/login">login</Link> to buy this item
+				Please create an <Link className="underline text-blue-700" to="/signup">account</Link> or <Link className="underline text-blue-700" to="/login">login</Link> to buy this item. 
 				</span>
 			</p>
+			</div>
 			}
 
 			<div className="box">

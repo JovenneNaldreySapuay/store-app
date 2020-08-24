@@ -1,0 +1,15 @@
+.btn {
+	@apply bg-blue-700 text-white rounded p-2;
+}
+
+.btn:hover {
+	@apply bg-blue-500;
+}
+
+.btn--delete {
+	@apply bg-transparent border border-red-500 p-1 px-2 rounded-full text-red-500;
+}
+
+.btn--delete:hover {
+	@apply bg-red-500 text-white;
+}

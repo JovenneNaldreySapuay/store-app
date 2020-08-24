@@ -68,7 +68,7 @@ class CartItemTable extends Component {
 					</p>
 					<Link to="/checkout">
 						<button 
-							className="bg-blue-500 hover:bg-blue-700 text-white p-2"
+							className="btn"
 							>Proceed to Checkout &rarr;
 						</button>
 					</Link>

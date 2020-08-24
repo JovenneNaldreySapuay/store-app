@@ -205,7 +205,7 @@ class CheckoutPage extends Component {
 				<div className="payment-cta mt-1 flex justify-end">
 				<button 
 				onClick={this.handleOrderClick} 
-				className="bg-blue-500 hover:bg-blue-700 text-white px-3 py-2 mt-3"
+				className="btn mt-3"
 				>Place Order
 				</button>
 				{ redirect && ( 

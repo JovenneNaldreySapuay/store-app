@@ -3,11 +3,11 @@
 }
 
 .single__name {
-	@apply text-gray-700;
+	@apply text-gray-700 text-lg;
 }
 
 .single__price {
-	@apply font-bold;	
+	@apply font-bold text-2xl;	
 }
 
 .box {

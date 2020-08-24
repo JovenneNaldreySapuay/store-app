@@ -30,7 +30,7 @@ const CartItemRow = (props) => {
 			<td className="p-1 border text-center">
 				<button 
 				onClick={() => props.deleteProductCart(props.product._id) }
-				className="bg-red-400 hover:bg-red-600 p-1 text-white">
+				className="btn--delete">
 				Delete Item
 				</button>
 			</td>
