@@ -2,9 +2,10 @@
 
 @import "tailwindcss/components";
 
+@import "./styles/container.css";
 @import "./styles/header.css";
 @import "./styles/product.css";
+@import "./styles/single.css";
 @import "./styles/popup.css";
-@import "./styles/shop.css";
 
 @import "tailwindcss/utilities";

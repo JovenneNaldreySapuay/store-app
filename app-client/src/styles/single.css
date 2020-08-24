@@ -1,0 +1,33 @@
+.single__name {
+	@apply text-gray-700;
+}
+
+.single__price {
+	@apply font-bold;	
+}
+
+.box {
+	@apply bg-white p-3 border my-5;
+}
+
+.box__header {
+	@apply font-semibold mb-2;
+}
+
+.product--nostock {
+	@apply text-red-500;
+}
+
+.product--instock {
+	@apply text-gray-500;
+}
+
+
+
+/*.fa-eye {
+  font-family: "Fontawesome";
+  font-style: normal;
+  margin-right: 4px;
+  color: dimgrey;
+}*/
+

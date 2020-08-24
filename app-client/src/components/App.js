@@ -80,7 +80,7 @@ class App extends Component {
 		    <div id="app">
 				<Header />
 	    		
-	    		<main id="main">
+	    		<main id="main" className="main">
 		    		<Switch>			    	
 				    	<AdminRoute exact path="/demo" component={FormDemo} />
 				    	<AdminRoute exact path="/demo/:_id" component={FormDemoEdit} />

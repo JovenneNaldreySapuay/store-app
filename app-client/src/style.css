@@ -605,16 +605,115 @@ video {
   }
 }
 
+.main {
+  --bg-opacity: 1;
+  background-color: #f7fafc;
+  background-color: rgba(247, 250, 252, var(--bg-opacity));
+}
+
 .dropdown:hover .dropdown-menu {
   display: block;
 }
 
-.fa-eye {
+.product {
+  width: 100%;
+  margin: 0;
+  border-width: 1px;
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.product--bg {
+  --bg-opacity: 1;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
+}
+
+.product__image {
+  border-width: 1px;
+  object-fit: cover;
+  width: 100%;
+}
+
+.product__border {
+  --border-opacity: 1;
+  border-color: #edf2f7;
+  border-color: rgba(237, 242, 247, var(--border-opacity));
+}
+
+.product__name {
+  font-size: 1rem;
+  --text-opacity: 1;
+  color: #4a5568;
+  color: rgba(74, 85, 104, var(--text-opacity));
+}
+
+.product__name:hover {
+  text-decoration: underline;
+  --text-opacity: 1;
+  color: #a0aec0;
+  color: rgba(160, 174, 192, var(--text-opacity));
+}
+
+.product__price {
+  font-weight: 700;
+}
+
+.product--nostock {
+  --text-opacity: 1;
+  color: #f56565;
+  color: rgba(245, 101, 101, var(--text-opacity));
+}
+
+.product--instock {
+  --text-opacity: 1;
+  color: #a0aec0;
+  color: rgba(160, 174, 192, var(--text-opacity));
+}
+
+.single__name {
+  --text-opacity: 1;
+  color: #4a5568;
+  color: rgba(74, 85, 104, var(--text-opacity));
+}
+
+.single__price {
+  font-weight: 700;
+}
+
+.box {
+  --bg-opacity: 1;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  padding: 0.75rem;
+  border-width: 1px;
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.box__header {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.product--nostock {
+  --text-opacity: 1;
+  color: #f56565;
+  color: rgba(245, 101, 101, var(--text-opacity));
+}
+
+.product--instock {
+  --text-opacity: 1;
+  color: #a0aec0;
+  color: rgba(160, 174, 192, var(--text-opacity));
+}
+
+/*.fa-eye {
   font-family: "Fontawesome";
   font-style: normal;
   margin-right: 4px;
   color: dimgrey;
-}
+}*/
 
 .popup {
   position: fixed;
@@ -637,23 +736,6 @@ video {
   margin: 0 auto;
   background: white;
   height: 70px;
-}
-
-.item-name {
-  text-decoration: underline;
-  padding-top: 0.25rem;
-  font-weight: 600;
-  font-size: 1.125rem;
-  --text-opacity: 1;
-  color: #a0aec0;
-  color: rgba(160, 174, 192, var(--text-opacity));
-  display: inline-block;
-}
-
-.item-name:hover {
-  --text-opacity: 1;
-  color: #718096;
-  color: rgba(113, 128, 150, var(--text-opacity));
 }
 
 .space-y-0 > :not(template) ~ :not(template) {

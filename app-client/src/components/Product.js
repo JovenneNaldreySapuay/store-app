@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Popup from './Popup';
 import Empty from './Empty';
-import SingleProductItem from './SingleProductItem';
+import Single from './Single';
 
 import { fetchSingleProduct } from '../actions/product';
 import { addProductCart } from '../actions/cart';
@@ -97,7 +97,7 @@ class Product extends Component {
 				   label="Something went wrong." 
 				   />
 		} else {
-			return <SingleProductItem 
+			return <Single 
 						increment={this.increment}
 						decrement={this.decrement}
 						quantityChange={this.quantityChange}

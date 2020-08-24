@@ -20,14 +20,14 @@ class MenCategory extends Component {
 		const { products } = this.props;
 		
 		return (
-			<div className="container mx-auto w-9/12 bg-white max-w-xl mt-3">
-				<div className="p-5 mt-2">
+			<div className="mx-auto w-9/12 bg-white">
+				<div className="p-5">
 					<h1 className="text-center uppercase font-bold text-xl tracking-wide">
 						Shop Now
 					</h1>
 				</div>
 				
-				<div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4">
+				<div className="grid lg:grid-cols-3 sm:grid-cols-1 gap-4 px-6 pt-5">
 				{(! products || products.length === 0) &&
 					<div>Loading... <i className="fa fa-refresh fa-spin"></i></div>
 				}

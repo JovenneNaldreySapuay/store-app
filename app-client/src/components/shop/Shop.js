@@ -25,14 +25,14 @@ class Shop extends Component {
 		const { products } = this.props;
 
 		return (
-			<div className="container mx-auto lg:w-full bg-white mt-3">
-				<div className="p-5 mt-2">
+			<div className="container mx-auto lg:w-full bg-white">
+				<div className="p-5">
 					<h1 className="text-center uppercase font-bold text-xl tracking-wide">
 					Shop Now
 					</h1>
 				</div>
 
-				<div className="grid lg:grid-cols-6 sm:grid-cols-1 gap-4 sm:px-5">	
+				<div className="grid lg:grid-cols-6 sm:grid-cols-1 gap-4 sm:px-5 pt-5">	
 					{this.renderProducts(products)}
 				</div>
 			</div>

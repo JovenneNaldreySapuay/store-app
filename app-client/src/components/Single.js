@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 
 import ProductReviews from './ProductReviews';
 
-const SingleProductItem = ({ product, stocks, addToCart, decrement, increment, quantityChange, qtyValue, isAuth, productIdReview }) => {
+const Single = ({ product, stocks, addToCart, decrement, increment, quantityChange, qtyValue, isAuth, productIdReview }) => {
 	
 	return (
-		<div className="single-item">
-			<div className="single-item-image">
+		<div className="single">
+			<div>
 				<img 
 				className="border border-grey-100"
 				src={product.image} 
@@ -17,9 +17,9 @@ const SingleProductItem = ({ product, stocks, addToCart, decrement, increment, q
 				/>
 			</div>
 
-			<div className="single-item-detail">
-				<h2 className="font-semibold">{product.title}</h2>
-				<p>Price: ${product.price}</p>
+			<div>
+				<h2 className="single__name">{product.title}</h2>
+				<p className="single__price">${product.price}</p>
 			</div>
 
 			{(isAuth === true && stocks !== 0) && 
@@ -63,20 +63,20 @@ const SingleProductItem = ({ product, stocks, addToCart, decrement, increment, q
 			</p>
 			}
 
-			<div className="description bg-white p-3 border my-5">
-				<h1 className="font-semibold mb-2">Product Description</h1>
+			<div className="box">
+				<h1 className="box__header">Product Description</h1>
 				<p>{product.description}</p>
-				{stocks < 1 ? <p className="text-red-500">Out of stocks</p> :
-				<p>Stocks: <span className="font-semibold">{product.stock}</span> available</p>
+				{stocks < 1 ? <p className="product--nostock">Out of stocks</p> :
+				<p className="product--instock">Stocks: <span className="text-gray-700">{product.stock}</span> available</p>
 			 	}
 			</div>
 
-			<div className="reviews bg-white p-3 border my-5">
-				<h1 className="font-semibold mb-2">Product Ratings</h1>
+			<div className="box">
+				<h1 className="box__header">Product Reviews</h1>
 				<ProductReviews productId={productIdReview} />
 			</div>
 		</div>
 	);
 };
 
-export default SingleProductItem;
+export default Single;

@@ -1,7 +1,37 @@
-.fa-eye {
-  font-family: "Fontawesome";
-  font-style: normal;
-  margin-right: 4px;
-  color: dimgrey;
+.product {
+	@apply w-full m-0 border rounded-md overflow-hidden;
 }
+
+.product--bg {
+	@apply bg-white;
+}
+
+.product__image {
+	@apply border object-cover w-full;
+}
+
+.product__border {
+	@apply border-gray-200;
+}
+
+.product__name {
+	@apply text-base text-gray-700;
+}
+
+.product__name:hover {
+	@apply underline text-gray-500;
+}
+
+.product__price {
+	@apply font-bold;
+}
+
+.product--nostock {
+	@apply text-red-500;
+}
+
+.product--instock {
+	@apply text-gray-500;
+}
+
 

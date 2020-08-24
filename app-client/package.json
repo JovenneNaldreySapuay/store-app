@@ -32,12 +32,12 @@
     "validator": "^10.11.0"
   },
   "scripts": {
-    "start": "npm run build:tailwind1 && react-scripts start",
+    "start": "npm run build:css && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:tailwind1": "postcss src/index.css -o src/style.css",
-    "build:tailwind2": "tailwind build src/index.css -o src/style.css"
+    "build:css": "postcss src/index.css -o src/style.css",
+    "build:tailwind": "tailwind build src/index.css -o src/style.css"
   },
   "eslintConfig": {
     "extends": "react-app"
