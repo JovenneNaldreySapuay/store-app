@@ -17,7 +17,7 @@ class GadgetCategory extends Component {
 		const { products } = this.props;
 		
 		return (
-			<div className="mx-auto w-9/12 bg-white">
+			<div className="mx-auto w-9/12 bg-white pb-8">
 				<div className="p-5">
 					<h1 className="text-center uppercase font-bold text-xl tracking-wide">
 						Shop Now

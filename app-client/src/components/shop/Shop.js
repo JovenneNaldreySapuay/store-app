@@ -25,7 +25,7 @@ class Shop extends Component {
 		const { products } = this.props;
 
 		return (
-			<div className="container mx-auto lg:w-full bg-white">
+			<div className="container mx-auto lg:w-full bg-white pb-8">
 				<div className="p-5">
 					<h1 className="text-center uppercase font-bold text-xl tracking-wide">
 					Shop Now

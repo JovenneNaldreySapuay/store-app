@@ -671,6 +671,13 @@ video {
   color: rgba(160, 174, 192, var(--text-opacity));
 }
 
+.single {
+  --bg-opacity: 1;
+  background-color: #fff;
+  background-color: rgba(255, 255, 255, var(--bg-opacity));
+  padding: 1rem;
+}
+
 .single__name {
   --text-opacity: 1;
   color: #4a5568;
