@@ -93,9 +93,7 @@ class Product extends Component {
 
 	renderProduct(product) {
 		if (Object.keys(product).length === 0) {
-			return <Empty 
-				   label="Something went wrong." 
-				   />
+			return <div>Loading item...</div>
 		} else {
 			return <Single 
 						increment={this.increment}
