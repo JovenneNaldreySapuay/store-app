@@ -31,7 +31,7 @@ import GuestRoute from './GuestRoute';
 
 import Header from './Header';
 import Dashboard from './Dashboard';
-import HomePage from './home/HomePage';
+// import HomePage from './home/HomePage';
 
 import MyPurchase from './MyPurchase';
 
@@ -115,8 +115,8 @@ class App extends Component {
 				    	<GuestRoute exact path="/forgot_password" component={ForgotPasswordPage} />
 				    	<GuestRoute exact path="/reset_password/:token" component={ResetPasswordPage} />
 						
-				    	<Route exact path="/" component={HomePage} />
-						<Route exact path="/shop" component={Shop} />
+				    	{/* <Route exact path="/" component={HomePage} />*/}
+						<Route exact path="/" component={Shop} />
 						<Route exact path="/shop/:slug/:_id" component={Product} />
 						
 						<Route exact path="/shop/men" component={MenCategory} />

@@ -39,18 +39,21 @@ export default function(state = INITIAL_STATE, action) {
 		return Object.assign({}, state, {
 			items: [...state.items, action.payload]
 		});
+		break; // eslint-disable-line no-unreachable		
 
 		case FETCH_CART_BY_USER:
 		return {
 			...state,
 			items: action.payload
 		};
+		break; // eslint-disable-line no-unreachable
 
 		case FETCH_CART_ITEMS:
 		return {
 			...state,
 			items: action.payload
 		};
+		break; // eslint-disable-line no-unreachable
 
 		case DELETE_PRODUCT_CART:  
 		// console.log("DELETE_PRODUCT_CART ID:", action.payload);	
@@ -58,8 +61,10 @@ export default function(state = INITIAL_STATE, action) {
 			...state,
 			items: state.items.filter(product => product._id !== action.payload)
 		};	
+		break; // eslint-disable-line no-unreachable
 
 		default:
 			return state;
+			break; // eslint-disable-line no-unreachable
 		}
 	}

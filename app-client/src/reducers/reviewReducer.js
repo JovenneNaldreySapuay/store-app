@@ -16,15 +16,18 @@ export default function(state = INITIAL_STATE, action) {
 				...state, 
 				items: [...state.items, action.payload] 
 			};
+			break; // eslint-disable-line no-unreachable
 
 		case FETCH_REVIEWS_BY_PRODUCT_ID:
 			return {
 				...state,
 				items: action.payload
 			};
+			break; // eslint-disable-line no-unreachable
 
 		default:
 			return state;
+			break; // eslint-disable-line no-unreachable
 	}
 
 }
