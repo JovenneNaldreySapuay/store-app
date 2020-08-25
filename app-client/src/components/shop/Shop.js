@@ -15,9 +15,11 @@ class Shop extends Component {
   	renderProducts(products) {
   		if (products.length === 0) {
   			return <Empty label="No products to display" />
-  		} else {
+  		} else if (products) {
   			return products.map((product, idx) => 
   				   <ShopItem product={product} key={idx} /> )
+  		} else {
+  			return <Empty label="Loading products..." />
   		}
   	}
 

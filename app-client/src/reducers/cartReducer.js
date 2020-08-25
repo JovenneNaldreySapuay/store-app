@@ -31,14 +31,14 @@ export default function(state = INITIAL_STATE, action) {
 
 		case ADD_TO_CART_SUCCESS: 
 		console.log("ADD_TO_CART_SUCCESS payload:", action);
-		// return { 
-		// 	...state,
-		// 	items: [...state.items, action.payload]
-		// };		
+		return { 
+			...state,
+			items: [action.payload, ...state.items] // I interchanged the value
+		};		
 
-		return Object.assign({}, state, {
-			items: [...state.items, action.payload]
-		});
+		// return Object.assign({}, state, {
+		// 	items: [...state.items, action.payload]
+		// });
 		break; // eslint-disable-line no-unreachable		
 
 		case FETCH_CART_BY_USER:
