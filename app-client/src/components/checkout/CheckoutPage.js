@@ -222,7 +222,7 @@ class CheckoutPage extends Component {
 	    	: (
 	    	 <div>
 	    		<h1 className="text-center mb-2">No products to checkout</h1>	
-	    		<p className="text-center"><Link to="/shop"><button className="btn">Shop Now</button></Link></p>
+	    		<p className="text-center"><Link to="/"><button className="btn">Shop Now</button></Link></p>
 	    	 </div>
 	    	)}
 	     </div>   

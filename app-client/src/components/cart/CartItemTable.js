@@ -84,7 +84,7 @@ class CartItemTable extends Component {
 			  		<div className="m-auto text-center my-2">
 			  		<Link 
 			  		className="inline-block btn" 
-			  		to="/shop"
+			  		to="/"
 			  		>Shop Now
 			  		</Link>
 			  		</div>

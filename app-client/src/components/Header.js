@@ -110,11 +110,11 @@ class Header extends Component {
                         </button>
                         <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
                         {this.props.user.role === "admin" &&
-                            <li><Link to="/admin" className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap">Admin</Link></li>
+                            <li><Link to="/admin" className="bg-gray-300 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Admin</Link></li>
                         }
-                        <li><Link to="/account" className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap">My Account</Link></li>
-                        <li><Link to="/account/my-purchase" className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap">My Purchase</Link></li>
-                        <li><Link to="/account/notifications" className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap">Notifications</Link></li>      
+                        <li><Link to="/account" className="bg-gray-300 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">My Account</Link></li>
+                        <li><Link to="/account/my-purchase" className="bg-gray-300 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">My Purchase</Link></li>
+                        <li><Link to="/account/notifications" className="bg-gray-300 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Notifications</Link></li>      
                         <li><button 
                         className="bg-red-500 hover:bg-red-300 text-white w-full py-1 px-2"
                         onClick={() => this.props.logout()}>
