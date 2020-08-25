@@ -24,7 +24,7 @@ class AccountPage extends Component {
 		
 		return (
 			<React.Fragment>
-				<div className="w-full bg-white mt-3 sm:pl-64">
+				<div className="bg-white w-8/12 h-screen mx-auto">
 					<div className="p-4 text-sm text-gray-800">
 						<h1 className="text-4xl text-gray-700 font-bold leading-none mb-8">Profile</h1> 
 						<table id='profile' className="border w-full sm:w-3/4 text-left shadow-sm">

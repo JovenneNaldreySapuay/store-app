@@ -9,7 +9,7 @@ class Admin extends Component {
 
 	render() {
 		return (
-			<div style={{ width: 600, margin: '0 auto' }}>
+			<div className="bg-white w-8/12 h-screen mx-auto p-3">
 				{this.props.user.role !== "admin" && <Redirect to="/shop" />}
 				<h1 className="text-center mb-3">Admin Section</h1>
 				<ul>

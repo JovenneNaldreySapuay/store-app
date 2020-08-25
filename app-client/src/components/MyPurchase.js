@@ -13,7 +13,7 @@ class MyPurchase extends Component {
 		console.log("MyPurchase", this.props);
 		const { checkouts } = this.props;
 		return (
-			<div style={{ width: 600, margin: '0 auto', padding: 15 }}>
+			<div className="mx-auto p-3 w-8/12 bg-white h-screen">
 				<h1 className="text-center mb-3">My Purchase</h1>
 				{(checkouts.length === 0) ? 
 				<p className="text-center">You have no purchased item.</p> :

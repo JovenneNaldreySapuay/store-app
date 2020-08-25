@@ -13,7 +13,7 @@ class LoginPage extends Component {
 		// console.log("LoginPage", this.props );
 	
 		return (	
-			<div className="container mx-auto w-full max-w-md">
+			<div className="container mx-auto w-full max-w-md h-screen">
 				<h2 className="text-center py-5 font-bold">Log-in to your account</h2>
 				<LoginForm submit={this.submit} />
 			</div>

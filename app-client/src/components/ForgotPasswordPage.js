@@ -16,7 +16,7 @@ class ForgotPasswordPage extends Component {
 
 	render() {
 		return (
-			<div className="container mx-auto w-full max-w-md">
+			<div className="container mx-auto w-full max-w-md h-screen">
 				<h2 className="text-center py-5 font-bold">Reset your password</h2>
 				{this.state.success ? <Message>Email has been sent.</Message> : <ForgotPasswordForm submit={this.submit}/>}
 			</div>

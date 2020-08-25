@@ -23,7 +23,7 @@ class Notifications extends Component {
 
 		const { notification } = this.props;
 		return (
-			<div style={{ width: 600, margin: '0 auto', padding: 15 }}>
+			<div className="mx-auto p-3 w-8/12 bg-white h-screen">
 				<h1 className="text-center mb-3">Notifications</h1>	
 				<ul>
 				{ (! notification || notification === null) ? 

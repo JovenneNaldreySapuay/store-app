@@ -9,7 +9,7 @@ class SignupPage extends Component {
 
 	render() {
 		return (
-			<div className="container mx-auto w-full max-w-md">
+			<div className="container mx-auto w-full max-w-md h-screen">
 				<h2 className="text-center py-5 font-bold">Create your account</h2>
 				<SignupForm submit={this.submit} />
 			</div>			
