@@ -75,7 +75,7 @@ class Header extends Component {
                     <h3 className="text-center uppercase text-white font-bold tracking-wide">Categories</h3>
                     <nav className="app-nav">
                         <ul className="flex justify-center">
-                            <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop">All</Link></li>
+                            <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/">All</Link></li>
                             <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop/women">Women's Apparel</Link></li>
                             <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop/men">Men's Apparel</Link></li>
                             <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop/gadgets">Gadgets</Link></li>
@@ -110,13 +110,13 @@ class Header extends Component {
                         </button>
                         <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
                         {this.props.user.role === "admin" &&
-                            <li><Link to="/admin" className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Admin</Link></li>
+                            <li><Link to="/admin" className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap">Admin</Link></li>
                         }
-                        <li><Link to="/account" className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">My Account</Link></li>
-                        <li><Link to="/account/my-purchase" className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">My Purchase</Link></li>
-                        <li><Link to="/account/notifications" className="bg-gray-200 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Notifications</Link></li>      
+                        <li><Link to="/account" className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap">My Account</Link></li>
+                        <li><Link to="/account/my-purchase" className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap">My Purchase</Link></li>
+                        <li><Link to="/account/notifications" className="bg-gray-200 hover:bg-gray-300 py-2 px-4 block whitespace-no-wrap">Notifications</Link></li>      
                         <li><button 
-                        className="bg-red-300 hover:bg-red-500 text-white w-full py-1 px-2"
+                        className="bg-red-500 hover:bg-red-300 text-white w-full py-1 px-2"
                         onClick={() => this.props.logout()}>
                         Logout
                         </button></li>
@@ -141,13 +141,12 @@ class Header extends Component {
                         </div>
                     </div>
                 </div>
-                {/* Make this a Component */}
-                
-                <div className={window.location.pathname === "/checkout" ? "hidden" : "products-category bg-gray-300 p-3"}>
+                {/* Make this a Component */}                
+                <div className="products-category bg-gray-300 p-3">
                     <h3 className="text-center uppercase text-white font-bold tracking-wide">Categories</h3>
                     <nav className="app-nav">
                         <ul className="flex justify-center">
-                            <li className="inline-block p-3"><Link className="hover:underline" to="/shop">All</Link></li>
+                            <li className="inline-block p-3"><Link className="hover:underline" to="/">All</Link></li>
                             <li className="inline-block p-3"><Link className="hover:underline" to="/shop/women">Women's Apparel</Link></li>
                             <li className="inline-block p-3"><Link className="hover:underline" to="/shop/men">Men's Apparel</Link></li>
                             <li className="inline-block p-3"><Link className="hover:underline" to="/shop/gadgets">Gadgets</Link></li>
