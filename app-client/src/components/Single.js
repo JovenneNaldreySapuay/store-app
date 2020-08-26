@@ -7,18 +7,17 @@ const Single = ({ product, stocks, addToCart, decrement, increment, quantityChan
 	
 	return (
 		<div className="single">
-			<div className="flex">
+			<div className="lg:flex sm:flex-none">
 				<div className="single__image">
 					<img 
-					className="border border-grey-100"
+					className="border border-grey-100 lg:w-64 sm:w-full"
 					src={product.image} 
 					alt={product.title} 
 					title={product.title} 
-					width={250} 
 					/>
 				</div>
 
-				<div className="single__details ml-5">
+				<div className="single__details lg:ml-5 sm:ml-0">
 					<h2 className="single__name">{product.title}</h2>
 					<p className="single__price">${product.price}</p>
 				

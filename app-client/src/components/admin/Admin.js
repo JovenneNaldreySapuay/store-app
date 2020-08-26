@@ -10,7 +10,7 @@ class Admin extends Component {
 	render() {
 		return (
 			<div className="bg-white w-8/12 h-screen mx-auto p-3">
-				{this.props.user.role !== "admin" && <Redirect to="/shop" />}
+				{this.props.user.role !== "admin" && <Redirect to="/" />}
 				<h1 className="text-center mb-3">Admin Section</h1>
 				<ul>
 					<li className="mb-2"><Link className="hover:underline text-red-500" to="/admin/products">Product Manager</Link></li>

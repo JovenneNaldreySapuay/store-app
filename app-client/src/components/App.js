@@ -28,6 +28,7 @@ import FormDemoEdit from './FormDemoEdit';
 
 import AdminRoute from './AdminRoute';
 import GuestRoute from './GuestRoute';
+import NotFound from './NotFound';
 
 import Header from './Header';
 import Dashboard from './Dashboard';
@@ -124,6 +125,7 @@ class App extends Component {
 				    	<Route exact path="/shop/gadgets" component={GadgetCategory} />
 
 				    	<Route exact path="/confirmation/:token" component={ConfirmationPage} />
+				    	<Route component={NotFound} />
 				    </Switch>
 			    </main>
 			    <Footer />

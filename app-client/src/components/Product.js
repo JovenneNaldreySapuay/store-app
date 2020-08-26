@@ -2,11 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import Popup from './Popup';
-import Empty from './Empty';
+// import Empty from './Empty';
 import Single from './Single';
 
 import { fetchSingleProduct } from '../actions/product';
 import { addProductCart } from '../actions/cart';
+
+// import api from '../api';
+
+// import { ADD_TO_CART_SUCCESS } from '../actions/types';
 
 class Product extends Component {
 	state = {
@@ -17,9 +21,11 @@ class Product extends Component {
 
 	componentDidMount() {
 		const { id } = this.props;
+		
 		if (id) {
 			this.props.fetchSingleProduct(id);
 		}
+
 	}
 
 	increment = (e) => {
@@ -44,7 +50,7 @@ class Product extends Component {
 		})
 	}
 	
-	addToCart = (e) => {
+	addToCart = async (e) => {
 		e.preventDefault();
 
 		const { 
@@ -71,7 +77,11 @@ class Product extends Component {
 		
 		console.log("add to cart:", product);
 		
-		this.props.addProductCart(product);
+		// this.props.addProductCart(product);
+		// const payload = await api.cart.create(product);
+    	
+    	this.props.addProductCart(product);
+
 		this.showPopup();
   	}	
 
@@ -112,9 +122,10 @@ class Product extends Component {
 	render() {
 		// console.log("State:", this.state);
 		const { product } = this.props;
+		console.log("Product", this.props);
 		    	
 		return (
-			<div className="bg-gray-100" style={{ width: 700, margin: '0 auto', padding: 15 }}>
+			<div className="w-full sm:w-8/12 mx-auto">
 
 				{this.state.isShowPopup && 
 				 <Popup message="Item added to your cart" />}
@@ -125,6 +136,10 @@ class Product extends Component {
 		);
 	}
 }
+
+// const mapDispatchToProps = (dispatch) => ({
+//   onSubmit: (payload) => dispatch({ type: ADD_TO_CART_SUCCESS, payload }),
+// });
 
 const mapStateToProps = (state, ownProps) => {
 
@@ -137,7 +152,6 @@ const mapStateToProps = (state, ownProps) => {
 	};
 }
 
-export default connect(
-	mapStateToProps, 
-	{ addProductCart, fetchSingleProduct }
-	)(Product);
+export default connect(mapStateToProps, { addProductCart, fetchSingleProduct })(Product);
+
+

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Empty from '../Empty';
+// import Empty from '../Empty';
 import ShopItem from './ShopItem';
 
 import { fetchProducts } from '../../actions/product';
