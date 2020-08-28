@@ -13,13 +13,13 @@ class CartIconTable extends Component {
   	}
 
   	render() {
-		console.log("CartIconTable", this.props);
+		//console.log("CartIconTable", this.props);
 		const { products } = this.props;
 					
 		return (
 			<React.Fragment>
 				{ products.length > 0 ? (
-				<div className="bg-blue-200 p-1">
+				<div style={{ width: 160 }} className="bg-white p-1">
 				<table>
 			        <tbody>
 			        	{
@@ -37,17 +37,12 @@ class CartIconTable extends Component {
 						to="/cart"
 						className="pl-1 underline text-blue-500 hover:text-blue-700" 
 						>
-						View My Shopping Cart &rarr;
+						View Cart &rarr;
 					</Link>
 				</div>
 				</div>
-				) : ( <div className="bg-blue-200 p-1">
-			  		<p>Cart is empty{' '}
-			  		<Link 
-			  		className="underline text-blue-500" to="/"
-			  		>Shop Now
-			  		</Link>
-			  		</p>
+				) : ( <div style={{ width: 120 }} className="bg-white p-1">
+			  		<p className="text-center">Cart is empty</p>
 			  	</div> ) 
 				}
 			</React.Fragment>

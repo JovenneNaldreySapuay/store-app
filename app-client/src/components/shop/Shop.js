@@ -14,7 +14,7 @@ class Shop extends Component {
 
   	renderProducts(products) {
   		if (products.length === 0) {
-			return <div>Loading products...</div>
+			return <div>Loading products... <i className="fa fa-refresh fa-spin"></i></div>
   		} else {
   			return products.map((product, idx) => 
   				   <ShopItem product={product} key={idx} /> )

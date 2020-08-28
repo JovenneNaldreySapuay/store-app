@@ -5,44 +5,37 @@ import decode from 'jwt-decode';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import reduxThunk from 'redux-thunk';
+import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import * as serviceWorker from './serviceWorker';
 
 import './style.css';
 
-import { fetchProducts } from './actions/product'; // added 8/7/2020
-import { userLoggedIn } from './actions/auth';
-
-import rootReducer from './reducers'; 
 import setAuthorizationHeader from './utils/setAuthorizationHeader';
+import rootReducer from './reducers'; 
+import { userLoggedIn } from './actions/auth';
+import { fetchProducts } from './actions/product'; 
+// import { promiseMiddleware } from './middlewares';
 import App from './components/App';
 
 window.axios = axios;
 
-const middleware = [ reduxThunk ];
+// @TODO - understand promiseMiddleware
+// const middleware = [thunk, promiseMiddleware];
+
+const middleware = [thunk];
 
 if (process.env.NODE_ENV !== 'production') {
-  middleware.push(createLogger());
+  middleware.push(createLogger({ collapsed: true }));
 }
 
-// Redux store
-// const initialState = {};
+const initialState = {};
 
-// orig code
-// const store = createStore(
-// 	rootReducer, 
-// 	initialState, 
-// 	composeWithDevTools(
-// 		applyMiddleware(reduxThunk)
-// 	)
-// );
-
-// updated above 8/7/2020
-const store = createStore(
-	rootReducer, 
-	applyMiddleware(...middleware)
-);
+export const store = createStore(
+				rootReducer, 
+				initialState, 
+				applyMiddleware(...middleware)
+			  );
 
 if (localStorage.bookwormJWT) {
 	const payload = decode(localStorage.bookwormJWT); 
@@ -64,10 +57,11 @@ if (localStorage.bookwormJWT) {
 	setAuthorizationHeader(localStorage.bookwormJWT);
 
 	store.dispatch(userLoggedIn(user));
+
+	// load all products in every components
+	store.dispatch(fetchProducts());
 }
 
-// added 8/7/2020
-store.dispatch(fetchProducts());
 
 ReactDOM.render(
 	<Provider store={store}>
@@ -77,29 +71,6 @@ ReactDOM.render(
 	</Provider>,
 	document.querySelector('#root')
 );
-
-// store.subscribe(() => {
-// 	console.log("Redux Store Changed!", store.getState());
-// });
-
-// console.log("Redux store:", store.getState());
-
-// const render = () => {
-// 	ReactDOM.render(
-// 		<Provider store={store}>
-// 			<BrowserRouter>	
-// 				<TestRedux comments={store.getState().comment} />
-// 			</BrowserRouter>	
-// 		</Provider>,
-// 		document.querySelector('#root')
-// 	);
-// };
-
-// TODO: Know how subscribe() works, this is only experiment remove 
-// `const render declaration` above if not working
-// code from dan abramov egghead redux video 17
-// store.subscribe(render);
-// render();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import ProductReviews from './ProductReviews';
+// import ProductReviews from './ProductReviews';
 
 const Single = ({ product, stocks, addToCart, decrement, increment, quantityChange, qtyValue, isAuth, productIdReview }) => {
 	
@@ -76,7 +76,7 @@ const Single = ({ product, stocks, addToCart, decrement, increment, quantityChan
 
 			<div className="box">
 				<h1 className="box__header">Product Reviews</h1>
-				<ProductReviews productId={productIdReview} />
+				{/* <ProductReviews productId={productIdReview} /> */}
 			</div>
 		</div>
 	);

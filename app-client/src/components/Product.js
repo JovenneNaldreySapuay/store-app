@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 import Popup from './Popup';
-// import Empty from './Empty';
 import Single from './Single';
-
 import { fetchSingleProduct } from '../actions/product';
 import { addProductCart } from '../actions/cart';
-
-// import api from '../api';
-
-// import { ADD_TO_CART_SUCCESS } from '../actions/types';
 
 class Product extends Component {
 	state = {
@@ -20,12 +15,11 @@ class Product extends Component {
 	}
 
 	componentDidMount() {
-		const { id } = this.props;
+		const { fetchProduct, productid } = this.props;
 		
-		if (id) {
-			this.props.fetchSingleProduct(id);
+		if (productid) {
+			fetchProduct(productid);
 		}
-
 	}
 
 	increment = (e) => {
@@ -50,38 +44,36 @@ class Product extends Component {
 		})
 	}
 	
-	addToCart = async (e) => {
+	addToCart = (e) => {
 		e.preventDefault();
 
 		const { 
-			_id,
 			title,
 			slug, 
 			image, 
 			price,
 		} = this.props.product;
 
+		const { userid, productid } = this.props;
+
 		const { quantity } = this.state;
 		
 		const total = quantity * price;
 		
 		const product = { 
-			_id,
 			title,
 			slug, 
 			image,
 			price, 
 			quantity, 
 			total,
+			productid,
+			userid,
 		};			
 		
 		console.log("add to cart:", product);
 		
-		// this.props.addProductCart(product);
-		// const payload = await api.cart.create(product);
-    	
-    	this.props.addProductCart(product);
-
+		this.props.addToCart(product);
 		this.showPopup();
   	}	
 
@@ -103,7 +95,7 @@ class Product extends Component {
 
 	renderProduct(product) {
 		if (Object.keys(product).length === 0) {
-			return <div>Loading item...</div>
+			return <div>Loading item... <i className="fa fa-refresh fa-spin"></i></div>
 		} else {
 			return <Single 
 						increment={this.increment}
@@ -120,8 +112,8 @@ class Product extends Component {
 	}
 
 	render() {
-		// console.log("State:", this.state);
 		const { product } = this.props;
+		
 		console.log("Product", this.props);
 		    	
 		return (
@@ -137,21 +129,22 @@ class Product extends Component {
 	}
 }
 
-// const mapDispatchToProps = (dispatch) => ({
-//   onSubmit: (payload) => dispatch({ type: ADD_TO_CART_SUCCESS, payload }),
-// });
+const mapDispatchToProps = (dispatch) => bindActionCreators({
+  addToCart: addProductCart,
+  fetchProduct: fetchSingleProduct
+}, dispatch);
 
 const mapStateToProps = (state, ownProps) => {
-
 	const { _id } = ownProps.match.params;
 
 	return { 
-		id: _id,
+		productid: _id,
+		userid: state.auth._id,
 		product: state.product.item || {},
 	    isAuthenticated: !!state.auth.token,
 	};
 }
 
-export default connect(mapStateToProps, { addProductCart, fetchSingleProduct })(Product);
+export default connect(mapStateToProps, mapDispatchToProps)(Product);
 
 

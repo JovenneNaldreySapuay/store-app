@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as auth from '../actions/auth';
 
 import SearchInput from './SearchInput';
+import CartIconTable from './CartIconTable';
 import { searchProducts } from '../actions/product';
 
 class Header extends Component {
@@ -108,7 +109,7 @@ class Header extends Component {
                         viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/> 
                         </svg>
                         </button>
-                        <ul className="dropdown-menu absolute hidden text-gray-700 pt-1">
+                        <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 z-10">
                         {this.props.user.role === "admin" &&
                             <li><Link to="/admin" className="bg-gray-300 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Admin</Link></li>
                         }
@@ -128,15 +129,17 @@ class Header extends Component {
                         <div className="m-auto w-4/5">
                             <div className="flex justify-between">
                                 <Link className="text-white font-semibold" to="/">Shopeeh</Link>
-                               
-                                <div>
-                                    <Link 
-                                    className="text-gray-100 hover:underline uppercase"
-                                    to="/cart"
-                                    >
-                                    View Cart
-                                    </Link>
+                                
+                                <div className="dropdown inline-block relative">
+                                <button className="text-gray-700 font-semibold inline-flex items-center">
+                                <span className="mr-1 text-gray-100">Cart</span>
+                                </button>
+                                <div className="dropdown-menu absolute hidden text-gray-700 pt-1">
+                                <CartIconTable />
                                 </div>
+                                </div>
+                                
+                               
                             </div>
                         </div>
                     </div>

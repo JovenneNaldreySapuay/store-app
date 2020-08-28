@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchCartByUser } from '../../actions/cart';
-
+import getCartItems from '../../reducers';
 import CartItemRow from './CartItemRow';
 
 const reducer = (accumulator, currentValue) => accumulator + currentValue;
@@ -26,7 +26,7 @@ class CartItemTable extends Component {
   	}
 
 	render() {
-		// console.log("CartItemTable", this.props);
+		console.log("CartItemTable", this.props);
 		const { products } = this.props;
 
 		if (! products) {
@@ -98,6 +98,7 @@ class CartItemTable extends Component {
 const mapStateToProps = (state) => ({	
 	products: state.cart.items,
 	loggedUserId: state.auth._id,	
+	select: getCartItems,
 })
 
 export default connect(mapStateToProps, { fetchCartByUser })(CartItemTable);

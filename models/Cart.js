@@ -27,11 +27,11 @@ const cartSchema = new Schema(
 			type: Number, 
 			required: true
 		},
-		_product: { 
+		productid: { 
 			type: Schema.Types.ObjectId, 
 			ref: 'product' 
 		},
-		_user: { 
+		userid: { 
 			type: Schema.Types.ObjectId, 
 			ref: 'user' 
 		},
@@ -40,30 +40,25 @@ const cartSchema = new Schema(
 
 module.exports = mongoose.model('cart', cartSchema);
 
-/*
-const mongoose = require('mongoose');
-const { Schema } = mongoose;
 
+/*
 const cartSchema = new Schema(
 	{
-		_product: { 
+		productid: { 
 			type: Schema.Types.ObjectId, 
 			ref: 'product' 
 		},
-		_user: { 
+		quantity: {
+			type: Number, 
+			required: true
+		},
+		userid: { 
 			type: Schema.Types.ObjectId, 
 			ref: 'user' 
-		},
-		quantity: { 
-			type: Number, 
-			required: true
-		},
-		total: { 
-			type: Number, 
-			required: true
 		},
 	}, { timestamps: true }
 );
 
 module.exports = mongoose.model('cart', cartSchema);
 */
+

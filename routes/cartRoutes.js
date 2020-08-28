@@ -21,8 +21,7 @@ const validate = (data) => {
   return { errors, isValid };
 }
 
-module.exports = app => {		
-	// Saving data
+module.exports = app => {
 	app.post('/api/carts', async (req, res) => {
 		    
 	    const { errors, isValid } = validate(req.body);
@@ -31,97 +30,45 @@ module.exports = app => {
 			title,
 			slug, 
 			image,
-			price,
-			quantity,
+			price, 
+			quantity, 
 			total,
-			_product,
-			_user
-		} = req.body;
+			productid,
+			userid,
+		} = req.body.data;
 				
-		console.log("cartRoutes.js from Form Values:", req.body);
+		console.log("Cart req.body:", req.body.data);
 
-		// @TODO: When adding to cart, save product _id to 
-		// `User` model for relationship purpose
-		// Use array .push() to `_cart property` in User Model
+		//if (isValid) {			
+			//try {
+							
+				const cartData = new Cart({ 
+					title,
+					slug, 
+					image,
+					price, 
+					quantity, 
+					total,
+					productid,
+					userid,
+				});
+				
+				await cartData.save();
 
-		if (isValid) {			
-			try {
-				// await Cart.find({ _product: _product }, async (err, docs) => {
+				res.json(cartData); // <-- very important to use!
 
-					// if (docs.length === 0 || docs === undefined) {
-					// 	// no record yet, perform adding new...
-					// 	console.log('ID Not Found - Perform Adding Record...');
-					// 	console.log("User who adds this item:", _user);
-						
-						const cartData = new Cart(
-							{ 
-								title,
-								slug, 
-								image,
-								price,
-								quantity,
-								total,
-								_product,
-								_user,
-							}
-						);
-						
-						await cartData.save();
+				// console.log("Cart:", cartData);
 
-						console.log("New Item in Cart Model:", cartData);
+			//} catch (err) {
+			//	res.status(422).send(err);
+			//}
 
-						// call User model 
-						/* Use this later if needed...
-						User.findById({ _id: new mongoose.Types.ObjectId( userid )}, function (err, user) {
-							user._cart.push(cartData);	
-							user.save();
-							console.log("Cart data added to User Model");
-							res.status(201);
-							res.json(cartData);
-						})
-						*/
-					// } else {
-					// 	// there's a record, perform updating...
-						
-					// 	console.log('ID Found - Perform Updating Record...');
-					// 	console.log("User who updates this item:", _user);
-					// 	console.log("From DB Qty:", docs[0].quantity, "From DB Total:", docs[0].total);
-					// 	console.log("From Client Qty:", quantity, "From Client Total:", total);
-						
-					// 	const filter =  { 
-					// 		_product: _product,
-					// 		_user: _user  
-					// 	};
-					// 	const update = { 
-					// 		quantity: +quantity + docs[0].quantity, 
-					// 		total: total + docs[0].total
-					// 	};
-					// 	const config = { upsert: true };
+		//} else {
 
-					// 	await Cart.findOneAndUpdate(filter, update, config);
+		//	res.status(400).json({ errors });
 
-					// 	console.log("New Cart Record:", update);
-						
-					// } 
-				// }).exec()
-
-			} catch (err) {
-
-				res.status(422).send(err);
-
-			}
-
-		} else {
-
-			res.status(400).json({ errors });
-
-		}
-	});
-
-	// update cart product
-	app.put('/api/carts', requireAuthenticate, async (req, res) => {
-		console.log("Cart .put Req:", req);		
-	});
+		//}
+	})
 
 	// Fetch All Cart Items
 	app.get('/api/carts', async (req, res) => {
@@ -138,10 +85,11 @@ module.exports = app => {
 	app.get('/api/carts/:_user', async (req, res) => {
 		
 		const { _user } = req.params;
+		// console.log("req.params", req.params);
 		
 		await Cart
 		.find({
-			_user: _user
+			userid: _user
 		}).
 		exec(function (err, data) {
 			if (err) { 
@@ -155,12 +103,11 @@ module.exports = app => {
 
 	// Delete Cart Item By Product Id
 	app.delete('/api/carts/:id', async (req, res) => {
-		
-		// get cart unique _id
+
 		let cid = req.params.id;
 
 		console.log("Cart Product ID to delete:", cid);
-		
+
 		await Cart.findOneAndRemove({ 
 			_id: new mongoose.Types.ObjectId(cid) 
 		}, (err, docs) => {
@@ -168,46 +115,8 @@ module.exports = app => {
 			console.log("Product Deleted successfully", docs);
 		}).exec(function (err, data) {
 			if (err) console.error(err);
-			res.send(data);
+			res.json(data);
 		});
-
-		// Fetch All Cart Items
-		app.get('/api/carts', async (req, res) => {
-			await Cart
-			.find().
-			exec(function (err, data) {
-				if (err) console.error(err);
-				res.send(data);
-			});
-		});
-
-		// await Cart.findOneAndRemove({ _product: product_id }, (err, docs) => {
-				
-				// if (err) console.error(err);
-				
-				// Optional... add this later if needed
-				/*
-				console.log("User ID to pass below:", docs._user);
-				
-				await User.findById({ _id: docs._user }, (err, user) => {
-					console.log("User found:", user);
-
-					const id = docs._id;
-
-					console.log("Deleted id:", id);
-
-					user._cart.remove(id);
-					
-					console.log("Product in User deleted!");
-
-					user.save();
-
-					res.json({ user });
-				}).
-				exec(); 
-				*/
-			// }).
-			// exec(); // added since it causes issue when deleting (8/13/20)
 	});
 
 };
