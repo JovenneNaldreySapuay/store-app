@@ -30,7 +30,11 @@ const checkoutSchema = new Schema(
 		_user: { 
 			type: Schema.Types.ObjectId, 
 			ref: 'user' 
-		}
+		},
+		paymentid: { 
+			type: String, 
+			required: true 
+		},
 	}, { timestamps: true }
 );
 
