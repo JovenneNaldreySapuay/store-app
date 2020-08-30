@@ -6,7 +6,7 @@ const jwt = require("jsonwebtoken");
 const async = require('async');
 
 const keys = require('../config/keys');
-const stripe = require('stripe')(keys.stripeSecretKey);
+const stripe = require('stripe')(process.env.stripeSecretKey);
 
 const requireAuthenticate = require('../middlewares/requireAuthenticate');
 const requireAdminRole = require('../middlewares/requireAdminRole');
