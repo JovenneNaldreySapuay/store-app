@@ -68,6 +68,8 @@ module.exports = app => {
 
 				await productData.save();
 				
+				res.json(productData);
+
 				// call User model
 				/*
 				User.findById({ _id: new mongoose.Types.ObjectId( _id )}, function (err, data) {
@@ -225,7 +227,7 @@ module.exports = app => {
 		const file = req.files.file.path;
 		const result = await cloudinary.uploader.upload(file);	
 		// console.log("/api/upload", result );	
-		res.send(result);
+		res.json(result);
 	});
 };
 

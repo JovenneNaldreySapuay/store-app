@@ -69,7 +69,8 @@ require('./routes/productRoutes')(app);
 require('./routes/cartRoutes')(app); 
 require('./routes/checkoutRoutes')(app); 
 require('./routes/reviewRoutes')(app); 
-require('./routes/notificationRoutes')(app); 
+require('./routes/notificationRoutes')(app);
+require('./routes/billingRoutes')(app);
 
 require('./routes/formRoutes')(app); 
 

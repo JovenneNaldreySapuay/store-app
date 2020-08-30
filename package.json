@@ -39,6 +39,7 @@
     "mongoose-unique-validator": "^2.0.2",
     "nodemailer": "^4.7.0",
     "nodemon": "^1.18.6",
-    "sendgrid": "^5.2.3"
+    "sendgrid": "^5.2.3",
+    "stripe": "^8.90.0"
   }
 }

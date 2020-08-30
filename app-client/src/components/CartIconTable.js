@@ -35,7 +35,7 @@ class CartIconTable extends Component {
 				<div className="mt-1">
 					<Link 
 						to="/cart"
-						className="pl-1 underline text-blue-500 hover:text-blue-700" 
+						className="bg-red-400 block hover:bg-red-500 pl-1 text-center text-white" 
 						>
 						View Cart &rarr;
 					</Link>

@@ -30,7 +30,7 @@ class SignupForm extends Component {
 		if (isValid) { 
 			const { data } = this.state;
 
-			const userInfo = {
+			const user = {
 				email: data.email,
 				password: data.password,
 				fullName: data.fullName
@@ -39,9 +39,12 @@ class SignupForm extends Component {
 			this.setState({ loading: true });
 			
 			this.props
-			.submit(userInfo)
-			.catch(err => 
-			this.setState({ errors: err.response.data.errors, loading: false })
+				.submit(user)
+				.catch(err => 
+				this.setState({ 
+					errors: err.response.data.errors, 
+					loading: false 
+				})
 			);
 		}
 	}

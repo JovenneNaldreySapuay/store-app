@@ -1,8 +1,6 @@
 import axios from 'axios';
-// import fetch from 'cross-fetch';
-
 import { 
-	// ADD_TO_CART_STARTED, 
+	ADD_TO_CART_STARTED, 
 	ADD_TO_CART_SUCCESS,
 	ADD_TO_CART_ERROR,
 	DELETE_PRODUCT_CART,
@@ -10,6 +8,10 @@ import {
 	FETCH_CART_BY_USER,
 	FETCH_CART_ITEMS,
 } from './types';
+
+export const addToCartStarted = () => ({
+  type: ADD_TO_CART_STARTED
+});
 
 export const addToCartSuccess = (product) => ({
   type: ADD_TO_CART_SUCCESS,
@@ -25,11 +27,14 @@ export const addToCartError = (error) => ({
 export const addProductCart = (product) => {
 
 	const params = { data: product }
-	
+
 	return async (dispatch) => {
+		
+		dispatch(addToCartStarted());
+
 		return await axios.post("/api/carts", params)
 			.then(response => {		
-				console.log("addProductCart response:", response);				
+				console.log("addToCart response:", response);				
 				dispatch(addToCartSuccess(response.data));
 			}).catch(err => {
 				dispatch(addToCartError(err.message));

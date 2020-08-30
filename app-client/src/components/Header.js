@@ -47,7 +47,7 @@ class Header extends Component {
                 <div className="p-3" style={{ background: "linear-gradient(-180deg,#f53d2d,#f63)" }}> 
                     <div className="m-auto w-4/5">
                         <div className="flex justify-between">
-                            <div className="follow text-gray-200"><p>Follow us on Facebook | Instagram</p></div>
+                            <div className="follow text-gray-200"><p>Follow us on <a href="https://www.instagram.com/shopee_ph/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a></p></div>
                             <div className="user">
                                 <span className="underline text-gray-200">contact@shopeeh.com</span>      
                             </div>
@@ -98,7 +98,7 @@ class Header extends Component {
                 <div className="p-3" style={{ background: "linear-gradient(-180deg,#f53d2d,#f63)" }}> 
                     <div className="m-auto w-4/5">
                         <div className="flex justify-between">
-                        <div className="follow text-gray-100"><p>Follow us on Facebook | Instagram</p></div>
+                        <div className="follow text-gray-200"><p>Follow us on <a href="https://www.instagram.com/shopee_ph/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a></p></div>
 
                         <div className="dropdown inline-block relative">
                         <button className="text-gray-700 font-semibold inline-flex items-center">

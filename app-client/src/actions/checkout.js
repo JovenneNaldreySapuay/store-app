@@ -3,27 +3,29 @@ import {
 	ADD_CHECKOUT_PRODUCT,
 	FETCH_CHECKOUT_PRODUCTS,
 	FETCH_CHECKOUT_PRODUCTS_BY_ID,
-	FETCH_CHECKOUT_PRODUCTS_BY_USER
+	FETCH_CHECKOUT_PRODUCTS_BY_USER,
+	FETCH_USER
 } from './types';
 
 // Add product to cart
-export const addCheckoutProduct = (values) => async (dispatch, getState) => {
+export const addCheckoutProduct = (values) => async (dispatch) => {
 	
-	const user = getState().auth;
-	
-	console.log("addCheckoutProduct values", values);
+	// console.log("addCheckoutProduct values", values);
 
 	try {
-		const response = await axios.post('/api/checkouts', { values, user });
-
-		console.log("addCheckoutProduct response", response);
-		// console.log("addCheckoutProduct getState", user);
-		
+		const response = await axios.post('/api/checkouts', { values });				
+			
 		dispatch({ 
 			type: ADD_CHECKOUT_PRODUCT, 
-			payload: response.data 
+			payload: values 
 		});
-		
+
+		// return response - will return a .Promise() to the client side
+		// The client side will consume this .Promise()
+		// by doing .then 
+		// e.g this.props.addToCart(item).then(response => ...)
+		return response; 
+		                 			
 	} catch(err) {
 		console.log(err);
 	}
@@ -75,3 +77,14 @@ export const fetchCheckoutProductsById = (id) => async (dispatch, getState) => {
 		console.log(err);
 	}
 }
+
+export const handleToken = (token) => async (dispatch) => {
+	const res = await axios.post('/api/stripe', token);	
+	
+	console.log("handleToken", res);
+
+	dispatch({ 
+		type: FETCH_USER, 
+		payload: res.data 
+	});
+};

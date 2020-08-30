@@ -2,8 +2,8 @@
 
 @import "tailwindcss/components";
 
+@import "./styles/checkout.css";
 @import "./styles/button.css";
-
 @import "./styles/container.css";
 @import "./styles/header.css";
 @import "./styles/product.css";
@@ -11,3 +11,7 @@
 @import "./styles/popup.css";
 
 @import "tailwindcss/utilities";
+
+
+
+

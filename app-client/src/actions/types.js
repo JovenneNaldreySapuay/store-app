@@ -1,3 +1,8 @@
+// async
+export const ASYNC_START = 'ASYNC_START';
+export const ASYNC_END = 'ASYNC_END';
+
+
 // users type
 export const ADD_USER = 'ADD_USER';
 export const FETCH_USER = 'FETCH_USER';
@@ -69,3 +74,6 @@ export const FETCH_NOTIFICATIONS_BY_USER = 'FETCH_NOTIFICATIONS_BY_USER';
 // demo only
 export const FETCH_FORM = 'FETCH_FORM';
 export const FETCH_FORMS = 'FETCH_FORMS';
+
+
+export const CART_FAILURE = 'CART_FAILURE';

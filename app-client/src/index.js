@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import * as serviceWorker from './serviceWorker';
+import '@stripe/stripe-js';
 
 import './style.css';
 
@@ -15,13 +16,9 @@ import setAuthorizationHeader from './utils/setAuthorizationHeader';
 import rootReducer from './reducers'; 
 import { userLoggedIn } from './actions/auth';
 import { fetchProducts } from './actions/product'; 
-// import { promiseMiddleware } from './middlewares';
 import App from './components/App';
 
 window.axios = axios;
-
-// @TODO - understand promiseMiddleware
-// const middleware = [thunk, promiseMiddleware];
 
 const middleware = [thunk];
 

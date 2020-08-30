@@ -71,7 +71,8 @@ import Product from './Product';
 import Products from './Products';
 
 import CartPage from './cart/CartPage';
-import CheckoutPage from './checkout/CheckoutPage';
+import Success from './checkout/Success';
+import CheckoutConsumer from './checkout/CheckoutConsumer';
 
 import Footer from './footer/Footer';
 
@@ -110,7 +111,7 @@ class App extends Component {
 				    	<AdminRoute exact path="/account/:_id" component={ProfileForm} />
 
 				    	<AdminRoute exact path="/cart" component={CartPage} />
-				    	<AdminRoute exact path="/checkout" component={CheckoutPage} />
+				    	<AdminRoute exact path="/checkout" component={CheckoutConsumer} />
 				    	
 				    	<GuestRoute exact path="/signup" component={SignupPage} />
 				    	<GuestRoute exact path="/login" component={LoginPage} />
@@ -126,6 +127,7 @@ class App extends Component {
 				    	<Route exact path="/shop/gadgets" component={GadgetCategory} />
 
 				    	<Route exact path="/confirmation/:token" component={ConfirmationPage} />
+				    	<Route exact path="/success" component={Success} />
 				    	<Route component={NotFound} />
 				    </Switch>
 			    </main>

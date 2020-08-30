@@ -11,6 +11,9 @@ class LoginPage extends Component {
 
 	render() {
 		// console.log("LoginPage", this.props );
+		// const demo_email = process.env.REACT_APP_USER_EMAIL;
+		// const demo_pass = process.env.REACT_APP_USER_PASSWORD;
+		// console.log(demo_email, demo_pass);
 	
 		return (	
 			<div className="container mx-auto w-full max-w-md h-screen">

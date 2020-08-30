@@ -4,10 +4,13 @@ import { bindActionCreators } from 'redux';
 
 import Popup from './Popup';
 import Single from './Single';
+
 import { fetchSingleProduct } from '../actions/product';
 import { addProductCart } from '../actions/cart';
 
-class Product extends Component {
+// import { ADD_TO_CART_SUCCESS } from '../actions/types';
+
+class ProductById extends Component {
 	state = {
 		quantity: 1,
 		isLogged: false,
@@ -47,40 +50,26 @@ class Product extends Component {
 	addToCart = (e) => {
 		e.preventDefault();
 
-		const { 
-			title,
-			slug, 
-			image, 
-			price,
-		} = this.props.product;
-
 		const { userid, productid } = this.props;
 
 		const { quantity } = this.state;
 		
-		const total = quantity * price;
-		
 		const product = { 
-			title,
-			slug, 
-			image,
-			price, 
-			quantity, 
-			total,
-			productid,
-			userid,
+			productid, 
+			quantity,
+			userid 
 		};			
 		
 		// console.log("add to cart:", product);
 		
-		this.props.addToCart(product);
+    	this.props.addToCart(product);
 		this.showPopup();
   	}	
 
   	showPopup = () => {
 		this.setState({
 		  isShowPopup: true
-		}, () => { setTimeout(this.closePopup, 2000) });
+		}, () => { setTimeout(this.closePopup, 1000) });
 	}
 
 	closePopup = () => {
@@ -112,9 +101,9 @@ class Product extends Component {
 	}
 
 	render() {
-		const { product } = this.props;
-		
 		// console.log("Product", this.props);
+
+		const { product } = this.props;
 		    	
 		return (
 			<div className="w-full sm:w-8/12 mx-auto">
@@ -129,22 +118,26 @@ class Product extends Component {
 	}
 }
 
-const mapStateToProps = (state, ownProps) => {
-	const { _id } = ownProps.match.params;
-
-	return { 
-		productid: _id,
-		userid: state.auth._id,
-		product: state.product.item || {},
-	    isAuthenticated: !!state.auth.token,
-	};
-}
+// const mapDispatchToProps = (dispatch) => bindActionCreators({
+//   addToCart: (payload) => dispatch({ type: ADD_TO_CART_SUCCESS, payload }),
+//   fetchProduct: fetchSingleProduct
+// }, dispatch); 
 
 const mapDispatchToProps = (dispatch) => bindActionCreators({
   addToCart: addProductCart,
   fetchProduct: fetchSingleProduct
 }, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(Product);
+const mapStateToProps = (state, ownProps) => {
+	const { _id } = ownProps.match.params;
+	return { 
+		productid: _id,
+	    userid: state.auth._id,
+		product: state.product.item || {},
+	    isAuthenticated: !!state.auth.token,
+	};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ProductById);
 
 

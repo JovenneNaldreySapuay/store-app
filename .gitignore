@@ -5,7 +5,7 @@
 dev.js
 /.pnp
 .pnp.js
-.txt
+*.txt
 
 # testing
 /coverage

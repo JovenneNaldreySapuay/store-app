@@ -5,6 +5,9 @@ const cloudinary = require('cloudinary');
 const jwt = require("jsonwebtoken");
 const async = require('async');
 
+const keys = require('../config/keys');
+const stripe = require('stripe')(keys.stripeSecretKey);
+
 const requireAuthenticate = require('../middlewares/requireAuthenticate');
 const requireAdminRole = require('../middlewares/requireAdminRole');
 
@@ -25,105 +28,106 @@ const validate = (data) => {
 module.exports = app => {
 		
 	// Saving data
-	app.post('/api/checkouts', requireAuthenticate, async (req, res) => {
+	app.post('/api/checkouts', async (req, res) => {
 		    
 	    const { errors, isValid } = validate(req.body);
 
-		console.log("Checkout Form Values:", req.body.values);
-
-	    const prod_id = req.body.values._id; 
-		const userid = req.body.user._id; 
-
+		console.log("Checkout Form Values:", req.body);
+				
 		const { 
-			products,
+			products, // array of items
 			shipping_option,
 			payment_method,
 			message,
 			shipping_fee,
 			quantity,
-			total
+			total,
+			userid,
+			email
 		} = req.body.values;
+
+		const paymentIntent = await stripe.paymentIntents.create({
+			amount: total * 100,
+			currency: 'usd',
+			receipt_email: email,
+			// description: 'Shopeeh Payment',
+			// shipping: shipping_fee,
+			// metadata: { integration_check: 'accept_a_payment' },
+		});
+
+		res.json({'client_secret': paymentIntent['client_secret']})	
+
+		// console.log("paymentIntent", paymentIntent);
 				
+		if (isValid) {		
 
-		if (isValid) {			
-			try {
+		try {
+			const checkoutItem = new Checkout({ 
+				products, 
+				shipping_option,
+				payment_method,
+				message,
+				shipping_fee,
+				quantity,
+				total,
+				_user: userid,
+				paymentid: paymentIntent.id
+			});
 
-				const checkoutItem = new Checkout(
-					{ 
-						products, 
-						shipping_option,
-						payment_method,
-						message,
-						shipping_fee,
-						quantity,
-						total,
-						_user: userid
+			console.log("Checkedout Item:", checkoutItem);
+
+			checkoutItem.save(async (err, docs) => {
+				console.log("Docs after Checkedout:", docs);
+
+				if (err) return console.error(err);
+
+				// remove cart items for this user after checked out...
+				await Cart.deleteMany({ userid: docs._user }, (err) => {
+					if (! err) {
+						console.log('Cart item(s) deleted successfully!');
+					} else {
+						console.err('Error:', err);
 					}
-				);
+				});
+
+				// remove _cart referenced ID's after checkout...
+				// await User.updateOne({ _id: docs._user }, { $set : { _cart: [] } });
+
+				const checkedOutProducts = docs.products;
+
+				async.eachSeries(checkedOutProducts, function iteratee (obj, done) {
 				
-				await checkoutItem.save(async (err, docs) => {
-					console.log("Docs after checkout:", docs);
+					console.log("Checked Out Result:", obj);
 
-					if (err) return console.error(err);
+					const checkoutQty = obj.quantity;
 
-					// remove cart items for this user after checked out...
-					await Cart.deleteMany({ _user: docs._user }, (err) => {
-						if (! err) {
-							console.log('Cart Item Deleted successfully!');
-						} else {
-							console.err('Error:', err);
-						}
-					});
-
-					// remove _cart referenced ID's after checkout...
-					await User
-							.updateOne({ _id: docs._user }, 
-								{ $set : { _cart: [] } });
-
-					const checkedOutProducts = docs.products;
-
-					async.eachSeries(checkedOutProducts, function iteratee (obj, done) {
+					Product.find({ _id: obj.productid }, function (err, docs) {
 						
-						console.log("Checkout Result:", obj);
-
-						const checkoutQty = obj.quantity;
-
-						Product.find({ _id: obj._product }, function (err, docs) {
-							console.log("------- PROCESSING BEGINS -------");
-							console.log("Product callback is:", docs);
-							console.log("Checked out product ID:", obj._product);
-							console.log("Current Stock in DB:", docs[0].stock);
-							console.log("Checked out Quantity:", obj.quantity);
-
-							const updatedStock = docs[0].stock - checkoutQty;
-							
-							console.log("New Stock:", updatedStock);
-
-							Product.updateOne({ 
-								_id: obj._product 
-							}, 
-							{ 
-								$set : { 
-									stock: updatedStock 
-								}
-							}, done);
-
-							console.log("------- PROCESSING ENDS -------");
-						})
-
-					}, function allDone (err) {
+						console.log("------- PROCESSING BEGINS -------");
 						
-					});				
-				});	
+						console.log("Product docs cb is:", docs);
+						console.log("Checked out product ID:", obj.productid);
+						console.log("Current Stocks in DB:", docs[0].stock);
+						console.log("Checked out Quantity:", obj.quantity);
 
-			} catch (err) {
-				res.status(422).send(err);
-			}
-		} else {
-			res.status(400).json({ errors });
-		}
+						const updatedStock = docs[0].stock - checkoutQty;
+					
+						console.log("New Stocks:", updatedStock);
+
+						Product.updateOne({	_id: obj.productid }, 
+						{ $set : { stock: updatedStock } }, done);
+
+						console.log("------- PROCESSING ENDS -------");
+					})
+				}, function allDone (err) {});				
+			});	
+
+			res.json(checkoutItem);
+									
+		} catch (err) { console.log(err) }
+
+	} else { res.status(400).json({ errors }) }
 	});
-
 
 	// Fetch All Checkout Products
 	app.get('/api/checkouts', async (req, res) => {
@@ -131,7 +135,7 @@ module.exports = app => {
 			.find().
 			exec(function (err, data) {
 				if (err) console.error(err);
-				res.send(data);
+				res.json(data);
 			});
 	});
 
@@ -148,7 +152,7 @@ module.exports = app => {
 			}).
 			exec(function (err, data) {
 				if (err) console.error(err);
-				res.send(data);
+				res.json(data);
 			});
 	});
 
@@ -163,7 +167,7 @@ module.exports = app => {
 			}).
 			exec(function (err, data) {
 				if (err) console.error(err);
-				res.send(data);
+				res.json(data);
 			});
 	});
 };

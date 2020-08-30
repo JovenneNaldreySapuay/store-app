@@ -7,16 +7,16 @@ const CartIconRow = (props) => {
 
 return (
 	<tr>
-	<td className="p-1">{props.product.title}</td>	
-	<td className="p-1 text-gray-500">
-		{props.product.price} &times; {props.product.quantity}
+	<td>{props.product.title}</td>	
+	<td className="text-gray-500">
+		${props.product.price} &times; {props.product.quantity}
 	</td>	
-	<td className="p-1">
+	<td>
 	<button 
 	onClick={
 		() => props.deleteProductCart(props.product._id) 
 	}
-	className="text-red-600 underline">
+	className="text-red-400 hover:text-red-500 underline">
 		Delete
 	</button>
 	</td>
