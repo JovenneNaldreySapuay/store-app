@@ -4,9 +4,7 @@ const formData = require('express-form-data');
 const cloudinary = require('cloudinary');
 const jwt = require("jsonwebtoken");
 const async = require('async');
-
-const keys = require('../config/keys');
-const stripe = require('stripe')(process.env.stripeSecretKey);
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
 const requireAuthenticate = require('../middlewares/requireAuthenticate');
 const requireAdminRole = require('../middlewares/requireAdminRole');
@@ -28,7 +26,7 @@ const validate = (data) => {
 module.exports = app => {
 		
 	// Saving data
-	app.post('/api/checkouts', async (req, res) => {
+	app.post('/api/checkouts', requireAuthenticate, async (req, res) => {
 		    
 	    const { errors, isValid } = validate(req.body);
 

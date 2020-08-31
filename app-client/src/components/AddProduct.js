@@ -205,7 +205,7 @@ class AddProduct extends Component {
 					<div className="p-4 text-sm text-gray-800">
 						<h1 className="text-4xl text-gray-700 font-bold leading-none mb-8">Add New Product</h1>
 					
-						<Form onSubmit={ this.handleOnSubmit } loading={ loading } className="sm:w-1/2 w-full">
+						<Form onSubmit={ this.handleOnSubmit } loading={ loading } className="sm:w-1/2 w-full product-new">
 						<Form.Field error={ !!errors.title }>
 							<label htmlFor="title" className="text-gray-600 pb-1 block">Product Title</label>
 							<input
@@ -236,7 +236,7 @@ class AddProduct extends Component {
 
 						<Form.Field>
 							<label htmlFor="description" className="text-gray-600 pb-1 block">Description</label>
-							<div style={styles.editor} onClick={this.focusEditor}>
+							<div className="editor" style={styles.editor} onClick={this.focusEditor}>
 								<Editor
 								ref={this.setEditor}
 								id="description"

@@ -40,7 +40,15 @@ class CheckoutPage extends Component {
 	// errors: {}
   };
 
-  handleOrderClick = async (e) => {
+  	handlePaypalCheckout = async (e) => {
+  		e.preventDefault();	
+  	}
+
+  	handleCODCheckout = (e) => {
+  		e.preventDefault();	
+  	}
+
+	handleStripeCheckout = async (e) => {
 	e.preventDefault();
 	
 	const {stripe, elements} = this.props;
@@ -204,7 +212,7 @@ render() {
 					</table>
 		        
 					<div className="flex justify-end">
-						<div className="border border-grey-200 mb-6 w-6/12">	
+						<div className="border border-grey-200 mb-6 w-6/12 px-3 py-4">	
 						<div className="leave-message px-3">
 						<label htmlFor="message">Leave a message:&nbsp;</label>
 						<input className="border p-2" type="text" name="message" id="message" placeholder="Your message..." onChange={this.handleOnChange} />
@@ -225,17 +233,18 @@ render() {
 						<div onChange={this.handleOnChange} className="payment-method p-3">
 						<p style={{fontWeight: 'bold'}}>Payment Method:</p>
 						<p>
-						<input type="radio" id="cod" name="payment_method" value="COD" />
-						<label htmlFor="cod">&nbsp;COD</label>
-						</p>  
+						<input type="radio" disabled id="cod" name="payment_method" value="COD" />
+						<label htmlFor="cod">&nbsp;COD</label> <span className="text-gray-400 italic ml-2 text-xs">Coming soon...</span>
+						</p>
+						<p>
+						<input type="radio" disabled id="paypal" name="payment_method" value="PayPal" /> 
+						<label htmlFor="paypal">&nbsp;PayPal</label> <span className="text-gray-400 italic ml-2 text-xs">Coming soon...</span>
+						</p>
 						<p>
 						<input type="radio" id="credit" name="payment_method" value="Credit Card" />
 						<label htmlFor="credit">&nbsp;Credit Card</label>
 						</p>
-						<p>
-						<input type="radio" id="paypal" name="payment_method" value="PayPal" />
-						<label htmlFor="paypal">&nbsp;PayPal</label>
-						</p>
+						
 						</div>
 
 						<div className="payment-summary bg-gray-200 p-3">
@@ -243,24 +252,40 @@ render() {
 							<p>Shipping Total: <span className="font-semibold">${this.props.shipping_fee}</span></p>
 							<p className="total-payable mb-4">Total Payment: <span className="font-semibold">${total}</span></p>
 							
+							{this.state.payment_method === 'Credit Card' &&
 							<div className="stripe-section">	
-								<input className="border p-2" type="text" name="email" id="email" placeholder="email@email.com" onChange={this.handleOnChange} />
+								<label htmlFor="email">Email:&nbsp;</label>
+								<input className="border p-2" type="text" name="email" id="email" placeholder="Email address" onChange={this.handleOnChange} />
+								<label htmlFor="credit">Credit Card:&nbsp;</label>
 								<CardInput />
+
+								<div className="payment-cta mt-1 mb-3 flex justify-end">
+									<button 
+									onClick={this.handleStripeCheckout} 
+									className="btn mt-3"
+									>{this.state.isProcessing ? "Processing..." : "Checkout with Stripe"}
+									</button>
+								</div> 
 							</div>	
-						
+							}
+
+							{/* this.state.payment_method === 'PayPal' &&
+							<div className="paypal-section flex justify-end">	
+								<button className="btn">Checkout with Paypal</button>
+								
+							</div>	
+							*/}
+
+							{/*this.state.payment_method === 'COD' &&
+							<div className="cash-section flex justify-end">	
+								<button className="btn">Place Order</button>
+								
+							</div>	
+							*/}
+
+							{this.state.redirect && <Redirect to="/success" />}
+							
 						</div>
-
-						<div className="payment-cta mt-1 mb-5 mr-2 flex justify-end">
-
-						<button 
-							onClick={this.handleOrderClick} 
-							className="btn mt-3"
-							>{this.state.isProcessing ? "Processing..." : "Place Order"}
-						</button>
-
-						{this.state.redirect && <Redirect to="/success" />}
-
-						</div> 
 						</div> 
 					</div> 
 
