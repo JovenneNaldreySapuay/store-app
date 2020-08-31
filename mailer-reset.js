@@ -1,9 +1,8 @@
 const nodemailer = require('nodemailer');
 const keys = require('./config/keys');
 
-const from = '"Bookworm" <info@bookworm.com>';
+const from = '"Shopeeh" <hello@shopeeh.com>';
 
-// FOR PRODUCTION
 function setup() {
 	return nodemailer.createTransport({
 	  host: keys.emailHost,
@@ -15,7 +14,6 @@ function setup() {
 	});
 }
 
-// Not needed since the code above is OK 
 // function setup() {
 // 	return nodemailer.createTransport({
 // 	  host: process.env.EMAIL_HOST,
@@ -35,7 +33,7 @@ module.exports = sendResetPasswordEmail = (user) => {
 		to: user.email,
 		subject: "Reset Your Password",
 		text: `
-		To reset password follow this link
+		To reset your password click this link
 
 		${user.generateResetPasswordLink()}
 		`
@@ -43,4 +41,3 @@ module.exports = sendResetPasswordEmail = (user) => {
 
 	transport.sendMail(email);
 }
-

@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
 const keys = require('./config/keys');
 
-const from = '"Blogly" <hello@blogly.com>';
+const from = '"Shopeeh" <hello@shopeeh.com>';
 
 // FOR PRODUCTION
 function setup() {
@@ -18,7 +18,6 @@ function setup() {
 	});
 }
 
-// Not needed since the code above is OK 
 // function setup() {
 // 	return nodemailer.createTransport({
 // 	  host: process.env.EMAIL_HOST,
@@ -36,7 +35,7 @@ module.exports = sendConfirmationEmail = (user) => {
 	const email = {
 		from,
 		to: user.email,
-		subject: "Blogly email confirmation",
+		subject: "Shopeeh Email Confirmation",
 		text: `Please confirm your email by copy and pasting the link below into your browser
 		${user.generateConfirmationUrl()}`
 	}
