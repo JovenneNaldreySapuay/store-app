@@ -2,9 +2,10 @@ This is an e-Commerce project built in React.js. I used MongoDB as a Database an
 
 ## App Features:
 
-- Fully CRUD functional
-- Signin / Signup feature
-- Can add products to Cart
-- Can checkout products 
-- With User dashboard to view purchased products
-- and MORE!!!
+- Fully CRUD Functional
+- Signin / Signup Feature
+- Can Add Products to Cart
+- Can Checkout Products 
+- With User Dashboard
+- With Stripe Payment on Checkout
+- and MORE!!
