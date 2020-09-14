@@ -68,7 +68,7 @@ const Search = (props) => {
                     </div>
                     </>
                 : <div className="px-5 pt-5 text-center">We couldn't find a <span style={{fontWeight:'bold'}}>{cleanedStr}</span> for sale. Try another search.</div>
-            : <div>Loading items... <i className="fa fa-refresh fa-spin"></i></div>
+            : <div className="px-5 pt-5 text-center">Searching... <i className="fa fa-refresh fa-spin"></i></div>
             }
         </div>
     )
