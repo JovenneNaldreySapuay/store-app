@@ -4,6 +4,9 @@ import {Link} from 'react-router-dom';
 
 import ShopItem from './ShopItem';
 import { fetchProducts } from '../../actions/product';
+import forMen from '../../images/men.png';
+import forWomen from '../../images/women.png';
+import forGadget from '../../images/gadgets.png';
 
 class Shop extends Component {
 
@@ -31,7 +34,7 @@ class Shop extends Component {
 				<div className="bg-white container lg:w-full mb-5 mx-auto flex pb-10 pl-4">
 					<Link to="/shop/women">
 					<div style={{height:100, paddingRight:20}}>
-						<div className="category-bg-1 category-bg"></div>
+						<div style={{backgroundImage:`url(${forWomen})`}} className="category-bg"></div>
 						<div className="category-title bg-white">
 							<h1>Women's Apparel</h1>
 						</div>
@@ -39,7 +42,7 @@ class Shop extends Component {
 					</Link>
 					<Link to="/shop/men">
 					<div style={{height:100, paddingRight:20}}>
-						<div className="category-bg-2 category-bg"></div>
+						<div style={{backgroundImage:`url(${forMen})`}} className="category-bg"></div>
 						<div className="category-title bg-white">
 							<h1>Men's Apparel</h1>
 						</div>
@@ -48,7 +51,7 @@ class Shop extends Component {
 
 					<Link to="/shop/gadgets">
 					<div style={{height:100, paddingRight:20}}>
-						<div className="category-bg-3 category-bg"></div>
+						<div style={{backgroundImage:`url(${forGadget})`}} className="category-bg"></div>
 						<div className="category-title bg-white">
 							<h1>Mobiles &amp; Gadgets</h1>
 						</div>
