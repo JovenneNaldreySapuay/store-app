@@ -4,7 +4,7 @@ const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
 
 const parseErrors = require('../utils/parseErrors');
-const sendConfirmationEmail = require('../mailer'); // Using Nodemailer
+const {sendConfirmationEmail} = require('../mailer'); // Using Nodemailer
 const requireAuthenticate = require('../middlewares/requireAuthenticate');
 
 // USER MODEL

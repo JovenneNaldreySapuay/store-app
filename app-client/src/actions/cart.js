@@ -28,8 +28,14 @@ export const addProductCart = (product) => {
 
 	const params = { data: product }
 
-	return async (dispatch) => {
-		
+	return async (dispatch, getState) => {
+		const cart = getState().cart;
+
+		console.log("cart", cart);
+		console.log("params", params);
+
+		// const foundId = cart.some(el => el.id === params.data.productid);
+  		  		
 		dispatch(addToCartStarted());
 
 		return await axios.post("/api/carts", params)

@@ -28,16 +28,5 @@ export default {
 			axios.post(
 				"/api/auth/reset_password", 
 				{ data })
-	},
-	cart: {
-		create: (values) => 
-			axios.post(
-				"/api/carts", 
-				{ values })
-			.then(res => res.data.values),	
-	},	
-	product: {
-		getProduct : (id) => 
-		axios.get(`/api/products/${id}`) 
 	}	
 }

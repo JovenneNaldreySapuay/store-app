@@ -1,16 +1,14 @@
 const nodemailer = require('nodemailer');
-const keys = require('./config/keys');
 
 const from = '"Shopeeh" <hello@shopeeh.com>';
 
-// FOR PRODUCTION
 function setup() {
 	return nodemailer.createTransport({
-	  host: keys.emailHost,
-	  port: keys.emailPort,
+	  host: process.env.EMAIL_HOST,
+	  port: process.env.EMAIL_PORT,
 	  auth: {
-	    user: keys.emailUser,
-	    pass: keys.emailPass
+	    user: process.env.EMAIL_USER,
+	    pass: process.env.EMAIL_PASS
 	  },
 	  tls:{
       	rejectUnauthorized:false
@@ -18,18 +16,7 @@ function setup() {
 	});
 }
 
-// function setup() {
-// 	return nodemailer.createTransport({
-// 	  host: process.env.EMAIL_HOST,
-// 	  port: process.env.EMAIL_PORT,
-// 	  auth: {
-// 	    user: process.env.EMAIL_USER,
-// 	    pass: process.env.EMAIL_PASS
-// 	  }
-// 	});
-// }
-
-module.exports = sendConfirmationEmail = (user) => {
+const sendConfirmationEmail = (user) => {
 	const transport = setup();
 
 	const email = {
@@ -42,3 +29,22 @@ module.exports = sendConfirmationEmail = (user) => {
 
 	transport.sendMail(email);
 }
+
+const sendResetPasswordEmail = (user) => {
+	const transport = setup();
+
+	const email = {
+		from,
+		to: user.email,
+		subject: "Reset Your Password",
+		text: `
+		To reset your password click this link
+
+		${user.generateResetPasswordLink()}
+		`
+	}
+
+	transport.sendMail(email);
+}
+
+module.exports = { sendConfirmationEmail, sendResetPasswordEmail }

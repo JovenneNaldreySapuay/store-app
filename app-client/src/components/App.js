@@ -66,13 +66,14 @@ import ForgotPasswordPage from './ForgotPasswordPage';
 import ResetPasswordPage from './ResetPasswordPage';
 
 import AddProduct from './AddProduct';
+import ProductTable from './ProductTable';
 import Product from './Product';
-// import ProductById from './ProductById';
-import Products from './Products';
 
 import CartPage from './cart/CartPage';
 import Success from './checkout/Success';
 import CheckoutConsumer from './checkout/CheckoutConsumer';
+
+import Search from './Search';
 
 import Footer from './footer/Footer';
 
@@ -99,7 +100,7 @@ class App extends Component {
 				   
 						<AdminRoute exact path="/reset_password/:token" component={ResetPasswordPage} />
 
-				    	<AdminRoute exact path="/admin/products" component={Products} />
+				    	<AdminRoute exact path="/admin/products" component={ProductTable} />
 						<AdminRoute strict path="/admin/products/new" component={AddProduct} />				    	
 				    	<AdminRoute exact path="/admin/products/:_id" component={EditProduct} />
 				    	
@@ -128,6 +129,7 @@ class App extends Component {
 
 				    	<Route exact path="/confirmation/:token" component={ConfirmationPage} />
 				    	<Route exact path="/success" component={Success} />
+						<Route exact path="/search" component={Search} />
 				    	<Route component={NotFound} />
 				    </Switch>
 			    </main>

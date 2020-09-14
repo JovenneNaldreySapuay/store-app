@@ -1,0 +1,16 @@
+ul.pagination {
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+ul.pagination li {
+    padding: 0 10px;
+    border: 1px solid #8ba4b5;
+    margin: 0 1px;
+}
+
+ul.pagination li.active {
+    background: #8ba4b5;
+    color: #fff;
+}

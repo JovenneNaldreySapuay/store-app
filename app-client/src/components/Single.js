@@ -30,11 +30,12 @@ const Single = ({ product, stocks, addToCart, decrement, increment, quantityChan
 						onClick={decrement} 
 						/>
 						<input
-						type="number"
+						type="text"
 						style={{ width: 60 }}
 						className="border border-grey-100 text-center" 
 						onChange={quantityChange}
-						value={qtyValue} 
+						value={qtyValue}
+						disabled 
 						/>
 						<input 
 						type="button"

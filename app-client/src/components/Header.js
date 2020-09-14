@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as auth from '../actions/auth';
 
 import SearchInput from './SearchInput';
 import CartIconTable from './CartIconTable';
-import { searchProducts } from '../actions/product';
+
 
 class Header extends Component {
     
@@ -21,12 +21,9 @@ class Header extends Component {
         e.preventDefault();
 
         const { q } = this.state;
-
+        
         if (! q) return;
-      
-        this.props.searchProducts(q)
-
-        console.log(`Searching for ${q} in our Database...`);
+        this.props.history.push('/search?keyword='+ q);
 
         this.setState({ q: '' })
     }
@@ -52,41 +49,32 @@ class Header extends Component {
                                 <span className="underline text-gray-200">contact@shopeeh.com</span>      
                             </div>
                         </div>
-                        <div className="logo-section flex justify-between mt-2 py-3">
-                            <Link className="text-white font-semibold" to="/">Shopeeh</Link>
+                        <div className="logo-section flex justify-between items-center mt-2 py-2">
+                            <Link className="text-white font-semibold" to="/">Shopee</Link>
                             
+                            <div className="m-auto w-64">
+                                <SearchInput 
+                                    handleOnChange={this.setQueryText}
+                                    handleOnSubmit={this.runSearch}
+                                />
+                            </div>
+
                             <div className="account">
                                 <Link 
                                     to="/signup" 
-                                    className="border border-white rounded px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-transparent focus:outline-none transition duration-150 ease-in-out px-4"
+                                    className="border border-white rounded px-3 py-2 rounded-md text-sm font-medium leading-5 text-white bg-transparent focus:outline-none transition duration-150 ease-in-out"
                                 >
                                 Create Account
                                 </Link>
                         
                                 <Link 
                                     to="/login" 
-                                    className="px-3 py-2 rounded-md text-sm font-medium leading-5 bg-gray-200 focus:outline-none transition duration-150 ease-in-out ml-2 px-6"
+                                    className="px-3 py-2 rounded-md text-sm font-medium leading-5 bg-gray-200 focus:outline-none transition duration-150 ease-in-out ml-2"
                                 >
                                 Login
                                 </Link>    
                             </div>
                         </div>
-                    </div>
-                    {/* Make this a Component */}
-                    <h3 className="text-center uppercase text-white font-bold tracking-wide">Categories</h3>
-                    <nav className="app-nav">
-                        <ul className="flex justify-center">
-                            <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/">All</Link></li>
-                            <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop/women">Women's Apparel</Link></li>
-                            <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop/men">Men's Apparel</Link></li>
-                            <li className="text-gray-100 inline-block p-3"><Link className="hover:underline" to="/shop/gadgets">Gadgets</Link></li>
-                        </ul>
-                    </nav>
-                    <div className="m-auto w-64">
-                        <SearchInput 
-                            handleOnChange={this.setQueryText}
-                            handleOnSubmit={this.runSearch}
-                        />
                     </div>
                 </div>
             </header>   
@@ -127,9 +115,16 @@ class Header extends Component {
                     </div>
                     <div className="logo-section mt-2 py-3">
                         <div className="m-auto w-4/5">
-                            <div className="flex justify-between">
-                                <Link className="text-white font-semibold" to="/">Shopeeh</Link>
+                            <div className="flex justify-between items-center">
+                                <Link className="text-white font-semibold" to="/">Shopee</Link>
                                 
+                                <div className="m-auto w-64">
+                                    <SearchInput 
+                                        handleOnChange={this.setQueryText}
+                                        handleOnSubmit={this.runSearch}
+                                    />
+                                </div>
+
                                 <div className="dropdown inline-block relative">
                                 <button className="text-gray-700 font-semibold inline-flex items-center">
                                 <span className="mr-1 text-gray-100">Cart</span>
@@ -143,27 +138,7 @@ class Header extends Component {
                             </div>
                         </div>
                     </div>
-                </div>
-                {/* Make this a Component */}                
-                <div className="products-category bg-gray-300 p-3">
-                    <h3 className="text-center uppercase text-white font-bold tracking-wide">Categories</h3>
-                    <nav className="app-nav">
-                        <ul className="flex justify-center">
-                            <li className="inline-block p-3"><Link className="hover:underline" to="/">All</Link></li>
-                            <li className="inline-block p-3"><Link className="hover:underline" to="/shop/women">Women's Apparel</Link></li>
-                            <li className="inline-block p-3"><Link className="hover:underline" to="/shop/men">Men's Apparel</Link></li>
-                            <li className="inline-block p-3"><Link className="hover:underline" to="/shop/gadgets">Gadgets</Link></li>
-                        </ul>
-                    </nav>
-                    <div className="m-auto w-64">
-                        <SearchInput 
-                            handleOnChange={this.setQueryText}
-                            handleOnSubmit={this.runSearch}
-                        />
-                    </div>
-
-                </div>
-                
+                </div>                
             </header>
             )
     }
@@ -186,4 +161,5 @@ const mapStateToProps = (state) => {
   };
 }
 
-export default connect(mapStateToProps, { logout: auth.logout, searchProducts })(Header);
+export default connect(mapStateToProps, { logout: auth.logout })(withRouter(Header));
+

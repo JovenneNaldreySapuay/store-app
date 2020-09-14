@@ -9,18 +9,23 @@ const CartItemRow = (props) => {
 	return (
 		<tr>
 			<td className="p-1 border">
-				<img 
-				className="border border-grey-200 m-auto"
-				title={props.product.title}
-				src={props.product.image} 
-				alt={props.product.title} 
-				width={50} 
-				/>
+				<Link 
+					className="text-blue-500 underline" 
+					to={`/shop/${props.product.slug}/${props.product.productid}`}
+					>
+					<img 
+					className="border border-grey-200 m-auto"
+					title={props.product.title}
+					src={props.product.image} 
+					alt={props.product.title} 
+					width={50} 
+					/>
+				</Link>
 			</td>
 			<td className="p-1 border text-center">
 				<Link 
 					className="text-blue-500 underline" 
-					to={`/shop/${props.product.slug}/${props.product._product}`}>
+					to={`/shop/${props.product.slug}/${props.product.productid}`}>
 					{props.product.title}
 				</Link>
 			</td>	

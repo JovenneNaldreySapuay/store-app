@@ -3,6 +3,7 @@
 @import "tailwindcss/components";
 
 @import "./styles/checkout.css";
+@import "./styles/pagination.css";
 @import "./styles/button.css";
 @import "./styles/container.css";
 @import "./styles/header.css";

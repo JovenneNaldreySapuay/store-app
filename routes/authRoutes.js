@@ -3,7 +3,7 @@
 const jwt = require('jsonwebtoken')
 const mongoose = require('mongoose');
 
-const sendResetPasswordEmail = require('../mailer-reset');
+const {sendResetPasswordEmail} = require('../mailer');
 const keys = require('../config/keys');
 const parseErrors = require('../utils/parseErrors');
 
@@ -86,6 +86,4 @@ module.exports = app => {
 			}
 		});
 	});
-
 };
-

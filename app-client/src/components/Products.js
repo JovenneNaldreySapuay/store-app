@@ -1,64 +1,80 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 import { fetchProducts } from '../actions/product';
-
-import ProductListings from './ProductListings';
-// import ProductItem from './ProductItem';
-
-// import SearchBar from './SearchBar';
-// import Pagination from './Pagination';
+import ProductItem from './ProductItem';
+import Pagination from './Pagination';
 
 class Products extends Component {
-
+	// https://react-component-depot.netlify.app/data-table
+	// https://github.com/codegeous/react-component-depot	
 	state = {
+		products: [],
+		filterText: '',
 		currentPage: 1,
-		postsPerPage: 2,
-		// filterText: '',
+		postsPerPage: 3,
+		loading: false,
 	}
 
 	componentDidMount() {
-    	this.props.fetchProducts();
+		this.setState({
+    		loading: true,
+    	})
+
+    	this.props.fetchProducts().then(response => {
+    		this.setState({
+    			products: response.data || [],
+    			loading: false
+    		})
+    	});
   	}
 
- //  	handleFilterTextChange = (filterText) => {
-	// 	this.setState({
-	// 		filterText: filterText
-	// 	});
-	// }
+  	handleFilterTextChange = (e) => {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	}
 
 	render() {
 
-		const { products, auth } = this.props;
-		// const { currentPage, postsPerPage, filterText } = this.state;
-		// const { postsPerPage } = this.state;
-		
-		// const rows = [];
+		// console.log("[Products] state", this.state);
+
+		const {auth} = this.props;
+
+		const { 
+			products,
+			filterText, 
+			currentPage, 
+			postsPerPage, 
+		} = this.state;
+				
+		const rows = [];
 		
 		// Get current products
-		// const lastIndex = currentPage * postsPerPage; // 1 * 1 = 1
-		// const firstIndex = lastIndex - postsPerPage; // 1 - 1 = 0
-		// const allProducts = products.slice(firstIndex, lastIndex); // 0, 1
+		const lastIndex = currentPage * postsPerPage; // 1 * 5 = 5
+		const firstIndex = lastIndex - postsPerPage; // 5 - 5 = 0
+		const allProducts = products.slice(firstIndex, lastIndex); // 0, 5
 		
-		// console.log("allProducts", allProducts);
+		// Next page
+		const paginate = (pageNumber) => this.setState({ currentPage: pageNumber });
 	
-		// products.map((product, index) => {
-		// 	if (product.title.toLowerCase().indexOf(filterText.toLowerCase()) === -1) return null;
+		allProducts.filter((product, index) => {
+			// console.log("product", product);
+
+			if (product.title.toLowerCase().includes(filterText.toString().toLowerCase()) === -1) return null;
 			
-		// 	return(
-		// 		rows.push(<ProductItem key={index} product={product} />)
-		// 	);
-		// });
+			return(
+				rows.push(<ProductItem product={product} key={index} />)
+			);
+		});
 
-		// if (!products) {
-		// 	return <span>Loading...<i className="fa fa-refresh fa-spin"></i></span>;
-		// }
-
-		// console.log("State:", this.state);
+		if (!products) {
+			return <span>Loading...<i className="fa fa-refresh fa-spin"></i></span>;
+		}
 
 		return (
-			<div className="container mx-auto w-9/12 bg-white max-w-xl mt-3">
+			<div className="container m-auto pb-5">
 				{auth.role !== "admin" && <Redirect to="/dashboard" />}
 
 				<div className="p-5 mt-2">
@@ -66,21 +82,38 @@ class Products extends Component {
 						Manage Products
 					</h1>
 				</div>
-				<div className="mt-2">
-					<Link 
-					to="/admin/products/new"
-					className="mb-1 inline-block bg-blue-500 text-white hover:bg-blue-700 px-2 py-1"
-					>Add New Product</Link>
-
-					<Link 
-					to="/admin/products/category"
-					className="ml-2 mb-1 inline-block border border-blue -500 text-blue-500 hover:bg-blue-500 hover:text-white px-2 py-1"
-					>Add New Category</Link>
+				
+				<div className="px-5">
+				<input
+				className="border border-gray-400 w-full py-1 px-2 my-2" 
+				type="text" 
+				name="filterText" 
+				placeholder="Filter product" 
+				onChange={this.handleFilterTextChange}
+				/>
 				</div>
 
-				<ProductListings 
-					products={products}
-				/>
+				<table className="border w-full text-left shadow-sm">
+					<thead>
+			            <tr>
+			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Image</th>
+			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Name</th>
+			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Price</th>
+			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Stock</th>
+			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Category</th>
+			              <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">Action</th>
+			            </tr>  
+			        </thead>
+			        <tbody>
+						{rows}					
+			        </tbody>
+				</table>
+
+				<Pagination 
+					postsPerPage={postsPerPage}
+					totalPosts={products.length}
+					paginate={paginate}
+				/> 
 	
 			</div>
 		); 

@@ -7,7 +7,7 @@
 }
 
 .product__image {
-	@apply border object-cover w-full;
+	@apply border object-cover w-full h-48;
 }
 
 .product__border {

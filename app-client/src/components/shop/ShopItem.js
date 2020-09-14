@@ -23,7 +23,7 @@ const ShopItem = ({ product }) => {
 				<p className="product__price">${product.price}</p>
 				{product.stock < 1 ?
 					<p className="product--nostock">Out of stocks</p> :
-					<p className="product--instock">{product.stock} stocks available</p>
+					<p className="product--instock">{product.stock} {product.stock === 1 ? 'stock' : 'stocks'} available</p>
 				}	
 			</div>
 		</div>

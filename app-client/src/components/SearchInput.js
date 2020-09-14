@@ -6,7 +6,7 @@ const SearchInput = ({ handleOnChange, handleOnSubmit }) => {
 		<form onSubmit={handleOnSubmit} className="inline-block">
 			<div className="flex">
 			<input
-				className="border p-2"
+				className="border px-2"
 				type="text"
 				name="q"
 				placeholder="Search product..."

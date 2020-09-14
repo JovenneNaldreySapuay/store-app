@@ -43,6 +43,9 @@ export const fetchProducts = () => async (dispatch) => {
 			type: FETCH_PRODUCTS, 
 			payload: response.data 
 		});
+
+		return response;
+
 	} catch(err) {	
 		console.log(err);
 	}
