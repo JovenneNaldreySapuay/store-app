@@ -1,3 +1,23 @@
 .dropdown:hover .dropdown-menu {
   display: block;
 }
+
+.header-with-search__shopee-logo {
+  width: 162px;
+  height: 50px;
+  fill: #fff;
+}
+
+.icon-shopping-cart-2 {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+  color: #fff;
+  stroke: #fff;
+}
+
+.search-svg-icon {
+  width: 1em;
+  height: 1em;
+  fill: #fff;
+}

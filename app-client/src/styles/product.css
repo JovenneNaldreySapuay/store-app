@@ -23,11 +23,12 @@
 }
 
 .product__price {
-	@apply font-bold;
+	color: #ee4d2d;
+	font-weight: 500;
 }
 
 .product--nostock {
-	@apply text-red-500;
+	color: #ff0000;
 }
 
 .product--instock {

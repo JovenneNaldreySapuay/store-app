@@ -39,8 +39,7 @@ const Search = (props) => {
     }, [products, cleanedStr]);
 
     return (
-        <div className="container mx-auto lg:w-full bg-white pb-8"> 
-            
+        <div className="container mx-auto lg:w-full bg-white pb-8 h-screen"> 
             {!loading ? 
                 foundItems.length > 0 ? 
                     <>
@@ -50,7 +49,7 @@ const Search = (props) => {
                         return (
                             <Link to={`/shop/${item.slug}/${item._id}`} key={idx}>
                             <div className="product product--bg">
-                                <div>
+                                <div className="image-wrapper">
                                     <img className="product__image product__border" src={item.image} alt={item.title} width={100} height={190} />
                                 </div>
                                 <div className="px-2 py-0">
@@ -68,7 +67,7 @@ const Search = (props) => {
                     })} 
                     </div>
                     </>
-                : <div className="px-5 pt-5">We couldn't find a <span style={{fontWeight:'bold'}}>{cleanedStr}</span> for sale. Try another search.</div>
+                : <div className="px-5 pt-5 text-center">We couldn't find a <span style={{fontWeight:'bold'}}>{cleanedStr}</span> for sale. Try another search.</div>
             : <div>Loading items... <i className="fa fa-refresh fa-spin"></i></div>
             }
         </div>

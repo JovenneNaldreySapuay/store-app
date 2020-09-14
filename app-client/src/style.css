@@ -686,13 +686,31 @@ ul.pagination li.active {
 }
 
 .main {
-  --bg-opacity: 1;
-  background-color: #f7fafc;
-  background-color: rgba(247, 250, 252, var(--bg-opacity));
+  background-color: #f5f5f5;
 }
 
 .dropdown:hover .dropdown-menu {
   display: block;
+}
+
+.header-with-search__shopee-logo {
+  width: 162px;
+  height: 50px;
+  fill: #fff;
+}
+
+.icon-shopping-cart-2 {
+  width: 26px;
+  height: 26px;
+  fill: #fff;
+  color: #fff;
+  stroke: #fff;
+}
+
+.search-svg-icon {
+  width: 1em;
+  height: 1em;
+  fill: #fff;
 }
 
 .product {
@@ -737,13 +755,12 @@ ul.pagination li.active {
 }
 
 .product__price {
-  font-weight: 700;
+  color: #ee4d2d;
+  font-weight: 500;
 }
 
 .product--nostock {
-  --text-opacity: 1;
-  color: #f56565;
-  color: rgba(245, 101, 101, var(--text-opacity));
+  color: #ff0000;
 }
 
 .product--instock {
@@ -767,8 +784,8 @@ ul.pagination li.active {
 }
 
 .single__price {
-  font-weight: 700;
-  font-size: 1.5rem;
+  color: #ee4d2d;
+  font-weight: 500;
 }
 
 .box {
