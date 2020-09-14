@@ -7,7 +7,11 @@
 }
 
 .product__image {
-	@apply border object-cover w-full h-48;
+	@apply border object-cover w-full;
+}
+
+.custom-height {
+	@apply h-48;
 }
 
 .product__border {

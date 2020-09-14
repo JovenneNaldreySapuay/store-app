@@ -1,0 +1,29 @@
+.categories {
+    height: 3.75rem;
+    border-bottom: 1px solid rgba(0,0,0,.05);
+    padding: 0 1.25rem;
+}
+
+.categories h1 {
+    padding: 16px 0;
+    font-weight: 500;
+}
+
+.category-bg {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100%;
+}
+
+.category-bg-1 {
+    background-image: url(/static/media/women.372cf1cc.png);
+}
+
+.category-bg-2 {
+    background-image: url(/static/media/men.2e9bfe13.png);
+}
+
+.category-bg-3 {
+    background-image: url(/static/media/gadgets.907fd63b.png);
+}

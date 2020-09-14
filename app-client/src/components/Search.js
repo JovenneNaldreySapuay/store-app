@@ -50,7 +50,7 @@ const Search = (props) => {
                             <Link to={`/shop/${item.slug}/${item._id}`} key={idx}>
                             <div className="product product--bg">
                                 <div className="image-wrapper">
-                                    <img className="product__image product__border" src={item.image} alt={item.title} width={100} height={190} />
+                                    <img className="product__image product__border custom-height" src={item.image} alt={item.title} width={100} height={190} />
                                 </div>
                                 <div className="px-2 py-0">
                                     <h2>{item.title}</h2>

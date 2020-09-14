@@ -10,7 +10,9 @@ const ShopItem = ({ product }) => {
 				className="product__image product__border"
 				src={product.image} 
 				alt="{product.title}" 
-				width={150} />
+				width={150}
+				height={193}
+				/>
 				</Link>
 			</div>
 			

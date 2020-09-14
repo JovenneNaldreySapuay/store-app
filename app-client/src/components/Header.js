@@ -42,7 +42,7 @@ class Header extends Component {
             return (
                 <header id="header"> 
                 <div className="p-3" style={{ background: "linear-gradient(-180deg,#f53d2d,#f63)" }}> 
-                    <div className="m-auto w-4/5">
+                    <div className="container m-auto px-16">
                         <div className="flex justify-between">
                             <div className="follow">
                                 <p className="text-white text-sm"><a href="/" target="_blank" rel="noopener noreferrer">Seller Centre</a> | <a href="/" target="_blank" rel="noopener noreferrer">Sell on Shopee</a> | <a href="/" target="_blank" rel="noopener noreferrer">Download</a> | Follow us on <a href="https://www.facebook.com/ShopeePH" target="_blank" rel="noopener noreferrer">Facebook</a> <a href="https://www.instagram.com/shopee_ph/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a></p>
@@ -76,7 +76,7 @@ class Header extends Component {
             return (
                 <header id="header"> 
                 <div className="p-3" style={{ background: "linear-gradient(-180deg,#f53d2d,#f63)" }}> 
-                    <div className="m-auto w-4/5">
+                    <div className="container m-auto px-16">
                         <div className="flex justify-between">
                         <div className="follow">
                             <p className="text-white text-sm"><a href="/" target="_blank" rel="noopener noreferrer">Seller Centre</a> | <a href="/" target="_blank" rel="noopener noreferrer">Sell on Shopee</a> | <a href="/" target="_blank" rel="noopener noreferrer">Download</a> | Follow us on <a href="https://www.facebook.com/ShopeePH" target="_blank" rel="noopener noreferrer">Facebook</a> <a href="https://www.instagram.com/shopee_ph/?hl=en" target="_blank" rel="noopener noreferrer">Instagram</a></p>

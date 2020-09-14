@@ -178,6 +178,11 @@ const ProductTable = ({ fetchProducts, deleteProduct, auth }) => {
         <>
             {auth.role !== "admin" && <Redirect to="/dashboard" />}
             <div className="row w-100">
+                <div className="p-5">
+                    <h1 className="text-center uppercase font-bold text-xl tracking-wide">
+                        Manage Products
+                    </h1>
+                </div>
                 <div className="col mb-3 col-12 text-center">
                     <div className="row">
                         <div className="col-md-6 d-flex flex-row-reverse">
