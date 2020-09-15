@@ -174,7 +174,7 @@ const ProductTable = ({ fetchProducts, deleteProduct, auth }) => {
             Manage Products
           </h1>
         </div>
-        <div className="col mb-3 col-12 text-center">
+        <div className="bg-white container mx-auto px-10 text-center">
           <div className="row">
             <div className="col-md-6 d-flex flex-row-reverse">
               <Search
@@ -191,7 +191,7 @@ const ProductTable = ({ fetchProducts, deleteProduct, auth }) => {
               headers={headers}
               onSorting={(field, order) => setSorting({ field, order })}
             />
-            <tbody>
+            <tbody className="product-table">
               {productsData.map((product, idx) => (
                 <tr key={idx}>
                   <td>

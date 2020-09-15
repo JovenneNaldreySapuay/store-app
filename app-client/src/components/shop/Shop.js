@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { IonSpinner } from "@ionic/react";
 
-// import Lazy from "../Lazy";
 import ShopItem from "./ShopItem";
 import { fetchProducts } from "../../actions/product";
 
@@ -45,7 +44,7 @@ class Shop extends Component {
         <div className="bg-white container lg:w-full mx-auto categories">
           <h1>Categories</h1>
         </div>
-        <div className="bg-white container lg:w-full mb-5 mx-auto flex pb-10 pl-4">
+        <div className="bg-white container lg:w-full mb-5 mx-auto flex pb-10 px-4">
           {!this.state.isLoading ? (
             <div style={{ height: 100, paddingRight: 20 }}>
               <Link to="/shop/women">
@@ -75,7 +74,7 @@ class Shop extends Component {
                   className="category-bg"
                 ></div>
                 <div className="category-title bg-white">
-                  <h1>Women's Apparel</h1>
+                  <h1>Men's Apparel</h1>
                 </div>
               </Link>
             </div>
@@ -96,7 +95,7 @@ class Shop extends Component {
                   className="category-bg"
                 ></div>
                 <div className="category-title bg-white">
-                  <h1>Women's Apparel</h1>
+                  <h1>Mobiles &amp; Gadgets</h1>
                 </div>
               </Link>
             </div>

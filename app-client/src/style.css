@@ -804,6 +804,10 @@ ul.pagination li.active {
   color: rgba(160, 174, 192, var(--text-opacity));
 }
 
+.product-table tr:nth-child(odd) {
+  background: #fafafa;
+}
+
 .single {
   --bg-opacity: 1;
   background-color: #fff;
