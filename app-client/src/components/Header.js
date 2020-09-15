@@ -92,7 +92,7 @@ class Header extends Component {
                         </svg>
                         </button>
                         <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 z-10">
-                        {this.props.user.role === "admin" &&
+                        {(this.props.user.role === "admin" || this.props.user.role === "admin_demo") &&
                             <li><Link to="/admin" className="bg-gray-300 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">Admin</Link></li>
                         }
                         <li><Link to="/account" className="bg-gray-300 hover:bg-gray-400 py-2 px-4 block whitespace-no-wrap">My Account</Link></li>

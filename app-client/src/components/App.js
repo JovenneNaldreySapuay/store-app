@@ -23,8 +23,8 @@ import {
 
 import {addReview} from '../actions/review';
 
-import FormDemo from './FormDemo';
-import FormDemoEdit from './FormDemoEdit';
+// import FormDemo from './FormDemo';
+// import FormDemoEdit from './FormDemoEdit';
 
 import AdminRoute from './AdminRoute';
 import GuestRoute from './GuestRoute';
@@ -75,6 +75,7 @@ import CheckoutConsumer from './checkout/CheckoutConsumer';
 
 import Search from './Search';
 
+import DemoLoginForm from './login/DemoLoginForm';
 import Footer from './footer/Footer';
 
 class App extends Component {
@@ -86,8 +87,8 @@ class App extends Component {
 	    		
 	    		<main id="main" className="main">
 		    		<Switch>			    	
-				    	<AdminRoute exact path="/demo" component={FormDemo} />
-				    	<AdminRoute exact path="/demo/:_id" component={FormDemoEdit} />
+				    	{/*<AdminRoute exact path="/demo" component={FormDemo} />
+				    	<AdminRoute exact path="/demo/:_id" component={FormDemoEdit} />*/}
 				    	
 				    	<AdminRoute exact path="/dashboard" component={Dashboard} />
 				    	<AdminRoute exact path="/admin" component={Admin} />
@@ -119,7 +120,7 @@ class App extends Component {
 				    	<GuestRoute exact path="/forgot_password" component={ForgotPasswordPage} />
 				    	<GuestRoute exact path="/reset_password/:token" component={ResetPasswordPage} />
 						
-				    	{/* <Route exact path="/" component={HomePage} />*/}
+				    	<Route exact path="/demo" component={DemoLoginForm} />*/}
 						<Route exact path="/" component={Shop} />
 						<Route exact path="/shop/:slug/:_id" component={Product} />
 						
@@ -130,6 +131,7 @@ class App extends Component {
 				    	<Route exact path="/confirmation/:token" component={ConfirmationPage} />
 				    	<Route exact path="/success" component={Success} />
 						<Route exact path="/search" component={Search} />
+						
 				    	<Route component={NotFound} />
 				    </Switch>
 			    </main>

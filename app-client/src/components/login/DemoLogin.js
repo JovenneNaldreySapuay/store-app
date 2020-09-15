@@ -2,28 +2,29 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import LoginForm from "./LoginForm";
+import DemoLoginForm from "./DemoLoginForm";
 import { login } from "../../actions/auth";
 
-class LoginPage extends Component {
+class DemoLogin extends Component {
   submit = (data) =>
     this.props.login(data).then(() => this.props.history.push("/"));
 
   render() {
+    // console.log("DemoLogin", this.props );
     return (
-      <div className="container mx-auto w-full max-w-md h-screen">
-        <h2 className="text-center py-5 font-bold">Log-in to your account</h2>
-        <LoginForm submit={this.submit} />
+      <div className="container bg-white mx-auto w-11/12 h-screen">
+        <h2 className="text-center my-5">Log-in as a demo user</h2>
+        <DemoLoginForm submit={this.submit} />
       </div>
     );
   }
 }
 
-LoginPage.propTypes = {
+DemoLogin.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
   login: PropTypes.func.isRequired,
 };
 
-export default connect(null, { login })(LoginPage);
+export default connect(null, { login })(DemoLogin);
