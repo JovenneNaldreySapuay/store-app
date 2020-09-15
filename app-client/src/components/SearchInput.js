@@ -13,6 +13,7 @@ const SearchInput = ({ handleOnChange, handleOnSubmit }) => {
 				placeholder="Search product..."
 				autoComplete="off"
 				onChange={handleOnChange}
+				onFocus={e => e.target.select()}
 			/>
 			<button 
 			className="text-white uppercase py-1 px-5 border border-white font-bold"
