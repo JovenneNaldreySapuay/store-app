@@ -5,7 +5,7 @@ import { Link, Redirect } from "react-router-dom";
 class Admin extends Component {
   render() {
     return (
-      <div className="bg-white w-8/12 h-screen mx-auto p-3">
+      <div className="bg-white w-11/12 h-screen mx-auto p-3">
         {(this.props.user.role === "user" || this.props.user.role === "user_demo") && <Redirect to="/" />}
         <h1 className="text-center mb-3">Admin Section</h1>
         <ul>

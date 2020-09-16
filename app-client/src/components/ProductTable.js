@@ -119,7 +119,6 @@ const ProductTable = ({ fetchProducts, deleteProduct, auth }) => {
     { name: "Product Image", field: "", sortable: false },
     { name: "Product Name", field: "title", sortable: true },
     { name: "Stocks", field: "", sortable: false },
-    { name: "Category", field: "", sortable: false },
     { name: "Action", field: "", sortable: false },
   ];
 
@@ -174,7 +173,7 @@ const ProductTable = ({ fetchProducts, deleteProduct, auth }) => {
             Manage Products
           </h1>
         </div>
-        <div className="bg-white container mx-auto px-10 text-center">
+        <div className="bg-white container mx-auto w-11/12 px-1 text-center">
           <div className="row">
             <div className="col-md-6 d-flex flex-row-reverse">
               <Search
@@ -204,7 +203,7 @@ const ProductTable = ({ fetchProducts, deleteProduct, auth }) => {
                   </td>
                   <td className="text-center">{product.title}</td>
                   <td className="text-center">{product.stock}</td>
-                  <td className="text-center">{product.category}</td>
+                  {/*<td className="text-center">{product.category}</td>*/}
                   <td className="text-center">
                     <div className="edit">
                       <Link
