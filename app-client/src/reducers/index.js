@@ -8,6 +8,7 @@ import cartReducer, * as fromCart from './cartReducer';
 import checkoutReducer from './checkoutReducer';
 import reviewReducer from './reviewReducer';
 import notificationReducer from './notificationReducer';
+import visitorReducer from './visitorReducer';
 import formReducer from './formReducer';
 
 export default combineReducers({
@@ -18,6 +19,7 @@ export default combineReducers({
 	checkout: checkoutReducer,
 	review: reviewReducer,
 	notification: notificationReducer,
+	visitor: visitorReducer,
 	form: formReducer,
 });
 

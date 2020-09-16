@@ -1,7 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import jsonp from "jsonp";
+
+import { saveVisitor } from "../../actions/visitor";
 
 class DemoLoginForm extends Component {
   state = {
+    details: {
+      ip: "",
+      country: "",
+    },
     user: {
       email: process.env.REACT_APP_USER_EMAIL,
       password: process.env.REACT_APP_USER_PASSWORD,
@@ -14,16 +22,46 @@ class DemoLoginForm extends Component {
 
   handleOnSubmitUser = (e) => {
     e.preventDefault();
+    
+    const userDemo = {
+      email: this.state.user.email,
+      ip: this.state.details.ip,
+      country: this.state.details.country
+    }
+  
+    this.props.saveVisitor(userDemo);
     this.props.submit(this.state.user).catch((err) => console.log(err));
   };
 
   handleOnSubmitAdmin = (e) => {
     e.preventDefault();
+
+    const adminDemo = {
+      email: this.state.admin.email,
+      ip: this.state.details.ip,
+      country: this.state.details.country
+    }
+
+    this.props.saveVisitor(adminDemo);
     this.props.submit(this.state.admin).catch((err) => console.log(err));
   };
 
+  async componentDidMount() {
+    await jsonp("http://geoip-db.com/jsonp", { name: "callback" }, (err, data) => {
+      if (err) {
+        console.log(err.message);
+      } else {
+        this.setState({
+          details: {
+            ip: data.IPv4,
+            country: data.country_name
+          }
+        }) 
+      }
+    });
+  }
+
   render() {
-    // TODO: put icon like admin or user image inside the button
     return (
       <div className="text-center">
         <p className="text-center mt-3 mb-1">Login as a demo:</p>
@@ -38,4 +76,5 @@ class DemoLoginForm extends Component {
   }
 }
 
-export default DemoLoginForm;
+export default connect(null, { saveVisitor })(DemoLoginForm);
+

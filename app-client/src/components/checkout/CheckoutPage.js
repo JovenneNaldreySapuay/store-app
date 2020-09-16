@@ -158,7 +158,7 @@ class CheckoutPage extends Component {
 
             <table
               border="1"
-              className="checkout-table border w-full mt-3 mb-2"
+              className="checkout-table border w-full mt-3 mb-2 hidden md:table"
             >
               <thead>
                 <tr>
@@ -201,6 +201,24 @@ class CheckoutPage extends Component {
                 })}
               </tbody>
             </table>
+
+            <div className="block md:hidden border p-2 mb-3">
+                {products.map((item, idx) => {
+                  return (
+                    <div key={idx} className="mb-2">
+                      <img
+                        className="border"
+                        src={item.image}
+                        alt={item.title}
+                        width={100}
+                      />
+                      <p>Item Name: {item.title}</p>
+                      <p>Unit Price: ${item.price}</p>
+                      <p>Quantity: {item.quantity}</p>
+                    </div>
+                  );
+                })}
+              </div>
 
             <div className="flex justify-end">
               <div className="border border-grey-200 mb-6 w-full lg:w-6/12 px-3 py-4">
@@ -326,11 +344,33 @@ class CheckoutPage extends Component {
                     <CardInput />
 
                     <div className="demo-card mt-1">
-                      <h2 className="mb-2 text-gray-600">Use this test credit card info:</h2>
-                      <p><span className="font-semibold text-gray-500">Card number:</span> 4242 4242 4242 4242</p>
-                      <p><span className="font-semibold text-gray-500">MM / YY:</span> 12 / 23</p>
-                      <p><span className="font-semibold text-gray-500">CVC:</span> 381</p>
-                      <p><span className="font-semibold text-gray-500">ZIP:</span> 22222</p>
+                      <h2 className="mb-2 text-gray-600">
+                        Use this test credit card info:
+                      </h2>
+                      <p>
+                        <span className="font-semibold text-gray-500">
+                          Card number:
+                        </span>{" "}
+                        4242 4242 4242 4242
+                      </p>
+                      <p>
+                        <span className="font-semibold text-gray-500">
+                          MM / YY:
+                        </span>{" "}
+                        12 / 23
+                      </p>
+                      <p>
+                        <span className="font-semibold text-gray-500">
+                          CVC:
+                        </span>{" "}
+                        381
+                      </p>
+                      <p>
+                        <span className="font-semibold text-gray-500">
+                          ZIP:
+                        </span>{" "}
+                        22222
+                      </p>
                     </div>
                     <div className="payment-cta mt-1 mb-3 flex justify-end">
                       <button

@@ -21,3 +21,9 @@
   height: 1em;
   fill: #fff;
 }
+
+.search-wrapper {
+  border: 3px solid #fff;
+  border-radius: 3px;
+  overflow: hidden;
+}

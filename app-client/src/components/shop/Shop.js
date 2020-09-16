@@ -25,7 +25,7 @@ class Shop extends Component {
   renderProducts(products) {
     if (products.length === 0) {
       return (
-        <div>
+        <div className="text-center">
           <IonSpinner name="bubbles" /> Fetching products...
         </div>
       );
@@ -42,68 +42,61 @@ class Shop extends Component {
     return (
       <>
         <div className="bg-white container lg:w-full mx-auto categories">
-          <h1>Categories</h1>
+          <h1 className="text-center text-2xl md:text-left md:text-base">
+            Categories
+          </h1>
         </div>
-        <div className="bg-white container lg:w-full mb-5 mx-auto flex pb-10 px-4">
+        <div className="bg-white container lg:w-full mb-5 mx-auto flex-none md:flex pb-10 px-4">
           {!this.state.isLoading ? (
-            <div style={{ height: 100, paddingRight: 20 }}>
+            <div style={{ height: 100, paddingRight: 20 }} className="mb-5">
               <Link to="/shop/women">
                 <div
                   style={{ backgroundImage: `url(${forWomen})` }}
                   className="category-bg"
                 ></div>
-                <div className="category-title bg-white">
+                <div className="category-title bg-white text-center md:text-left">
                   <h1>Women's Apparel</h1>
                 </div>
               </Link>
             </div>
           ) : (
-            <div
-              className="flex items-center justify-center"
-              style={{ width: 101, height: 100 }}
-            >
+            <div className="flex items-center justify-center w-full md:w-24 h-24">
               <IonSpinner name="bubbles" />
             </div>
           )}
 
           {!this.state.isLoading ? (
-            <div style={{ height: 100, paddingRight: 20 }}>
+            <div style={{ height: 100, paddingRight: 20 }} className="mb-5">
               <Link to="/shop/men">
                 <div
                   style={{ backgroundImage: `url(${forMen})` }}
                   className="category-bg"
                 ></div>
-                <div className="category-title bg-white">
+                <div className="category-title bg-white text-center md:text-left">
                   <h1>Men's Apparel</h1>
                 </div>
               </Link>
             </div>
           ) : (
-            <div
-              className="flex items-center justify-center"
-              style={{ width: 101, height: 100 }}
-            >
+            <div className="flex items-center justify-center w-full md:w-24 h-24">
               <IonSpinner name="bubbles" />
             </div>
           )}
 
           {!this.state.isLoading ? (
-            <div style={{ height: 100, paddingRight: 20 }}>
+            <div style={{ height: 100, paddingRight: 20 }} className="mb-5">
               <Link to="/shop/gadgets">
                 <div
                   style={{ backgroundImage: `url(${forGadget})` }}
                   className="category-bg"
                 ></div>
-                <div className="category-title bg-white">
+                <div className="category-title bg-white text-center md:text-left">
                   <h1>Mobiles &amp; Gadgets</h1>
                 </div>
               </Link>
             </div>
           ) : (
-            <div
-              className="flex items-center justify-center"
-              style={{ width: 101, height: 100 }}
-            >
+            <div className="flex items-center justify-center w-full md:w-24 h-24">
               <IonSpinner name="bubbles" />
             </div>
           )}
@@ -114,7 +107,7 @@ class Shop extends Component {
               Shop All
             </h1>
           </div>
-          <div className="grid lg:grid-cols-6 sm:grid-cols-1 gap-4 sm:px-5 pt-5">
+          <div className="grid lg:grid-cols-6 sm:grid-cols-1 gap-4 sm:px-5 pt-0 md:pt-5 mx-6 md:mx-0">
             {this.renderProducts(products)}
           </div>
         </div>

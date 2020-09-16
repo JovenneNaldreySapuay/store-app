@@ -745,6 +745,12 @@ ul.pagination li.active {
   fill: #fff;
 }
 
+.search-wrapper {
+  border: 3px solid #fff;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
 .product {
   width: 100%;
   margin: 0;

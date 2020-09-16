@@ -28,7 +28,7 @@ class CartItemTable extends Component {
         {products.length > 0 ? (
           <React.Fragment>
             <div className="w-10/12 mx-auto">
-              <table className="w-full border shadow-sm">
+              <table className="w-full border shadow-sm hidden md:table">
                 <thead>
                   <tr>
                     <th className="p-2"></th>
@@ -50,11 +50,29 @@ class CartItemTable extends Component {
                   </tr>
                 </thead>
                 <tbody>
-                  {products.map((product, index) => (
-                    <CartItemRow key={index} product={product} />
+                  {products.map((product, idx) => (
+                    <CartItemRow key={idx} product={product} />
                   ))}
                 </tbody>
               </table>
+              <div className="block md:hidden border p-2">
+                {products.map((product, idx) => {
+                  return (
+                    <div key={idx} className="mb-2">
+                      <img
+                        className="border"
+                        src={product.image}
+                        alt={product.title}
+                        width={100}
+                      />
+                      <p>Item Name: {product.title}</p>
+                      <p>Unit Price: ${product.price}</p>
+                      <p>Quantity: {product.quantity}</p>
+                    </div>
+                  );
+                })}
+              </div>
+
               <div className="mb-12 mt-5 flex justify-end">
                 <p className="mt-3 mr-6">
                   <span className="uppercase font-semibold">total:</span> $

@@ -1,7 +1,6 @@
-// async
-export const ASYNC_START = 'ASYNC_START';
-export const ASYNC_END = 'ASYNC_END';
-
+// visitors type
+export const ADD_VISITOR = 'ADD_VISITOR';
+export const FETCH_VISITORS = 'FETCH_VISITORS';
 
 // users type
 export const ADD_USER = 'ADD_USER';

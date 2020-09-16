@@ -85,7 +85,7 @@ class LoginForm extends Component {
     // console.log("Props", this.props);
 
     return (
-      <div className="border border-gray-400 p-4 rounded">
+      <div className="border border-gray-400 p-4 rounded mx-4 md:mx-0">
         <Form onSubmit={this.handleOnSubmit} loading={loading}>
           {!!errors.global && <Message className="text-red-400">{errors.global}</Message>}
 
@@ -94,7 +94,7 @@ class LoginForm extends Component {
               Email
             </label>
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+              className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
               type="email"
               id="email"
               name="email"
@@ -110,7 +110,7 @@ class LoginForm extends Component {
               Password
             </label>
             <input
-              className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+              className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
               type="password"
               id="password"
               name="password"
