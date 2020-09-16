@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { fetchCartByUser } from "../../actions/cart";
+import { fetchCartByUser, deleteProductCart } from "../../actions/cart";
 
 import getCartItems from "../../reducers";
 import CartItemRow from "./CartItemRow";
@@ -27,7 +27,7 @@ class CartItemTable extends Component {
       <React.Fragment>
         {products.length > 0 ? (
           <React.Fragment>
-            <div className="w-10/12 mx-auto">
+            <div className="w-11/12 mx-auto">
               <table className="w-full border shadow-sm hidden md:table">
                 <thead>
                   <tr>
@@ -55,25 +55,51 @@ class CartItemTable extends Component {
                   ))}
                 </tbody>
               </table>
-              <div className="block md:hidden border p-2">
+              <div className="block md:hidden">
                 {products.map((product, idx) => {
                   return (
-                    <div key={idx} className="mb-2">
+                    <div key={idx} className="border rounded p-2 mb-2">
                       <img
                         className="border"
                         src={product.image}
                         alt={product.title}
                         width={100}
                       />
-                      <p>Item Name: {product.title}</p>
-                      <p>Unit Price: ${product.price}</p>
-                      <p>Quantity: {product.quantity}</p>
+                      <p>
+                        <span className="font-semibold text-gray-600">
+                          Item Name:
+                        </span>{" "}
+                        {product.title}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-gray-600">
+                          Unit Price:
+                        </span>{" "}
+                        ${product.price}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-gray-600">
+                          Quantity:
+                        </span>{" "}
+                        {product.quantity}
+                      </p>
+
+                      <div className="flex justify-end">
+                        <button
+                          onClick={() =>
+                            this.props.deleteProductCart(product._id)
+                          }
+                          className="btn--delete"
+                        >
+                          Delete Item
+                        </button>
+                      </div>
                     </div>
                   );
                 })}
               </div>
 
-              <div className="mb-12 mt-5 flex justify-end">
+              <div className="mb-12 mt-5 flex justify-end mb-10">
                 <p className="mt-3 mr-6">
                   <span className="uppercase font-semibold">total:</span> $
                   {computeTotal(products)}
@@ -105,4 +131,6 @@ const mapStateToProps = (state) => ({
   select: getCartItems,
 });
 
-export default connect(mapStateToProps, { fetchCartByUser })(CartItemTable);
+export default connect(mapStateToProps, { fetchCartByUser, deleteProductCart })(
+  CartItemTable
+);

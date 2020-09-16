@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { CardElement } from "@stripe/react-stripe-js";
 
+import InlineError from "../InlineError";
 import CardInput from "./CardInput";
+
 import { fetchCartByUser } from "../../actions/cart";
 import { addCheckoutProduct } from "../../actions/checkout";
-
 import computeTotal from "../../utils/computeTotal";
 
 class CheckoutPage extends Component {
@@ -15,11 +16,10 @@ class CheckoutPage extends Component {
     message: "",
     shipping_option: "",
     payment_method: "",
-    redirect: false,
     email: "",
     isProcessing: false,
-    // loading: false,
-    // errors: {}
+    redirect: false,
+    errors: {},
   };
 
   handlePaypalCheckout = async (e) => {
@@ -46,64 +46,74 @@ class CheckoutPage extends Component {
     let qtyArray = [];
     let totalQty = 0;
 
-    // REFACTOR THIS SECTION, ADD  `ITEM` IN FN PARAMS
     products.forEach((item) => {
       qtyArray.push(item.quantity);
       totalQty = qtyArray.reduce((a, b) => a + b, 0);
       return totalQty;
     });
 
+    const errors = this.validate(this.state);
+    console.log("errors", errors);
+
+    this.setState({ errors });
+
+    const isValid = Object.keys(errors).length === 0;
+
     // stripe not loaded... yet
     if (!stripe || !elements) {
       return;
     }
 
-    const checkoutProduct = {
-      products: products,
-      shipping_option: shipping_option,
-      payment_method: payment_method,
-      message: message,
-      shipping_fee: shipping_fee,
-      quantity: totalQty,
-      total: total,
-      userid: userid,
-      email: email,
-    };
+    // if no errors, proceed...
+    if (isValid) {
+      const checkoutProduct = {
+        products: products,
+        shipping_option: shipping_option,
+        payment_method: payment_method,
+        message: message,
+        shipping_fee: shipping_fee,
+        quantity: totalQty,
+        total: total,
+        userid: userid,
+        email: email,
+      };
 
-    // console.log("Checkout Data:", checkoutProduct);
+      // console.log("Checkout Data:", checkoutProduct);
 
-    this.setState({ isProcessing: true });
+      this.setState({ isProcessing: true });
 
-    const response = await this.props.addCheckoutProduct(checkoutProduct);
+      const response = await this.props.addCheckoutProduct(checkoutProduct);
 
-    console.log("Client Response", response);
+      // console.log("Client Response", response);
 
-    const clientSecret = response.data["client_secret"];
+      const clientSecret = response.data["client_secret"];
 
-    // console.log("clientSecret", clientSecret);
+      // console.log("clientSecret", clientSecret);
 
-    const result = await stripe.confirmCardPayment(clientSecret, {
-      payment_method: {
-        card: elements.getElement(CardElement),
-        billing_details: {
-          email: email,
+      const result = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement),
+          billing_details: {
+            email: email,
+          },
         },
-      },
-    });
+      });
 
-    // console.log("confirmCardPayment result:", result);
+      // console.log("confirmCardPayment result:", result);
 
-    if (result.error) {
-      // Show error to your customer (e.g., insufficient funds)
-      console.log(result.error.message);
+      if (result.error) {
+        // Show error to your customer (e.g., insufficient funds)
+        console.log(result.error.message);
 
-      this.setState({ isProcessing: false });
-      this.setState({ redirect: false });
-    } else {
-      // The payment has been processed!
-      if (result.paymentIntent.status === "succeeded") {
-        // console.log('Money is in the bank!');
-        this.setState({ redirect: true });
+        this.setState({ isProcessing: false });
+        this.setState({ redirect: false });
+
+      } else {
+        // The payment has been processed!
+        if (result.paymentIntent.status === "succeeded") {
+          console.log('Money is in the bank!');
+          this.setState({ redirect: true });
+        }
       }
     }
   };
@@ -119,8 +129,22 @@ class CheckoutPage extends Component {
     });
   };
 
+  validate = (values) => {
+    const errors = {};
+
+    const { shipping_option, payment_method, email } = this.state;
+
+    if (!shipping_option) errors.shipping_option = "Please select shipping option";
+    if (!payment_method) errors.payment_method = "Please select payment method";
+    if (!email) errors.email = "Please enter an email";
+
+    return errors;
+  };
+
   render() {
     const { products, user, shipping_fee } = this.props;
+
+    const { errors } = this.state;
 
     const subTotal = computeTotal(products);
 
@@ -139,7 +163,7 @@ class CheckoutPage extends Component {
         </div>
 
         {products.length > 0 ? (
-          <div className="w-10/12 mx-auto">
+          <div className="w-11/12 mx-auto">
             <div className="delivery-address p-3 my-3 bg-blue-100 mb-5">
               <h2 className="text-black pb-2 font-semibold">
                 Delivery Address
@@ -152,7 +176,7 @@ class CheckoutPage extends Component {
               </p>
             </div>
 
-            <h1 className="text-center font-semibold text-xl tracking-wide">
+            <h1 className="text-center mb-2 font-semibold text-xl tracking-wide">
               Products Ordered
             </h1>
 
@@ -202,30 +226,45 @@ class CheckoutPage extends Component {
               </tbody>
             </table>
 
-            <div className="block md:hidden border p-2 mb-3">
-                {products.map((item, idx) => {
-                  return (
-                    <div key={idx} className="mb-2">
-                      <img
-                        className="border"
-                        src={item.image}
-                        alt={item.title}
-                        width={100}
-                      />
-                      <p>Item Name: {item.title}</p>
-                      <p>Unit Price: ${item.price}</p>
-                      <p>Quantity: {item.quantity}</p>
-                    </div>
-                  );
-                })}
-              </div>
+            <div className="block md:hidden border p-2 mb-3 rounded">
+              {products.map((item, idx) => {
+                return (
+                  <div key={idx} className="mb-2">
+                    <img
+                      className="border"
+                      src={item.image}
+                      alt={item.title}
+                      width={100}
+                    />
+                    <p>
+                      <span className="font-semibold text-gray-600">
+                        Item Name:
+                      </span>{" "}
+                      {item.title}
+                    </p>
+                    <p>
+                      <span className="font-semibold text-gray-600">
+                        Unit Price:
+                      </span>{" "}
+                      ${item.price}
+                    </p>
+                    <p>
+                      <span className="font-semibold text-gray-600">
+                        Quantity:
+                      </span>{" "}
+                      {item.quantity}
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
 
             <div className="flex justify-end">
-              <div className="border border-grey-200 mb-6 w-full lg:w-6/12 px-3 py-4">
+              <div className="border border-grey-200 mb-6 w-full lg:w-6/12 px-3 py-4 rounded">
                 <div className="leave-message pb-2">
                   <p className="font-semibold">Leave a message:</p>
                   <input
-                    className="border p-2"
+                    className="border p-2 w-full"
                     type="text"
                     name="message"
                     id="message"
@@ -257,6 +296,9 @@ class CheckoutPage extends Component {
                     />
                     <label htmlFor="ninjavan">&nbsp;Ninja Van</label>
                   </p>
+                  {errors.shipping_option && (
+                    <InlineError text={errors.shipping_option} />
+                  )}
                 </div>
 
                 <div
@@ -264,7 +306,7 @@ class CheckoutPage extends Component {
                   className="payment-method py-2"
                 >
                   <p className="font-semibold">Payment Method:</p>
-                  <p>
+                  <p className="hidden">
                     <input
                       type="radio"
                       disabled
@@ -277,7 +319,7 @@ class CheckoutPage extends Component {
                       Coming soon...
                     </span>
                   </p>
-                  <p>
+                  <p className="hidden">
                     <input
                       type="radio"
                       disabled
@@ -299,6 +341,9 @@ class CheckoutPage extends Component {
                     />
                     <label htmlFor="credit">&nbsp;Credit Card</label>
                   </p>
+                  {errors.payment_method && (
+                    <InlineError text={errors.payment_method} />
+                  )}
                 </div>
 
                 <div className="payment-summary py-2">
@@ -334,6 +379,7 @@ class CheckoutPage extends Component {
                       placeholder="Email address"
                       onChange={this.handleOnChange}
                     />
+                    {errors.email && <InlineError text={errors.email} />}
 
                     <label
                       htmlFor="credit"
@@ -344,29 +390,29 @@ class CheckoutPage extends Component {
                     <CardInput />
 
                     <div className="demo-card mt-1">
-                      <h2 className="mb-2 text-gray-600">
+                      <h2 className="font-semibold text-gray-700">
                         Use this test credit card info:
                       </h2>
                       <p>
-                        <span className="font-semibold text-gray-500">
+                        <span className="font-semibold text-gray-700">
                           Card number:
                         </span>{" "}
                         4242 4242 4242 4242
                       </p>
                       <p>
-                        <span className="font-semibold text-gray-500">
+                        <span className="font-semibold text-gray-700">
                           MM / YY:
                         </span>{" "}
                         12 / 23
                       </p>
                       <p>
-                        <span className="font-semibold text-gray-500">
+                        <span className="font-semibold text-gray-700">
                           CVC:
                         </span>{" "}
                         381
                       </p>
                       <p>
-                        <span className="font-semibold text-gray-500">
+                        <span className="font-semibold text-gray-700">
                           ZIP:
                         </span>{" "}
                         22222

@@ -1,6 +1,8 @@
 import React, {useState, useEffect, useMemo} from "react";
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import { IonSpinner } from "@ionic/react";
+
 import {fetchProducts} from '../actions/product';
 
 const Search = (props) => {
@@ -68,7 +70,7 @@ const Search = (props) => {
                     </div>
                     </>
                 : <div className="px-5 pt-5 text-center">We couldn't find a <span style={{fontWeight:'bold'}}>{cleanedStr}</span> for sale. Try another search.</div>
-            : <div className="px-5 pt-5 text-center">Searching... <i className="fa fa-refresh fa-spin"></i></div>
+            : <div className="px-5 pt-5 text-center"><IonSpinner name="bubbles" /> Searching...</div>
             }
         </div>
     )
