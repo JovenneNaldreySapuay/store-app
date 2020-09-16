@@ -175,7 +175,7 @@ class Header extends Component {
                     </p>
                   </div>
 
-                  <div className="dropdown inline-block relative">
+                  <div className="flex justify-center dropdown inline-block relative">
                     <button className="text-gray-700 font-semibold inline-flex items-center">
                       <span className="mr-1 text-gray-100">
                         {this.getFirstName()}
@@ -188,7 +188,10 @@ class Header extends Component {
                         <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
                       </svg>
                     </button>
-                    <ul className="dropdown-menu absolute hidden text-gray-700 pt-1 z-10">
+                    <ul
+                      style={{ paddingTop: 35 }}
+                      className="dropdown-menu absolute hidden text-gray-700 pt-1 z-10"
+                    >
                       {(this.props.user.role === "admin" ||
                         this.props.user.role === "admin_demo") && (
                         <li>

@@ -89,7 +89,7 @@ class SignupForm extends Component {
       <Form
         onSubmit={this.handleOnSubmit}
         loading={loading}
-        className="border border-gray-400 p-4 rounded"
+        className="border border-gray-400 p-4 mx-4 rounded"
       >
         <Form.Field error={!!errors.fullName}>
           <label htmlFor="fullName" className="text-gray-600">
