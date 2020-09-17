@@ -41,8 +41,8 @@ class CartIconTable extends Component {
 					</Link>
 				</div>
 				</div>
-				) : ( <div style={{ width: 120 }} className="bg-white p-1 empty-cart">
-			  		<p className="text-center">No Products Yet</p>
+				) : ( <div style={{ width: 120 }} className="bg-gray-100 rounded-sm p-1 empty-cart">
+			  		<p className="text-center text-sm py-5">No Products Yet</p>
 			  	</div> ) 
 				}
 			</React.Fragment>

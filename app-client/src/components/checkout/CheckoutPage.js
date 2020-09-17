@@ -282,6 +282,7 @@ class CheckoutPage extends Component {
                     <input
                       type="radio"
                       id="std"
+                      defaultChecked
                       name="shipping_option"
                       value="Standard Delivery"
                     />
@@ -376,6 +377,7 @@ class CheckoutPage extends Component {
                       type="text"
                       name="email"
                       id="email"
+                      value="demoemail@shopeeh.com"
                       placeholder="Email address"
                       onChange={this.handleOnChange}
                     />
