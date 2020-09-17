@@ -19,7 +19,7 @@ class CartIconTable extends Component {
 		return (
 			<React.Fragment>
 				{ products.length > 0 ? (
-				<div style={{ width: 160 }} className="bg-white p-1">
+				<div className="bg-gray-100 p-1 rounded-sm">
 				<table>
 			        <tbody>
 			        	{
@@ -35,7 +35,7 @@ class CartIconTable extends Component {
 				<div className="mt-1">
 					<Link 
 						to="/cart"
-						className="bg-red-400 block hover:bg-red-500 pl-1 text-center text-white" 
+						className="bg-gray-500 hover:bg-gray-600 block pl-1 text-center text-white" 
 						>
 						View Cart &rarr;
 					</Link>

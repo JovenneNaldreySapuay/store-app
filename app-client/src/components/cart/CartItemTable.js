@@ -16,7 +16,7 @@ class CartItemTable extends Component {
   }
 
   render() {
-    console.log("CartItemTable", this.props);
+    // console.log("CartItemTable", this.props);
     const { products } = this.props;
 
     if (!products) {

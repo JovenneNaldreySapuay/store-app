@@ -16,7 +16,7 @@ class AccountPage extends Component {
   render() {
     const { _id, fullName, email, updatedAt } = this.props.user;
 
-    console.log(this.props);
+    // console.log(this.props);
 
     let token;
     if (localStorage.bookwormJWT) {

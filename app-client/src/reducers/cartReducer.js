@@ -15,7 +15,7 @@ export default function(state = initialState, action) {
   switch (action.type) {
     
     case ADD_TO_CART_SUCCESS:
-    	console.log("calling ADD_TO_CART_SUCCESS reducer", action);
+    	// console.log("calling ADD_TO_CART_SUCCESS reducer", action);
 		return {
 			...state,
 			items: [...state.items, action.payload]

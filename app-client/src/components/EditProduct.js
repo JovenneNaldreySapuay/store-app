@@ -139,7 +139,7 @@ class EditProduct extends Component {
       return <div>Loading...</div>;
     }
 
-    console.log(this.props);
+    // console.log(this.props);
 
     return (
       <React.Fragment>

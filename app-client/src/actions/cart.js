@@ -31,8 +31,8 @@ export const addProductCart = (product) => {
 	return async (dispatch, getState) => {
 		const cart = getState().cart;
 
-		console.log("cart", cart);
-		console.log("params", params);
+		// console.log("cart", cart);
+		// console.log("params", params);
 
 		// const foundId = cart.some(el => el.id === params.data.productid);
   		  		
@@ -40,7 +40,7 @@ export const addProductCart = (product) => {
 
 		return await axios.post("/api/carts", params)
 			.then(response => {		
-				console.log("addToCart response:", response);				
+				// console.log("addToCart response:", response);				
 				dispatch(addToCartSuccess(response.data));
 			}).catch(err => {
 				dispatch(addToCartError(err.message));
