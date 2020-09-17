@@ -47,14 +47,14 @@ class ForgotPasswordForm extends Component {
 		const { data, loading, errors } = this.state;
 
 		return (
-			<Form onSubmit={this.onSubmit} loading={loading} className="border border-gray-400 p-4 rounded">
+			<Form onSubmit={this.onSubmit} loading={loading} className="border border-gray-400 p-4 rounded mx-4">
 				
 				{!!errors.global && <Message negative>{errors.global}</Message>}
 
 				<Form.Field error={!!errors.email}>
 					<label htmlFor="email" className="text-gray-600">Email</label>
 					<input
-						className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+						className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
 						type="email" 
 						id="email" 
 						name="email" 

@@ -42,7 +42,7 @@ class AccountPage extends Component {
                     Email
                   </th>
                   <th className="p-3 text-xs text-gray-900 uppercase font-bold tracking-wide">
-                    <span className="text-gray-500">Last updated at:</span>{" "}
+                    <span className="text-gray-500">Last updated:</span>{" "}
                     <span className="text-gray-600">
                       {updatedAt && formatDate(updatedAt)}
                     </span>
@@ -62,7 +62,7 @@ class AccountPage extends Component {
                     </Link>
                     <Link
                       to={`/reset_password/${token}`}
-                      className="underline text-blue-400 hover:text-blue-500 block sm:inline-block"
+                      className="hidden underline text-blue-400 hover:text-blue-500"
                     >
                       Reset Password
                     </Link>

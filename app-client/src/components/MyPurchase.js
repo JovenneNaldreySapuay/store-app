@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { IonSpinner } from "@ionic/react";
+import { Link } from "react-router-dom";
 
 import { fetchCheckoutProductsByUserId } from "../actions/checkout";
 
@@ -23,6 +24,15 @@ class MyPurchase extends Component {
     const { checkouts } = this.props;
     return (
       <div className="mx-auto p-3 w-11/12 md:w-6/12 bg-white h-full">
+        <div className="flex justify-end mt-3 sm:hidden">
+          <Link
+            className="block border border-gray-400 px-2 py-1 rounded text-gray-500"
+            to="/"
+          >
+            {" "}
+            &larr; Return
+          </Link>
+        </div>
         <div className="p-5">
           <h1 className="text-center uppercase font-bold text-xl tracking-wide">
             My Purchase

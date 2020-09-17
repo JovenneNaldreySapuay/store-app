@@ -60,7 +60,7 @@ class ProfileForm extends Component {
         zipcode,
       };
 
-      console.log("Updated User", user);
+      // console.log("Updated User", user);
 
       this.props.updateUser(user);
 
@@ -186,6 +186,15 @@ class ProfileForm extends Component {
       <React.Fragment>
         <div className="w-full bg-white pt-3 w-11/12 md:w-6/12 mx-auto">
           <div className="p-4 text-sm text-gray-800">
+            <div className="flex justify-end mt-3 sm:hidden">
+              <Link
+                className="block border border-gray-400 px-2 py-1 rounded text-gray-500"
+                to="/account"
+              >
+                {" "}
+                &larr; Return
+              </Link>
+            </div>
             <div className="p-5">
               <h1 className="text-center uppercase font-bold text-xl tracking-wide">
                 Edit Profile

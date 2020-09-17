@@ -54,7 +54,7 @@ class ResetPasswordForm extends Component {
 				<Form.Field error={!!errors.password}>
 					<label htmlFor="password" className="text-gray-600">New Password</label>
 					<input 
-						className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+						className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
 						type="password" 
 						id="password" 
 						name="password" 
@@ -67,7 +67,7 @@ class ResetPasswordForm extends Component {
 				<Form.Field error={!!errors.passwordConfirmation}>
 					<label htmlFor="passwordConfirmation" className="text-gray-600">Confirm Password</label>
 					<input 
-						className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
+						className="bg-white appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500"
 						type="password" 
 						id="passwordConfirmation" 
 						name="passwordConfirmation" 

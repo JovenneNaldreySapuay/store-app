@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { IonSpinner } from "@ionic/react";
+import { Link } from "react-router-dom";
 
 import { fetchCartItems } from "../actions/cart";
 
@@ -18,10 +19,19 @@ class AbandonedCart extends Component {
 
   render() {
     const { carts } = this.props;
-    console.log("AbandonedCart", this.props);
+    // console.log("AbandonedCart", this.props);
 
     return (
       <div className="p-3 bg-white w-11/12 md:w-6/12 h-screen mx-auto">
+        <div className="flex justify-end mt-3 sm:hidden">
+          <Link
+            className="block border border-gray-400 px-2 py-1 rounded text-gray-500"
+            to="/admin"
+          >
+            {" "}
+            &larr; Return
+          </Link>
+        </div>
         <div className="p-5">
           <h1 className="text-center uppercase font-bold text-xl tracking-wide">
             Abandoned Cart
@@ -53,7 +63,7 @@ class AbandonedCart extends Component {
                 <p>Price: ${cart.price}</p>
                 <p>Quantity: {cart.quantity}</p>
                 <p>Total: ${cart.total}</p>
-                <button className="mt-2 bg-blue-500 text-white py-1 px-2">
+                <button className="hidden mt-2 bg-blue-500 text-white py-1 px-2">
                   Send Reminder
                 </button>
               </div>

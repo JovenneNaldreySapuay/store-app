@@ -168,6 +168,15 @@ const ProductTable = ({ fetchProducts, deleteProduct, auth }) => {
       )}
 
       <div className="bg-white container mx-auto w-11/12 px-1 text-center">
+      <div className="flex justify-end pt-3 sm:hidden">
+          <Link
+            className="block border border-gray-400 px-2 py-1 rounded text-gray-500"
+            to="/admin"
+          >
+            {" "}
+            &larr; Return
+          </Link>
+        </div>
         <div className="p-5">
           <h1 className="text-center uppercase font-bold text-xl tracking-wide">
             Manage Products
