@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+
 import { fetchCheckoutProductsById } from "../actions/checkout";
 import { addNotification } from "../actions/notification";
 
@@ -27,7 +29,7 @@ class TransactionView extends Component {
 
     this.props.addNotification(notification);
 
-    console.log("Notification Data", notification);
+    // console.log("Notification Data", notification);
   };
 
   getProductIds() {
@@ -48,6 +50,15 @@ class TransactionView extends Component {
 
     return (
       <div className="p-3 bg-white w-11/12 md:w-6/12 h-screen mx-auto">
+        <div className="flex justify-end mt-3 sm:hidden">
+          <Link
+            className="block border border-gray-400 px-2 py-1 rounded text-gray-500"
+            to="/admin/transactions"
+          >
+            {" "}
+            &larr; Return
+          </Link>
+        </div>
         <div className="p-5">
           <h1 className="text-center uppercase font-bold text-xl tracking-wide">
             Transaction View
