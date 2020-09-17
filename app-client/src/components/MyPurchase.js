@@ -22,7 +22,7 @@ class MyPurchase extends Component {
     // console.log("MyPurchase", this.props);
     const { checkouts } = this.props;
     return (
-      <div className="mx-auto p-3 w-11/12 md:w-6/12 bg-white h-screen">
+      <div className="mx-auto p-3 w-11/12 md:w-6/12 bg-white h-full">
         <div className="p-5">
           <h1 className="text-center uppercase font-bold text-xl tracking-wide">
             My Purchase
