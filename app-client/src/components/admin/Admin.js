@@ -5,36 +5,35 @@ import { Link, Redirect } from "react-router-dom";
 class Admin extends Component {
   render() {
     return (
-      <div className="bg-white w-11/12 h-screen mx-auto p-3">
-        {(this.props.user.role === "user" || this.props.user.role === "user_demo") && <Redirect to="/" />}
-        <h1 className="text-center mb-3">Admin Section</h1>
+      <div className="bg-white w-11/12 md:w-4/12 h-screen mx-auto p-3">
+        {(this.props.user.role === "user" ||
+          this.props.user.role === "user_demo") && <Redirect to="/" />}
+        <div className="p-5">
+          <h1 className="text-center uppercase font-bold text-xl tracking-wide">
+            Admin Section
+          </h1>
+        </div>
         <ul>
-          <li className="mb-2">
-            <Link className="hover:underline text-red-500" to="/admin/products">
+          <Link className="hover:underline" to="/admin/products">
+            <li className="mb-2 bg-blue-100 rounded px-2 py-1">
               Product Manager
-            </Link>
-          </li>
-          <li className="mb-2">
-            <Link
-              className="hover:underline text-red-500"
-              to="/admin/transactions"
-            >
+            </li>
+          </Link>
+          <Link className="hover:underline" to="/admin/transactions">
+            <li className="mb-2 bg-blue-100 rounded px-2 py-1">
               Transaction Logs
-            </Link>
-          </li>
-          <li className="mb-2">
-            <Link
-              className="hover:underline text-red-500"
-              to="/admin/abandoned-cart"
-            >
+            </li>
+          </Link>
+          <Link className="hover:underline" to="/admin/abandoned-cart">
+            <li className="mb-2 bg-blue-100 rounded px-2 py-1">
               Abandoned Cart
-            </Link>
-          </li>
-          <li className="mb-2">
-            <Link className="hover:underline text-red-500" to="/admin/sales">
+            </li>
+          </Link>
+          {/*<li className="mb-2">
+            <Link className="hover:underline" to="/admin/sales">
               Sales
             </Link>
-          </li>
+          </li>*/}
         </ul>
       </div>
     );

@@ -143,7 +143,7 @@ class EditProduct extends Component {
 
     return (
       <React.Fragment>
-        <div className="w-full bg-white mt-3 pl-64">
+        <div className="bg-white md:w-6/12 mx-auto w-11/12">
           <div className="p-4 text-sm text-gray-800">
             <h1 className="text-4xl text-gray-700 font-bold leading-none mb-8">
               Edit Product

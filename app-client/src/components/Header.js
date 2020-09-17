@@ -175,7 +175,7 @@ class Header extends Component {
                     </p>
                   </div>
 
-                  <div className="flex justify-center dropdown inline-block relative">
+                  <div className="flex justify-end dropdown inline-block relative">
                     <button className="text-gray-700 font-semibold inline-flex items-center">
                       <span className="mr-1 text-gray-100">
                         {this.getFirstName()}

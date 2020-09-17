@@ -184,11 +184,13 @@ class ProfileForm extends Component {
 
     return (
       <React.Fragment>
-        <div className="w-full bg-white mt-3 pl-64">
+        <div className="w-full bg-white pt-3 w-11/12 md:w-6/12 mx-auto">
           <div className="p-4 text-sm text-gray-800">
-            <h1 className="text-4xl text-gray-700 font-bold leading-none mb-8">
-              Edit Profile
-            </h1>
+            <div className="p-5">
+              <h1 className="text-center uppercase font-bold text-xl tracking-wide">
+                Edit Profile
+              </h1>
+            </div>
 
             <Form onSubmit={this.handleOnSubmit} loading={loading}>
               <Form.Field error={!!errors.email}>
@@ -320,7 +322,9 @@ class ProfileForm extends Component {
               </Form.Field>
 
               <button
-                disabled={auth.role === "admin_demo" || auth.role === "user_demo"}
+                disabled={
+                  auth.role === "admin_demo" || auth.role === "user_demo"
+                }
                 className="bg-blue-500 inline-block w-32 text-white p-2 rounded mt-3 text-center"
               >
                 Save Changes

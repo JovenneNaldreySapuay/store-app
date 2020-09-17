@@ -167,82 +167,78 @@ const ProductTable = ({ fetchProducts, deleteProduct, auth }) => {
         <Redirect to="/" />
       )}
 
-      <div className="row w-100">
+      <div className="bg-white container mx-auto w-11/12 px-1 text-center">
         <div className="p-5">
           <h1 className="text-center uppercase font-bold text-xl tracking-wide">
             Manage Products
           </h1>
         </div>
-        <div className="bg-white container mx-auto w-11/12 px-1 text-center">
-          <div className="row">
-            <div className="col-md-6 d-flex flex-row-reverse">
-              <Search
-                onSearch={(value) => {
-                  setSearch(value);
-                  setCurrentPage(1);
-                }}
-              />
-            </div>
-          </div>
-
-          <table className="border w-full text-left shadow-sm">
-            <TableHeader
-              headers={headers}
-              onSorting={(field, order) => setSorting({ field, order })}
+        <div className="row">
+          <div className="col-md-6 d-flex flex-row-reverse">
+            <Search
+              onSearch={(value) => {
+                setSearch(value);
+                setCurrentPage(1);
+              }}
             />
-            <tbody className="product-table">
-              {productsData.map((product, idx) => (
-                <tr key={idx}>
-                  <td>
-                    <img
-                      src={product.image}
-                      alt={product.title}
-                      width={60}
-                      style={{ margin: "auto" }}
-                    />
-                  </td>
-                  <td className="text-center">{product.title}</td>
-                  <td className="text-center">{product.stock}</td>
-                  {/*<td className="text-center">{product.category}</td>*/}
-                  <td className="text-center">
-                    <div className="edit">
-                      <Link
-                        to={`/admin/products/${product._id}`}
-                        className="text-blue-500 hover:underline"
-                      >
-                        Edit
-                      </Link>
-                    </div>
-                    <div className="delete">
-                      <button
-                        disabled={auth.role === "admin_demo"}
-                        className="text-red-500 hover:underline"
-                        onClick={() => {
-                          if (
-                            window.confirm(
-                              `Are you sure to delete this product?`
-                            )
-                          )
-                            deleteProduct(product._id);
-                        }}
-                      >
-                        Delete
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="row">
-            <div className="col-md-6">
-              <PaginationComponent
-                total={totalItems}
-                itemsPerPage={ITEMS_PER_PAGE}
-                currentPage={currentPage}
-                onPageChange={(page) => setCurrentPage(page)}
-              />
-            </div>
+          </div>
+        </div>
+
+        <table className="border w-full text-left shadow-sm">
+          <TableHeader
+            headers={headers}
+            onSorting={(field, order) => setSorting({ field, order })}
+          />
+          <tbody className="product-table">
+            {productsData.map((product, idx) => (
+              <tr key={idx}>
+                <td>
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    width={60}
+                    style={{ margin: "auto" }}
+                  />
+                </td>
+                <td className="text-center">{product.title}</td>
+                <td className="text-center">{product.stock}</td>
+                {/*<td className="text-center">{product.category}</td>*/}
+                <td className="text-center">
+                  <div className="edit">
+                    <Link
+                      to={`/admin/products/${product._id}`}
+                      className="text-blue-500 hover:underline"
+                    >
+                      Edit
+                    </Link>
+                  </div>
+                  <div className="delete">
+                    <button
+                      disabled={auth.role === "admin_demo"}
+                      className="text-red-500 hover:underline"
+                      onClick={() => {
+                        if (
+                          window.confirm(`Are you sure to delete this product?`)
+                        )
+                          deleteProduct(product._id);
+                      }}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="row">
+          <div className="col-md-6">
+            <PaginationComponent
+              total={totalItems}
+              itemsPerPage={ITEMS_PER_PAGE}
+              currentPage={currentPage}
+              onPageChange={(page) => setCurrentPage(page)}
+            />
           </div>
         </div>
       </div>
