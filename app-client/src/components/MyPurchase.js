@@ -52,7 +52,7 @@ class MyPurchase extends Component {
                 {checkout.products.map((product, idx) => {
                   return (
                     <div
-                      className="bg-white border border-grey-400 p-2"
+                      className="bg-white border rounded-sm border-grey-400 p-2"
                       key={idx}
                     >
                       <img

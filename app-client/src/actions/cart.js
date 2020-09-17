@@ -29,7 +29,7 @@ export const addProductCart = (product) => {
 	const params = { data: product }
 
 	return async (dispatch, getState) => {
-		const cart = getState().cart;
+		// const cart = getState().cart;
 
 		// console.log("cart", cart);
 		// console.log("params", params);

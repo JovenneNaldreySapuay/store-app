@@ -72,7 +72,7 @@ class TransactionView extends Component {
               return (
                 <div
                   key={idx}
-                  className="bg-gray-100 p-2 border border-grey-100 mb-1"
+                  className="bg-gray-100 rounded-sm p-2 border border-grey-100 mb-1"
                 >
                   <img
                     className="border border-grey-100"

@@ -16,7 +16,9 @@ class CheckoutPage extends Component {
     message: "",
     shipping_option: "",
     payment_method: "",
-    email: "",
+    email: "demo@shopeeh.com",
+    card_error: "",
+    isCardError: false,
     isProcessing: false,
     redirect: false,
     errors: {},
@@ -53,12 +55,12 @@ class CheckoutPage extends Component {
     });
 
     const errors = this.validate(this.state);
-    console.log("errors", errors);
+    // console.log("errors", errors);
 
     this.setState({ errors });
 
     const isValid = Object.keys(errors).length === 0;
-
+    
     // stripe not loaded... yet
     if (!stripe || !elements) {
       return;
@@ -103,15 +105,20 @@ class CheckoutPage extends Component {
 
       if (result.error) {
         // Show error to your customer (e.g., insufficient funds)
-        console.log(result.error.message);
+        // console.log(result.error);
+        const invalid = result.error.message;
 
+        this.setState({ 
+          card_error: invalid,
+          isCardError: true
+        });
         this.setState({ isProcessing: false });
         this.setState({ redirect: false });
 
       } else {
         // The payment has been processed!
         if (result.paymentIntent.status === "succeeded") {
-          console.log('Money is in the bank!');
+          console.log("Payment succeeded");
           this.setState({ redirect: true });
         }
       }
@@ -132,11 +139,12 @@ class CheckoutPage extends Component {
   validate = (values) => {
     const errors = {};
 
-    const { shipping_option, payment_method, email } = this.state;
+    const { shipping_option, payment_method } = this.state;
 
-    if (!shipping_option) errors.shipping_option = "Please select shipping option";
+    if (!shipping_option)
+      errors.shipping_option = "Please select shipping option";
     if (!payment_method) errors.payment_method = "Please select payment method";
-    if (!email) errors.email = "Please enter an email";
+    // if (!email) errors.email = "Please enter an email";
 
     return errors;
   };
@@ -144,7 +152,7 @@ class CheckoutPage extends Component {
   render() {
     const { products, user, shipping_fee } = this.props;
 
-    const { errors } = this.state;
+    const { errors, email, card_error } = this.state;
 
     const subTotal = computeTotal(products);
 
@@ -152,6 +160,7 @@ class CheckoutPage extends Component {
 
     const fullAddress = `${user.address}, ${user.city}, ${user.province}, ${user.country}, ${user.zipcode}`;
 
+    // console.log("[State]", this.state);
     // console.log("CheckoutPage", this.props);
 
     return (
@@ -282,7 +291,6 @@ class CheckoutPage extends Component {
                     <input
                       type="radio"
                       id="std"
-                      defaultChecked
                       name="shipping_option"
                       value="Standard Delivery"
                     />
@@ -377,8 +385,8 @@ class CheckoutPage extends Component {
                       type="text"
                       name="email"
                       id="email"
-                      value="demoemail@shopeeh.com"
                       placeholder="Email address"
+                      value={email}
                       onChange={this.handleOnChange}
                     />
                     {errors.email && <InlineError text={errors.email} />}
@@ -390,7 +398,9 @@ class CheckoutPage extends Component {
                       Credit Card:&nbsp;
                     </label>
                     <CardInput />
-
+                    {card_error && (
+                    <InlineError text={card_error} />
+                    )}
                     <div className="demo-card mt-1">
                       <h2 className="font-semibold text-gray-700">
                         Use this test credit card info:

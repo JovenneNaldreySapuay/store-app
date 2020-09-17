@@ -23,7 +23,7 @@ class Transactions extends Component {
     // console.log("Transactions", this.props);
 
     return (
-      <div className="p-3 bg-white w-11/12 md:w-6/12 h-screen mx-auto">
+      <div className="p-3 bg-white w-11/12 md:w-6/12 h-full mx-auto">
         {(auth.role === "user" || auth.role === "user_demo") && (
           <Redirect to="/" />
         )}
@@ -53,7 +53,7 @@ class Transactions extends Component {
         ) : (
           checkouts.map((checkout, idx) => {
             return (
-              <div className="p-3 mb-5 border mt-5 bg-blue-100" key={idx}>
+              <div className="p-3 mb-5 border rounded-sm mt-5 bg-blue-100" key={idx}>
                 <p className="mb-2">
                   Customer ID{" "}
                   <span className="text-blue-600">{checkout._user}</span> has

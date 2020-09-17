@@ -20,7 +20,8 @@ input::placeholder {
   color: #aab7c4;
 }
 
-input:focus,
+input[type="text"]:focus,
+textarea:focus,
 .StripeElement--focus,
 .editor:focus {
   box-shadow: rgba(50, 50, 93, 0.109804) 0px 4px 6px,
