@@ -19,7 +19,7 @@ const Single = ({ product, stocks, addToCart, decrement, increment, quantityChan
 
 				<div className="single__details lg:ml-5 sm:ml-0">
 					<h2 className="single__name">{product.title}</h2>
-					<p className="single__price">${product.price}</p>
+					<p className="single__price text-2xl">${product.price}</p>
 				
 					{(isAuth === true && stocks !== 0) && 
 					<div className="counter mt-1 mb-2">
@@ -31,7 +31,7 @@ const Single = ({ product, stocks, addToCart, decrement, increment, quantityChan
 						/>
 						<input
 						type="text"
-						style={{ width: 60 }}
+						style={{ width: 41 }}
 						className="border border-grey-100 text-center" 
 						onChange={quantityChange}
 						value={qtyValue}
@@ -77,7 +77,7 @@ const Single = ({ product, stocks, addToCart, decrement, increment, quantityChan
 
 			<div className="box">
 				<h1 className="box__header">Product Reviews</h1>
-				{/* <ProductReviews productId={productIdReview} /> */}
+				<p className="text-gray-500">No reviews</p>
 			</div>
 		</div>
 	);

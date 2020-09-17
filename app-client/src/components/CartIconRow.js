@@ -8,9 +8,9 @@ const CartIconRow = (props) => {
     <tr>
       <td>
         {props.product.title}
-        <span className="font-semibold">
+        <p><span className="font-semibold block">
           ${props.product.price}
-        </span> &times; {props.product.quantity}
+        </span> &times; {props.product.quantity}</p>
       </td>
       <td>
         <button

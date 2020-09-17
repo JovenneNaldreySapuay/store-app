@@ -25,8 +25,9 @@ class Shop extends Component {
   renderProducts(products) {
     if (products.length === 0) {
       return (
-        <div className="text-center">
-          <IonSpinner name="bubbles" /> Fetching products...
+        <div className="flex justify-center">
+          <IonSpinner name="bubbles" />{" "}
+          <span className="text-gray-500 ml-1">Fetching products...</span>
         </div>
       );
     } else {
