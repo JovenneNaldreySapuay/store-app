@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import * as auth from "../actions/auth";
+import { fetchCartByUser } from "../actions/cart";
 
 import SearchInput from "./SearchInput";
 import CartIconTable from "./CartIconTable";
@@ -10,6 +11,13 @@ class Header extends Component {
   state = {
     q: "",
   };
+
+  componentDidMount() {
+    const { loggedUserId } = this.props;
+    if (loggedUserId) {
+      this.props.fetchCartByUser(loggedUserId);
+    }
+  }
 
   setQueryText = (e) => {
     this.setState({ q: e.target.value });
@@ -33,6 +41,7 @@ class Header extends Component {
   }
 
   renderNav() {
+    
     switch (this.props.isAuthenticated) {
       case null:
         return;
@@ -284,8 +293,9 @@ class Header extends Component {
                           stroke="none"
                         ></circle>
                       </svg>
-                      {this.props.products.length > 0 &&      
+                      {this.props.products.length > 0 ?      
                         <span className="bg-white font-semibold h-5 ml-1 mt-1 rounded-full text-center text-red-500 text-xs w-5">{this.props.products.length}</span>
+                        : <span className="bg-white font-semibold h-5 ml-1 mt-1 rounded-full text-center text-red-500 text-xs w-5">0</span>
                       }
                     </Link>
                   </div>
@@ -307,9 +317,10 @@ class Header extends Component {
                       <circle cx="10.7" cy="23" r="2.2" stroke="none"></circle>
                       <circle cx="19.7" cy="23" r="2.2" stroke="none"></circle>
                     </svg>
-                    {this.props.products.length > 0 &&      
-                      <span className="bg-white ml-1 px-1 rounded-full text-center text-red-500 w-6">{this.props.products.length}</span>
-                    }
+                    {this.props.products.length > 0 ?      
+                        <span className="bg-white font-semibold h-5 ml-1 mt-1 rounded-full text-center text-red-500 text-xs w-5">{this.props.products.length}</span>
+                        : <span className="bg-white font-semibold h-5 ml-1 mt-1 rounded-full text-center text-red-500 text-xs w-5">0</span>
+                      }
                     </button>
 
                     <div
@@ -339,10 +350,11 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: !!state.auth.token,
     user: state.auth,
+    loggedUserId: state.auth._id,
     products: state.cart.items,
   };
 };
 
-export default connect(mapStateToProps, { logout: auth.logout })(
+export default connect(mapStateToProps, { logout: auth.logout, fetchCartByUser })(
   withRouter(Header)
 );

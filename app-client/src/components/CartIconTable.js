@@ -4,13 +4,16 @@ import { connect } from "react-redux";
 import { fetchCartByUser, deleteProductCart } from "../actions/cart";
 
 class CartIconTable extends Component {
+  
   componentDidMount() {
     const { loggedUserId } = this.props;
-    this.props.fetchCartByUser(loggedUserId);
+    if (loggedUserId) {
+      this.props.fetchCartByUser(loggedUserId);
+    }
   }
 
   render() {
-    //console.log("CartIconTable", this.props);
+    // console.log("CartIconTable", this.props);
     const { products } = this.props;
 
     return (
@@ -47,7 +50,7 @@ class CartIconTable extends Component {
 
 function mapStateToProps(state) {
   return {
-    products: state.cart.items,
+    products: state.cart.items, 
     loggedUserId: state.auth._id,
   };
 }

@@ -15,7 +15,8 @@ import './style.css';
 import setAuthorizationHeader from './utils/setAuthorizationHeader';
 import rootReducer from './reducers'; 
 import { userLoggedIn } from './actions/auth';
-import { fetchProducts } from './actions/product'; 
+import { fetchProducts } from './actions/product';
+import { fetchCartByUser } from './actions/cart'; 
 import App from './components/App';
 
 window.axios = axios;
@@ -36,7 +37,8 @@ export const store = createStore(
 
 if (localStorage.bookwormJWT) {
 	const payload = decode(localStorage.bookwormJWT); 
-	
+	const userid = payload._id;
+
 	const user = { 
 		_id: payload._id,
 		fullName: payload.fullName, 
@@ -57,6 +59,9 @@ if (localStorage.bookwormJWT) {
 
 	// load all products in every components
 	store.dispatch(fetchProducts());
+	store.dispatch(fetchCartByUser(userid));
+
+	// console.log(payload);
 }
 
 

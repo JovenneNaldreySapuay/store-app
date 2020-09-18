@@ -64,33 +64,35 @@ export const fetchProductsCart = () => async (dispatch, getState) => {
 	}
 }
 
-export const fetchCartItems = () => async (dispatch) => {
+export const fetchCartItems = () => async (dispatch, getState) => {
 	
 	try {
 		const response = await axios.get('/api/carts');
 		
 		dispatch({ 
 			type: FETCH_CART_ITEMS,  
-			payload: response.data 
+			payload: response.data, 
 		});
+
 	} catch(err) {	
 		console.log(err);
 	}
 }
 
 // Fetch Cart Items By User Id
-export const fetchCartByUser = (uid) => async (dispatch, getState) => {
-	
-	const { _id } = getState().auth;
-	// console.log("fetchCartByUser", _id);
-	
+export const fetchCartByUser = (uid) => async (dispatch) => {
+		
 	try {
-		const response = await axios.get(`/api/carts/${_id}`);
+		const response = await axios.get(`/api/carts/${uid}`);
 		// console.log("fetchCartByUser", response);
+		
 		dispatch({ 
 			type: FETCH_CART_BY_USER, 
-			payload: response.data 
+			payload: response.data, 
 		});
+
+		return response;
+
 	} catch(err) {	
 		console.log(err);
 	}

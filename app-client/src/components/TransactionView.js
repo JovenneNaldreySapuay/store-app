@@ -49,7 +49,7 @@ class TransactionView extends Component {
     const { transactionItem } = this.props;
 
     return (
-      <div className="p-3 bg-white w-11/12 md:w-6/12 h-screen mx-auto">
+      <div className={transactionItem.products && transactionItem.products.length === 0 ? "p-3 bg-white w-11/12 md:w-6/12 h-screen mx-auto" : "p-3 bg-white w-11/12 md:w-6/12 h-full mx-auto"}>
         <div className="flex justify-end mt-3 sm:hidden">
           <Link
             className="block border border-gray-400 px-2 py-1 rounded text-gray-500"
@@ -87,7 +87,7 @@ class TransactionView extends Component {
                 </div>
               );
             })}
-			{/*<button
+			      {/*<button
               className="bg-red-500 text-white py-1 px-1 mt-2"
               onClick={this.handleOnReviewSubmit}
             >

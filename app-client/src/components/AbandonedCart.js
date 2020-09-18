@@ -22,7 +22,13 @@ class AbandonedCart extends Component {
     // console.log("AbandonedCart", this.props);
 
     return (
-      <div className="p-3 bg-white w-11/12 md:w-6/12 h-screen mx-auto">
+      <div
+        className={
+          carts.length === 0
+            ? "p-3 bg-white w-11/12 md:w-6/12 h-screen mx-auto"
+            : "p-3 bg-white w-11/12 md:w-6/12 h-full mx-auto"
+        }
+      >
         <div className="flex justify-end mt-3 sm:hidden">
           <Link
             className="block border border-gray-400 px-2 py-1 rounded text-gray-500"
@@ -38,6 +44,10 @@ class AbandonedCart extends Component {
           </h1>
         </div>
 
+        <div className="flex justify-end">
+          <p className="text-red-500">{carts && carts.length} item{carts.length > 1 ? 's' : ''}</p>
+        </div>
+
         {this.state.isLoading ? (
           <div className="flex justify-center">
             <IonSpinner name="bubbles" />{" "}
@@ -48,7 +58,7 @@ class AbandonedCart extends Component {
         ) : (
           carts.map((cart, idx) => {
             return (
-              <div key={idx} className="my-3 bg-blue-100 p-3 rounded">
+              <div key={idx} className="my-3 bg-gray-100 border p-3 rounded">
                 <img
                   className="border border-grey-200"
                   src={cart.image}
@@ -77,7 +87,7 @@ class AbandonedCart extends Component {
 
 function mapStateToProps(state) {
   return {
-    carts: state.cart.items || [],
+    carts: state.cart.abandonedItems || [],
   };
 }
 

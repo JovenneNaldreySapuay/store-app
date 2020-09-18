@@ -53,7 +53,7 @@ class Transactions extends Component {
         ) : (
           checkouts.map((checkout, idx) => {
             return (
-              <div className="p-3 mb-5 border rounded-sm mt-5 bg-blue-100" key={idx}>
+              <div className="p-3 mb-5 border rounded-sm mt-5 bg-gray-100" key={idx}>
                 <p className="mb-2">
                   Customer ID{" "}
                   <span className="text-blue-600">{checkout._user}</span> has

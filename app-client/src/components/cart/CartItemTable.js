@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { fetchCartByUser, deleteProductCart } from "../../actions/cart";
 
-import getCartItems from "../../reducers";
+// import getCartItems from "../../reducers";
 import CartItemRow from "./CartItemRow";
 
 import computeTotal from "../../utils/computeTotal";
@@ -128,7 +128,6 @@ class CartItemTable extends Component {
 const mapStateToProps = (state) => ({
   products: state.cart.items,
   loggedUserId: state.auth._id,
-  select: getCartItems,
 });
 
 export default connect(mapStateToProps, { fetchCartByUser, deleteProductCart })(

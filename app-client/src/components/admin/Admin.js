@@ -15,17 +15,17 @@ class Admin extends Component {
         </div>
         <ul>
           <Link className="hover:underline" to="/admin/products">
-            <li className="mb-2 bg-blue-100 rounded px-2 py-1">
+            <li className="mb-2 bg-gray-100 rounded border p-2">
               Product Manager
             </li>
           </Link>
           <Link className="hover:underline" to="/admin/transactions">
-            <li className="mb-2 bg-blue-100 rounded px-2 py-1">
+            <li className="mb-2 bg-gray-100 rounded border p-2">
               Transaction Logs
             </li>
           </Link>
           <Link className="hover:underline" to="/admin/abandoned-cart">
-            <li className="mb-2 bg-blue-100 rounded px-2 py-1">
+            <li className="mb-2 bg-gray-100 rounded border p-2">
               Abandoned Cart
             </li>
           </Link>
