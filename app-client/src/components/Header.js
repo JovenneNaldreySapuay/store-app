@@ -257,8 +257,8 @@ class Header extends Component {
                     />
                   </div>
 
-                  <div className="cart block sm:hidden">
-                    <Link to="/cart">
+                  <div className="cart block sm:hidden -mb-4">
+                    <Link to="/cart" className="flex">
                       <svg
                         className="shopee-svg-icon navbar__link-icon icon-shopping-cart-2"
                         viewBox="0 0 26.6 25.6"
@@ -284,15 +284,42 @@ class Header extends Component {
                           stroke="none"
                         ></circle>
                       </svg>
+                      {this.props.products.length > 0 &&      
+                        <span className="bg-white font-semibold h-5 ml-1 mt-1 rounded-full text-center text-red-500 text-xs w-5">{this.props.products.length}</span>
+                      }
                     </Link>
                   </div>
 
-                  <div className="dropdown inline-block relative hidden md:block">
-                    <button className="text-gray-700 font-semibold inline-flex items-center">
-                      <span className="mr-1 text-gray-100">Cart</span>
+                  <div className="dropdown flex justify-end relative hidden md:inline-flex">
+                    <button className="font-semibold inline-flex items-center text-gray-700">
+                    <svg
+                      className="shopee-svg-icon navbar__link-icon icon-shopping-cart-2"
+                      viewBox="0 0 26.6 25.6"
+                    >
+                      <polyline
+                        fill="none"
+                        points="2 1.7 5.5 1.7 9.6 18.3 21.2 18.3 24.6 6.1 7 6.1"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeMiterlimit="10"
+                        strokeWidth="2.5"
+                      ></polyline>
+                      <circle cx="10.7" cy="23" r="2.2" stroke="none"></circle>
+                      <circle cx="19.7" cy="23" r="2.2" stroke="none"></circle>
+                    </svg>
+                    {this.props.products.length > 0 &&      
+                      <span className="bg-white ml-1 px-1 rounded-full text-center text-red-500 w-6">{this.props.products.length}</span>
+                    }
                     </button>
-                    <div className="dropdown-menu absolute hidden text-gray-700 pt-1">
+
+                    <div
+                      className="absolute bg-blue-100 dropdown-menu hidden rounded-sm z-10"
+                      style={{marginTop:25,width:200}}
+                    >
                       <CartIconTable />
+                      {this.props.products.length > 0 &&
+                      <Link to="/cart" className="block mb-2 text-center">View Cart &rarr;</Link>
+                      }
                     </div>
                   </div>
                 </div>
@@ -312,6 +339,7 @@ const mapStateToProps = (state) => {
   return {
     isAuthenticated: !!state.auth.token,
     user: state.auth,
+    products: state.cart.items,
   };
 };
 

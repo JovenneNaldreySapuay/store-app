@@ -8,7 +8,7 @@ import InlineError from "../InlineError";
 import CardInput from "./CardInput";
 
 import { fetchCartByUser } from "../../actions/cart";
-import { addCheckoutProduct } from "../../actions/checkout";
+import { addCheckoutProduct, handleToken } from "../../actions/checkout";
 import computeTotal from "../../utils/computeTotal";
 
 class CheckoutPage extends Component {
@@ -31,6 +31,27 @@ class CheckoutPage extends Component {
   handleCODCheckout = (e) => {
     e.preventDefault();
   };
+
+  stripe = async (x) => {
+    // const { stripe, elements } = this.props;
+    // const { email } = this.state;
+
+    // stripe not loaded... yet
+    // if (!stripe || !elements) {
+    //  return;
+    // }
+
+    // const result = await stripe.confirmCardPayment(clientSecret, {
+    //   payment_method: {
+    //     card: elements.getElement(CardElement),
+    //     billing_details: {
+    //       email: email,
+    //     },
+    //   },
+    // });
+
+    // console.log("confirmCardPayment result:", result);
+  }
 
   handleStripeCheckout = async (e) => {
     e.preventDefault();
@@ -83,14 +104,14 @@ class CheckoutPage extends Component {
       // console.log("Checkout Data:", checkoutProduct);
 
       this.setState({ isProcessing: true });
+      
+      const response = await this.props.handleToken(checkoutProduct);
 
-      const response = await this.props.addCheckoutProduct(checkoutProduct);
-
-      // console.log("Client Response", response);
+      console.log("Client Response", response);
 
       const clientSecret = response.data["client_secret"];
 
-      // console.log("clientSecret", clientSecret);
+      console.log("clientSecret", clientSecret);
 
       const result = await stripe.confirmCardPayment(clientSecret, {
         payment_method: {
@@ -101,7 +122,9 @@ class CheckoutPage extends Component {
         },
       });
 
-      // console.log("confirmCardPayment result:", result);
+      console.log("confirmCardPayment result:", result);
+
+      // console.log("stripe?", this.stripe);
 
       if (result.error) {
         // Show error to your customer (e.g., insufficient funds)
@@ -119,6 +142,7 @@ class CheckoutPage extends Component {
         // The payment has been processed!
         if (result.paymentIntent.status === "succeeded") {
           console.log("Payment succeeded");
+          await this.props.addCheckoutProduct(checkoutProduct);
           this.setState({ redirect: true });
         }
       }
@@ -432,6 +456,7 @@ class CheckoutPage extends Component {
                     </div>
                     <div className="payment-cta mt-1 mb-3 flex justify-end">
                       <button
+                        disabled={true}
                         onClick={this.handleStripeCheckout}
                         className="btn mt-3"
                       >
@@ -476,6 +501,7 @@ const mapDispatchToProps = (dispatch) =>
     {
       addCheckoutProduct: addCheckoutProduct,
       fetchCartByUser: fetchCartByUser,
+      handleToken: handleToken
     },
     dispatch
   );

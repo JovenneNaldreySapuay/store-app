@@ -18,6 +18,7 @@ require('./models/Checkout');
 require('./models/Review');
 require('./models/Notification');
 require('./models/Visitor');
+require('./models/Payment');
 require('./models/Form'); 
 
 dotenv.config();

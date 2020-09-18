@@ -13,6 +13,7 @@ const Product = mongoose.model('product');
 const Cart = mongoose.model('cart');
 const Checkout = mongoose.model('checkout');
 const User = mongoose.model('user');
+const Payment = mongoose.model('payment');
 
 const validate = (data) => {
   let errors = {};
@@ -24,7 +25,41 @@ const validate = (data) => {
 }
 
 module.exports = app => {
+	
+	// stripe
+	app.post('/api/stripe', requireAuthenticate, async (req, res) => {
 		
+		console.log("/api/stripe", req.body);
+
+		const { 
+			userid,
+			total,
+			email
+		} = req.body.token;
+
+		const paymentIntent = await stripe.paymentIntents.create({
+			amount: total * 100,
+			currency: 'usd',
+			receipt_email: email,
+			description: 'Shopeeh Payment',
+			metadata: { uid: userid },						
+		});
+
+		// Save into `Payment` Model the result of paymentIntent
+
+		const payment = new Payment({
+			userid,
+			email,
+			payment_id: paymentIntent.id,
+			amount: total
+		});
+
+		await payment.save();
+				
+		// res.json(payment);
+		res.json({'client_secret': paymentIntent['client_secret']})	
+	});
+
 	// Saving data
 	app.post('/api/checkouts', requireAuthenticate, async (req, res) => {
 		    
@@ -41,24 +76,24 @@ module.exports = app => {
 			quantity,
 			total,
 			userid,
-			email
 		} = req.body.values;
 
-		const paymentIntent = await stripe.paymentIntents.create({
-			amount: total * 100,
-			currency: 'usd',
-			receipt_email: email,
+		// const paymentIntent = await stripe.paymentIntents.create({
+			// amount: total * 100,
+			// currency: 'usd',
+			// receipt_email: email,
 			// description: 'Shopeeh Payment',
 			// shipping: shipping_fee,
 			// metadata: { integration_check: 'accept_a_payment' },
-		});
+		// });
 
-		res.json({'client_secret': paymentIntent['client_secret']})	
+		// res.json({'client_secret': paymentIntent['client_secret']})	
 
 		// console.log("paymentIntent", paymentIntent);
 				
 		if (isValid) {		
-
+		
+		// NOTE: Remove paymentid below
 		try {
 			const checkoutItem = new Checkout({ 
 				products, 
@@ -69,7 +104,7 @@ module.exports = app => {
 				quantity,
 				total,
 				_user: userid,
-				paymentid: paymentIntent.id
+				// paymentid: paymentIntent.id
 			});
 
 			console.log("Checkedout Item:", checkoutItem);
