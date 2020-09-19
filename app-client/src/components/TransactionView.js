@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { fetchCheckoutProductsById } from "../actions/checkout";
 import { addNotification } from "../actions/notification";
@@ -46,10 +46,15 @@ class TransactionView extends Component {
   }
 
   render() {
-    const { transactionItem } = this.props;
+    const { transactionItem, auth } = this.props;
 
     return (
       <div className={transactionItem.products && transactionItem.products.length === 0 ? "p-3 bg-white w-11/12 md:w-6/12 h-screen mx-auto" : "p-3 bg-white w-11/12 md:w-6/12 h-full mx-auto"}>
+        
+        {(auth.role === "user" || auth.role === "user_demo") && (
+          <Redirect to="/" />
+        )}
+
         <div className="flex justify-end mt-3 sm:hidden">
           <Link
             className="block border border-gray-400 px-2 py-1 rounded text-gray-500"
@@ -106,6 +111,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     transactionId: id,
     transactionItem: state.checkout.item,
+    auth: state.auth,
   };
 };
 

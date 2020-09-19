@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { IonSpinner } from "@ionic/react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { fetchCartItems } from "../actions/cart";
 
@@ -18,7 +18,7 @@ class AbandonedCart extends Component {
   }
 
   render() {
-    const { carts } = this.props;
+    const { carts, auth } = this.props;
     // console.log("AbandonedCart", this.props);
 
     return (
@@ -29,6 +29,10 @@ class AbandonedCart extends Component {
             : "p-3 bg-white w-11/12 md:w-6/12 h-full mx-auto"
         }
       >
+        {(auth.role === "user" || auth.role === "user_demo") && (
+          <Redirect to="/" />
+        )}
+
         <div className="flex justify-end mt-3 sm:hidden">
           <Link
             className="block border border-gray-400 px-2 py-1 rounded text-gray-500"
@@ -45,7 +49,9 @@ class AbandonedCart extends Component {
         </div>
 
         <div className="flex justify-end">
-          <p className="text-red-500">{carts && carts.length} item{carts.length > 1 ? 's' : ''}</p>
+          <p className="text-red-500">
+            {carts && carts.length} item{carts.length > 1 ? "s" : ""}
+          </p>
         </div>
 
         {this.state.isLoading ? (
@@ -88,6 +94,7 @@ class AbandonedCart extends Component {
 function mapStateToProps(state) {
   return {
     carts: state.cart.abandonedItems || [],
+    auth: state.auth,
   };
 }
 
