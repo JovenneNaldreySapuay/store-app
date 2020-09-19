@@ -19,35 +19,43 @@ const validate = (data) => {
 };
 
 module.exports = (app) => {
-  // Saving visitor
+  // Saving visitor logs
   app.post("/api/visitors", async (req, res) => {
+    
     // console.log("visitorRoutes.js values:", req.body);
 
     const { errors, isValid } = validate(req.body);
 
-    const {
-      email,
-      ip,
-      country,
-    } = req.body.values;
+    const { ip, country } = req.body.values;
 
     if (isValid) {
       try {
-        const visitorData = new Visitor({
-          email,
-          ip,
-          country,
+        Visitor.findOne({ ip: ip }, async function(err, data) {
+          if (err) console.log(err);
+
+          if (data) {
+            console.log("IP is already saved in our database.");
+          } else {
+            console.log("New IP detected.");
+
+            const visitorData = new Visitor({ ip, country });
+
+            await visitorData.save();
+
+            res.json(visitorData);
+          }
         });
-
-        await visitorData.save();
-
-        res.json(visitorData);
-
+      
       } catch (err) {
+
         res.status(422).send(err);
+
       }
+
     } else {
+
       res.status(400).json({ errors });
+
     }
   });
 

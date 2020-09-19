@@ -60,7 +60,7 @@ class Transactions extends Component {
                   successfully checked out.
                 </p>
                 <Link
-                  className="bg-gray-600 text-white py-1 px-2"
+                  className="border border-blue-600 hover:bg-blue-600 hover:text-white px-2 py-1 rounded-full text-blue-600 text-white"
                   to={`/admin/transactions/${checkout._id}`}
                 >
                   View Transaction

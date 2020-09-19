@@ -3,10 +3,6 @@ const { Schema } = mongoose;
 
 const visitorSchema = new Schema(
 	{
-		email: { 
-			type: String, 
-			required: true 
-		},
 		ip: { 
 			type: String, 
 			required: true 

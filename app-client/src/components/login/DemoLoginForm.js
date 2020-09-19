@@ -23,7 +23,6 @@ class DemoLoginForm extends Component {
   handleOnSubmitUser = (e) => {
     e.preventDefault();
     const userDemo = {
-      email: this.state.user.email,
       ip: this.state.details.ip,
       country: this.state.details.country
     }
@@ -35,7 +34,6 @@ class DemoLoginForm extends Component {
   handleOnSubmitAdmin = (e) => {
     e.preventDefault();
     const adminDemo = {
-      email: this.state.admin.email,
       ip: this.state.details.ip,
       country: this.state.details.country
     }

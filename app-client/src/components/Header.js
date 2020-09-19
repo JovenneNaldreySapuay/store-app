@@ -266,7 +266,7 @@ class Header extends Component {
                     />
                   </div>
 
-                  <div className="cart block sm:hidden -mb-4">
+                  <div className="mobile cart block sm:hidden -mb-4">
                     <Link to="/cart" className="flex">
                       <svg
                         className="shopee-svg-icon navbar__link-icon icon-shopping-cart-2"
@@ -300,7 +300,7 @@ class Header extends Component {
                     </Link>
                   </div>
 
-                  <div className="dropdown flex justify-end relative hidden md:inline-flex">
+                  <div className="desktop dropdown flex justify-end relative hidden md:inline-flex">
                     <button className="font-semibold inline-flex items-center text-gray-700">
                     <svg
                       className="shopee-svg-icon navbar__link-icon icon-shopping-cart-2"
@@ -324,12 +324,12 @@ class Header extends Component {
                     </button>
 
                     <div
-                      className="absolute bg-blue-100 dropdown-menu hidden rounded-sm z-10"
+                      className="absolute bg-gray-100 dropdown-menu hidden rounded-sm z-10"
                       style={{marginTop:25,width:200}}
                     >
                       <CartIconTable />
                       {this.props.products.length > 0 &&
-                      <Link to="/cart" className="block mb-2 text-center">View Cart &rarr;</Link>
+                      <Link to="/cart" className="bg-gray-500 text-white block mb-2 text-center font-semibold">View Cart &rarr;</Link>
                       }
                     </div>
                   </div>

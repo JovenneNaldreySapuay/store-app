@@ -52,7 +52,7 @@ class MyPurchase extends Component {
                 {checkout.products.map((product, idx) => {
                   return (
                     <div
-                      className="bg-white border rounded-sm border-grey-400 p-2"
+                      className="bg-gray-100 border p-2"
                       key={idx}
                     >
                       <img
@@ -61,17 +61,17 @@ class MyPurchase extends Component {
                         alt={product.title}
                         width={80}
                       />
-                      <p>Item Name: {product.title}</p>
-                      <p>Quantity: {product.quantity}</p>
-                      <p>Unit Price: ${product.price}</p>
-                      <p>Subtotal: ${product.total}</p>
+                      <p><span className="font-semibold">Item Name:</span> {product.title}</p>
+                      <p><span className="font-semibold">Quantity:</span> {product.quantity}</p>
+                      <p><span className="font-semibold">Unit Price:</span> ${product.price}</p>
+                      <p><span className="font-semibold">Subtotal:</span> ${product.total}</p>
                     </div>
                   );
                 })}
-                <div className="bg-gray-300 p-2">
-                  <p>Shipping Fee: ${checkout.shipping_fee}</p>
-                  <p>Overall Total: ${checkout.total}</p>
-                  <p>Status: Paid</p>
+                <div className="bg-blue-200 p-2">
+                  <p><span className="font-semibold">Shipping Fee:</span> ${checkout.shipping_fee}</p>
+                  <p><span className="font-semibold">Overall Total:</span> ${checkout.total}</p>
+                  <p><span className="font-semibold">Status:</span> Paid</p>
                 </div>
               </div>
             );

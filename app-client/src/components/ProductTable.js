@@ -96,9 +96,8 @@ const Search = ({ onSearch }) => {
   return (
     <input
       type="text"
-      className="p-1 px-2 mt-3 mb-1 border"
-      style={{ width: "240px" }}
-      placeholder="Search..."
+      className="p-1 px-2 mt-3 mb-1 border w-full sm:w-64 rounded-full"
+      placeholder="Filter Products..."
       value={search}
       onChange={(e) => onInputChange(e.target.value)}
     />
